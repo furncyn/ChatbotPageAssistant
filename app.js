@@ -37,7 +37,7 @@ app.listen(1337, () => console.log('webhook is listening on port 1337'));
 // Accepts POST requests at /webhook endpoint
 app.post('/' + PREFIX + '/webhook', (req, res) => {
   console.log('POST request received');
-  console.log(req);
+  // console.log(req);
 
   // Parse the request body from the POST
   let body = req.body;
@@ -45,7 +45,7 @@ app.post('/' + PREFIX + '/webhook', (req, res) => {
   // Check the webhook event is from a Page subscription
   if (body.object === 'page') {
 
-    body.entry.forEach(function(entry) {
+    body.entry.forEach(function (entry) {
 
       // Gets the body of the webhook event
       let webhook_event = entry.messaging[0];
@@ -111,31 +111,32 @@ function handleMessage(sender_psid, received_message) {
 
   // Checks if the message contains text
   if (received_message.text) {
-    if (received_message.text === "version") {
+    let received_message_text = received_message.text
+    if (received_message_text === "version") {
       // Get & return the version
       response = {
         "text": `Current git revision: ${getGitVersion()}`
       }
-    } else if (received_message.text === "page category") {
+    } else if (received_message_text === "page category") {
       response = {
         "text": "How would you describe the category of your page?",
         "quick_replies": [
           {
             "content_type": text,
             "title": "Health/Beauty",
-            "payload": "<POSTBACK_PAYLOAD>",
+            "payload": "health",
           }, {
             "content_type": text,
             "title": "Dining",
-            "payload": "<POSTBACK_PAYLOAD>",
+            "payload": "dining",
            }, {
             "content_type": text,
             "title": "E-commerce",
-            "payload": "<POSTBACK_PAYLOAD>",
+            "payload": "ecommerce",
            }, {
             "content_type": text,
             "title": "Financial service",
-            "payload": "<POSTBACK_PAYLOAD>",
+            "payload": "finance",
           }
         ]
       }
@@ -143,7 +144,7 @@ function handleMessage(sender_psid, received_message) {
       // Create the payload for a basic text message, which
       // will be added to the body of our request to the Send API
       response = {
-        "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
+        "text": `You sent the message: "${received_message_text}". Now send me an attachment!`
       }
     }
   } else if (received_message.attachments) {
@@ -189,9 +190,10 @@ function getGitVersion() {
   }
 }
 
+
 function handlePostback(sender_psid, received_postback) {
   console.log('ok')
-   let response;
+  let response;
   // Get the payload for the postback
   let payload = received_postback.payload;
 
