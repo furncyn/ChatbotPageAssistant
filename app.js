@@ -130,7 +130,7 @@ function handleMessage(sender_psid, received_message) {
               db.setUserState(sender_psid, 1, 'B');
             } else {
               const attachment_url = received_message.attachments[0].payload.url;
-              response = RESPONSES.PREVIEW_PROFILE_PHOTO(attachment_url);
+              response = RESPONSES.PREVIEW_PROFILE_PHOTO;
               db.setUserState(sender_psid, 2, 'A');
             }
             break;
