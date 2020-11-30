@@ -111,7 +111,7 @@ function handleMessage(sender_psid, received_message) {
 
   // Checks if the message contains text
   if (received_message.text) {
-    received_message_text = received_message.text
+    let received_message_text = received_message.text
     if (received_message_text === "version") {
       // Get & return the version
       response = {
