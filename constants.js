@@ -1,7 +1,7 @@
 module.exports.RESPONSES = {
   GET_STARTED: {
     "text": `Welcome! Should we get started?`,
-    "quick_replies": [
+     "quick_replies": [
       {
         "content_type": "text",
         "title": "YES",
@@ -11,26 +11,9 @@ module.exports.RESPONSES = {
         "title": "NO",
         "payload": "NO",
       }
-    ]
+     ]
   },
-  ADD_PROFILE_PHOTO: {
-    "text": "Great, let's get started.\n Establish your Page's identity by adding a profile photo. \n This is the first photo people will see on your Page.",
-    "quick_replies": [
-      {
-        "content_type": "text",
-        "title": "Add Photo",
-        "payload": "Add Photo",
-      }, {
-        "content_type": "text",
-        "title": "Learn More",
-        "payload": "Learn More",
-      }, {
-        "content_type": "text",
-        "title": "Not Now",
-        "payload": "Not Now",
-      }
-    ]
-  },
+<<<<<<< HEAD
   PREVIEW_PROFILE_PHOTO(attachment_url) {
     return {
       "attachment": {
@@ -55,6 +38,13 @@ module.exports.RESPONSES = {
   },
   ADD_COVER_PHOTO: {
     "text": "Great! Now, add a cover photo for your Page. This photo is public. You can use it to promote your business.",
+=======
+  UPLOAD_PROFILE_PHOTO: {
+    "text": "Please Upload your profile Photo!",
+  },
+  UPLOAD_COVER_PHOTO: {
+    "text": "Please Upload your cover Photo!",
+>>>>>>> parent of eb70e91... [mod 1] profile photo, preview photo and cover photo
   },
   CHOOSE_BUSINESS_CATEGORY: {
     "text": "Your cover photo has been added! Now, choose your business category.",
@@ -86,7 +76,7 @@ module.exports.RESPONSES = {
   },
   START_MODULE_2: {
     "text": `Do you want to connect to more people?`,
-    "quick_replies": [
+     "quick_replies": [
       {
         "content_type": "text",
         "title": "YES",
@@ -96,7 +86,7 @@ module.exports.RESPONSES = {
         "title": "NO",
         "payload": "NO",
       }
-    ]
+     ]
   },
   SET_PAGE_BUTTON: {
   },
