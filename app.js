@@ -174,6 +174,15 @@ function handleMessage(sender_psid, received_message) {
             response = RESPONSES.SET_AUTO_REPLAY;
             db.setUserState(sender_psid, 10);
             break;
+          case 10:
+            response = {
+              "text": `State ${userState.stateLevel1} not implemented yet`
+            };
+            break;
+          case 11:
+            response = RESPONSES.FINISH_MODULE_2;
+            db.setUserState(sender_psid, 12);
+            break;
           default:
             response = {
               "text": `State ${userState.stateLevel1} not implemented yet`

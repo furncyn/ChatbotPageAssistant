@@ -82,6 +82,9 @@ module.exports.RESPONSES = {
   },
   SET_SERVICE_FLOW: {
   },
+  FINISH_MODULE_2: {
+    "text": "Congrats!",
+  },
 }
 
 module.exports.STATES = {
@@ -126,4 +129,5 @@ module.exports.STATES = {
    * D: duration
    * E: include an image
   */
+  11: "Finish Message",
 }
