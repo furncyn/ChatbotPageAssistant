@@ -1,4 +1,4 @@
-const RESPONSES = {
+module.exports.RESPONSES = {
   GET_STARTED: {
     "text": `Welcome! Should we get started?`,
      "quick_replies": [
@@ -43,7 +43,7 @@ const RESPONSES = {
   },
 }
 
-const STATES = {
+module.exports.STATES = {
   /** Module 1 */
   0: "Module 1 Welcome Message",
   1: "Profile photo",
@@ -86,6 +86,3 @@ const STATES = {
    * E: include an image
   */
 }
-
-module.exports.states = STATES;
-module.exports.responses = RESPONSES;

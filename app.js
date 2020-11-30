@@ -11,13 +11,6 @@
 const PAGE_ACCESS_TOKEN = process.env.PAGE_TOKEN;
 const PREFIX = 'fb_hackathon';
 
-const db = require('./db');
-const constants = require('./constants');
-
-const STATES = constants.states;
-const RESPONSES = constants.responses;
-console.log(RESPONSES);
-
 // SAMPLE DB APIs
 // db.setUserState('12345', 1, 'A');
 // db.setUserState('23456', 7, 'B');
@@ -32,12 +25,15 @@ console.log(RESPONSES);
 
 // Imports dependencies and set up http server
 const
-  child_process = require('child_process'),
-  fs = require('fs'),
+  db = require('./db'),
   request = require('request'),
   express = require('express'),
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
+
+const
+  {STATES, RESPONSES} = require('./constants'),
+  {getDebugReponse} = require('./utils');
 
 // Sets server port and logs message on success
 app.listen(1337, () => console.log('webhook is listening on port 1337'));
@@ -117,27 +113,12 @@ function handleMessage(sender_psid, received_message) {
 
   // Checks if the message contains text
   if (received_message.text) {
-    let received_message_text = received_message.text
-    if (received_message_text === "db.json") {
-      response = {
-        "text": `Current DB: ${JSON.stringify(db.getDb())}`
-      }
-    } else if (received_message_text === "version") {
-      // Get & return the version
-      response = {
-        "text": `Current git revision: ${getGitVersion()}`
-      }
-    } else if (received_message_text === "git log") {
-      response = {
-        "text": `Your git log:\n${getGitLog()}`
-      }
-    } else if (received_message_text.startsWith("log")) {
-      // 2nd param should be n_lines. Ignore rest.
-      const n_lines = received_message_text.trim().split(' ')[1];
-      response = {
-        "text": `Here is your log:\n ${getLog(parseInt(n_lines))}`
-      }
-    } else if (received_message_text.toLowerCase() === "hi") {
+    let received_message_text = received_message.text;
+    const debugReponse = getDebugReponse(received_message_text);
+    if (debugReponse) {
+      response = debugReponse;
+    }
+    else if (received_message_text.toLowerCase() === "hi") {
       // Initialize conversation
       response = RESPONSES.GET_STARTED;
       db.setUserState(sender_psid, 0);
@@ -282,30 +263,6 @@ function handleMessage(sender_psid, received_message) {
 
   // Send the response message
   callSendAPI(sender_psid, response);
-}
-
-function getGitVersion() {
-  const rev = fs.readFileSync('.git/HEAD').toString();
-  if (rev.indexOf(':') === -1) {
-    return rev;
-  } else {
-    return fs.readFileSync('.git/' + rev.substring(5).trim()).toString().trim();
-  }
-}
-
-function getGitLog() {
-  const cmd = 'git log --pretty=oneline --abbrev-commit | head';
-  return child_process.execSync(cmd).toString();
-}
-
-const LOG_FILE = 'log';
-function getLog(n_lines = 10) {
-  if (!Number.isInteger(n_lines)) {
-    console.log('n_lines is not an integer. Ignore.');
-    n_lines = 10;
-  }
-  const cmd = `tail -n ${n_lines} ${LOG_FILE}`;
-  return child_process.execSync(cmd).toString();
 }
 
 function handlePostback(sender_psid, received_postback) {
