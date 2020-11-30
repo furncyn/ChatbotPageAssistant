@@ -117,34 +117,42 @@ function handleMessage(sender_psid, received_message) {
   } else if (received_message.text && received_message.text.toLowerCase() === "hi") {
     // Initialize conversation
     response = RESPONSES.GET_STARTED;
-    db.setUserState(sender_psid, 1);
+    db.setUserState(sender_psid, 1, 'A');
   } else {
     const userState = db.getUserState(sender_psid);
     if (userState != null) {
       const stateLevel1 = userState.stateLevel1;
+      const stateLevel2 = userState.stateLevel2;
       switch (stateLevel1) {
         case 1:
-          response = RESPONSES.ADD_PROFILE_PHOTO;
-          db.setUserState(sender_psid, 2);
+          if (stateLevel2 === 'A') {
+            response = RESPONSES.ADD_PROFILE_PHOTO;
+            db.setUserState(sender_psid, 1, 'B');
+          } else {
+            const attachment_url = received_message.attachments[0].payload.url;
+            response = RESPONSES.PREVIEW_PROFILE_PHOTO(attachment_url);
+            db.setUserState(sender_psid, 2, 'A');
+          }
           break;
         case 2:
-          const attachment_url = received_message.attachments[0].payload.url;
-          response = RESPONSES.PREVIEW_PROFILE_PHOTO(attachment_url);
-          db.setUserState(sender_psid, 3);
-          break;
-        case 3:
           response = RESPONSES.ADD_COVER_PHOTO;
           db.setUserState(sender_psid, 4);
           break;
-        case 4:
+        case 3:
           response = RESPONSES.CHOOSE_BUSINESS_CATEGORY;
           db.setUserState(sender_psid, 5);
+          break;
+        case 4:
+          response = {
+            "text": `State ${userState.stateLevel1} not implemented yet`
+          };
+          db.setUserState(sender_psid, 6);
           break;
         case 5:
           response = {
             "text": `State ${userState.stateLevel1} not implemented yet`
           };
-          db.setUserState(sender_psid, 6);
+          db.setUserState(sender_psid, 7);
           break;
         case 6:
           response = {
