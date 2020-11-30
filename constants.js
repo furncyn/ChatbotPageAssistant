@@ -4,8 +4,8 @@ module.exports.RESPONSES = {
     "quick_replies": [
       {
         "content_type": "text",
-        "title": "YeS",
-        "payload": "YeS",
+        "title": "Yes",
+        "payload": "Yes",
       }, {
         "content_type": "text",
         "title": "No",
@@ -14,10 +14,10 @@ module.exports.RESPONSES = {
     ]
   },
   ADD_PROFILE_PHOTO: {
-    "text": "Great, let's get started. \n Add a profile photo that represents your business well. \n Many people choose to use their business logo as their profile photo.",
+    "text": "Great, let's get started. \nAdd a profile photo that represents your business well. \nMany people choose to use their business logo as their profile photo.",
   },
   PREVIEW_PROFILE_PHOTO: {
-    "text": "Looks good! Remember, your profile photo will be cropped to a circular shape in ads and posts.\n Are you happy with how it works?",
+    "text": "Looks good! Remember, your profile photo will be cropped to a circular shape in ads and posts.\nAre you happy with how it works?",
     "quick_replies": [
       {
         "content_type": "text",

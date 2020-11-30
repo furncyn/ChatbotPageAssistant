@@ -136,23 +136,23 @@ function handleMessage(sender_psid, received_message) {
             break;
           case 2:
             response = RESPONSES.ADD_COVER_PHOTO;
-            db.setUserState(sender_psid, 4);
+            db.setUserState(sender_psid, 3);
             break;
           case 3:
             response = RESPONSES.CHOOSE_BUSINESS_CATEGORY;
-            db.setUserState(sender_psid, 5);
+            db.setUserState(sender_psid, 4);
             break;
           case 4:
             response = {
               "text": `State ${userState.stateLevel1} not implemented yet`
             };
-            db.setUserState(sender_psid, 6);
+            db.setUserState(sender_psid, 5);
             break;
           case 5:
             response = {
               "text": `State ${userState.stateLevel1} not implemented yet`
             };
-            db.setUserState(sender_psid, 7);
+            db.setUserState(sender_psid, 6);
             break;
           case 6:
             response = {
