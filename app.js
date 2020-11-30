@@ -116,6 +116,10 @@ function handleMessage(sender_psid, received_message) {
       response = {
         "text": `Current git revision: ${getGitVersion()}`
       }
+    } else if (received_message.text === "ping") {
+      response = {
+        "text": `pong`
+      }
     } else {
       // Create the payload for a basic text message, which
       // will be added to the body of our request to the Send API
