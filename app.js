@@ -111,24 +111,21 @@ function handleMessage(sender_psid, received_message) {
 
   // Checks if the message contains text
   if (received_message.text) {
-    if (received_message.text === "version") {
+    received_message_text = received_message.text
+    if (received_message_text === "version") {
       // Get & return the version
       response = {
         "text": `Current git revision: ${getGitVersion()}`
       }
-    } else if (received_message.text === "ping") {
+    } else if (received_message_text === "module 1") {
       response = {
-        "text": `pong`
-      }
-    } else if (received_message.text === "module 1") {
-      response = {
-        "text": `Thank you for starting module 1!`
+        "text": `Thank you for starting module 1! Please upload your profile photo.`
       }
     } else {
       // Create the payload for a basic text message, which
       // will be added to the body of our request to the Send API
       response = {
-        "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
+        "text": `You sent the message: "${received_message_text}". Now send me an attachment!`
       }
     }
   } else if (received_message.attachments) {
