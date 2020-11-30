@@ -27,25 +27,28 @@ function getGitLog() {
   return child_process.execSync(cmd).toString();
 }
 
-module.exports.getDebugReponse = (received_message_text) => {
-  if (received_message_text === "db.json") {
-    return {
-      "text": `Current DB: ${JSON.stringify(db.getDb())}`
-    }
-  } else if (received_message_text === "version") {
-    // Get & return the version
-    return {
-      "text": `Current git revision: ${getGitVersion()}`
-    }
-  } else if (received_message_text === "git log") {
-    return {
-      "text": `Your git log:\n${getGitLog()}`
-    }
-  } else if (received_message_text.startsWith("log")) {
-    // 2nd param should be n_lines. Ignore rest.
-    const n_lines = received_message_text.trim().split(' ')[1];
-    return {
-      "text": `Here is your log:\n ${getLog(parseInt(n_lines))}`
+module.exports.getDebugReponse = (received_message) => {
+  if (received_message.text) {
+    let received_message_text = received_message.text;
+    if (received_message_text === "db.json") {
+      return {
+        "text": `Current DB: ${JSON.stringify(db.getDb())}`
+      }
+    } else if (received_message_text === "version") {
+      // Get & return the version
+      return {
+        "text": `Current git revision: ${getGitVersion()}`
+      }
+    } else if (received_message_text === "git log") {
+      return {
+        "text": `Your git log:\n${getGitLog()}`
+      }
+    } else if (received_message_text.startsWith("log")) {
+      // 2nd param should be n_lines. Ignore rest.
+      const n_lines = received_message_text.trim().split(' ')[1];
+      return {
+        "text": `Here is your log:\n ${getLog(parseInt(n_lines))}`
+      }
     }
   }
 }

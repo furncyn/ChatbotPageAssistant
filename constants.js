@@ -1,6 +1,6 @@
 module.exports.RESPONSES = {
   GET_STARTED: {
-    "text": `Welcome! Should we get started?`,
+    "text": "Welcome! Should we get started?",
      "quick_replies": [
       {
         "content_type": "text",
