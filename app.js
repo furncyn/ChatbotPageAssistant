@@ -34,6 +34,7 @@ const
 const
   {STATES, RESPONSES} = require('./constants'),
   {getDebugReponse} = require('./utils');
+console.log(RESPONSES);
 
 // Sets server port and logs message on success
 app.listen(1337, () => console.log('webhook is listening on port 1337'));
@@ -131,35 +132,57 @@ function handleMessage(sender_psid, received_message) {
             db.setUserState(sender_psid, 1);
             break;
           case 1:
-            // code block
+            response = {
+              "text": `State ${userState.stateLevel1} not implemented yet`
+            };
+            db.setUserState(sender_psid, 2);
             break;
           case 2:
-              // code block
+            response = {
+              "text": `State ${userState.stateLevel1} not implemented yet`
+            };
+            db.setUserState(sender_psid, 3);
             break;
           case 3:
             response = RESPONSES.CHOOSE_BUSINESS_CATEGORY;
             db.setUserState(sender_psid, 4);
             break;
           case 4:
-            // code block
+            response = {
+              "text": `State ${userState.stateLevel1} not implemented yet`
+            };
+            db.setUserState(sender_psid, 5);
             break;
           case 5:
-            // code block
+            response = {
+              "text": `State ${userState.stateLevel1} not implemented yet`
+            };
+            db.setUserState(sender_psid, 6);
             break;
           case 6:
-            // code block
+            response = {
+              "text": `State ${userState.stateLevel1} not implemented yet`
+            };
+            db.setUserState(sender_psid, 7);
             break;
           case 7:
-            // code block
+            response = RESPONSES.START_MODULE_2;
+            db.setUserState(sender_psid, 8);
             break;
           case 8:
-            // code block
+            response = {
+              "text": `State ${userState.stateLevel1} not implemented yet`
+            };
+            db.setUserState(sender_psid, 9);
             break;
           case 9:
-            // code block
+            response = RESPONSES.ADD_AUTO_REPLAY;
+            db.setUserState(sender_psid, 10);
             break;
           default:
-            // code block
+            response = {
+              "text": `State ${userState.stateLevel1} not implemented yet`
+            };
         }
       }
       // // Create the payload for a basic text message, which
@@ -177,31 +200,57 @@ function handleMessage(sender_psid, received_message) {
           db.setUserState(sender_psid, 2);
           break;
         case 2:
-          // code block
+          response = {
+            "text": `State ${userState.stateLevel1} not implemented yet`
+          };
+          db.setUserState(sender_psid, 3);
           break;
         case 3:
-          // code block
+          response = {
+            "text": `State ${userState.stateLevel1} not implemented yet`
+          };
+          db.setUserState(sender_psid, 4);
           break;
         case 4:
-          // code block
+          response = {
+            "text": `State ${userState.stateLevel1} not implemented yet`
+          };
+          db.setUserState(sender_psid, 5);
           break;
         case 5:
-          // code block
+          response = {
+            "text": `State ${userState.stateLevel1} not implemented yet`
+          };
+          db.setUserState(sender_psid, 6);
           break;
         case 6:
-          // code block
+          response = {
+            "text": `State ${userState.stateLevel1} not implemented yet`
+          };
+          db.setUserState(sender_psid, 7);
           break;
         case 7:
-          // code block
+          response = {
+            "text": `State ${userState.stateLevel1} not implemented yet`
+          };
+          db.setUserState(sender_psid, 8);
           break;
         case 8:
-          // code block
+          response = {
+            "text": `State ${userState.stateLevel1} not implemented yet`
+          };
+          db.setUserState(sender_psid, 9);
           break;
         case 9:
-          // code block
+          response = {
+            "text": `State ${userState.stateLevel1} not implemented yet`
+          };
+          db.setUserState(sender_psid, 10);
           break;
         default:
-          // code block
+          response = {
+            "text": `State ${userState.stateLevel1} not implemented yet`
+          };
       }
     }
 

@@ -41,6 +41,23 @@ module.exports.RESPONSES = {
       }
     ]
   },
+  START_MODULE_2: {
+    "text": `Do you want to connect to more people?`,
+     "quick_replies": [
+      {
+        "content_type": "text",
+        "title": "YES",
+        "payload": "YES",
+      }, {
+        "content_type": "text",
+        "title": "NO",
+        "payload": "NO",
+      }
+     ]
+  },
+  ADD_AUTO_REPLAY: {
+    "text": "Please input the auto reply!",
+  },
 }
 
 module.exports.STATES = {
