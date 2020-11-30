@@ -122,19 +122,19 @@ function handleMessage(sender_psid, received_message) {
         "text": "How would you describe the category of your page?",
         "quick_replies": [
           {
-            "content_type": text,
+            "content_type": "text",
             "title": "Health/Beauty",
             "payload": "health",
           }, {
-            "content_type": text,
+            "content_type": "text",
             "title": "Dining",
             "payload": "dining",
            }, {
-            "content_type": text,
+            "content_type": "text",
             "title": "E-commerce",
             "payload": "ecommerce",
            }, {
-            "content_type": text,
+            "content_type": "text",
             "title": "Financial service",
             "payload": "finance",
           }
