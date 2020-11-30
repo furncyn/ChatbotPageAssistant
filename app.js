@@ -205,7 +205,6 @@ function getLog(n_lines = 10) {
     const cmd = `tail -n ${n_lines} ${LOG_FILE}`;
     return child_process.execSync(cmd).toString();
 }
-console.log(getLog());
 
 function handlePostback(sender_psid, received_postback) {
   console.log('ok')
