@@ -111,7 +111,6 @@ app.get('/' + PREFIX + '/webhook', (req, res) => {
 function handleMessage(sender_psid, received_message) {
   let response;
 
-<<<<<<< HEAD
   const debugReponse = getDebugReponse(received_message);
   if (debugReponse) {
     response = debugReponse;
@@ -120,114 +119,21 @@ function handleMessage(sender_psid, received_message) {
     response = RESPONSES.GET_STARTED;
     db.setUserState(sender_psid, 1);
   } else {
-=======
-  // Checks if the message contains text
-  if (received_message.text) {
-    let received_message_text = received_message.text;
-    const debugReponse = getDebugReponse(received_message_text);
-    if (debugReponse) {
-      response = debugReponse;
-    }
-    else if (received_message_text.toLowerCase() === "hi") {
-      // Initialize conversation
-      response = RESPONSES.GET_STARTED;
-      db.setUserState(sender_psid, 0);
-    } else {
-      const userState = db.getUserState(sender_psid);
-      if (userState != null) {
-        switch(userState.stateLevel1) {
-          case 0:
-            response = RESPONSES.UPLOAD_PROFILE_PHOTO;
-            db.setUserState(sender_psid, 1);
-            break;
-          case 1:
-            response = {
-              "text": `State ${userState.stateLevel1} not implemented yet`
-            };
-            db.setUserState(sender_psid, 2);
-            break;
-          case 2:
-            response = {
-              "text": `State ${userState.stateLevel1} not implemented yet`
-            };
-            db.setUserState(sender_psid, 3);
-            break;
-          case 3:
-            response = RESPONSES.CHOOSE_BUSINESS_CATEGORY;
-            db.setUserState(sender_psid, 4);
-            break;
-          case 4:
-            response = {
-              "text": `State ${userState.stateLevel1} not implemented yet`
-            };
-            db.setUserState(sender_psid, 5);
-            break;
-          case 5:
-            response = {
-              "text": `State ${userState.stateLevel1} not implemented yet`
-            };
-            db.setUserState(sender_psid, 6);
-            break;
-          case 6:
-            response = {
-              "text": `State ${userState.stateLevel1} not implemented yet`
-            };
-            db.setUserState(sender_psid, 7);
-            break;
-          case 7:
-            response = RESPONSES.START_MODULE_2;
-            db.setUserState(sender_psid, 8);
-            break;
-          case 8:
-            response = {
-              "text": `State ${userState.stateLevel1} not implemented yet`
-            };
-            db.setUserState(sender_psid, 9);
-            break;
-          case 9:
-            response = RESPONSES.ADD_AUTO_REPLAY;
-            db.setUserState(sender_psid, 10);
-            break;
-          default:
-            response = {
-              "text": `State ${userState.stateLevel1} not implemented yet`
-            };
-        }
-      }
-      // // Create the payload for a basic text message, which
-      // // will be added to the body of our request to the Send API
-      // response = {
-      //   "text": `You sent the message: "${received_message_text}". Now send me an attachment!`
-      // }
-    }
-  } else if (received_message.attachments) {
->>>>>>> parent of eb70e91... [mod 1] profile photo, preview photo and cover photo
     const userState = db.getUserState(sender_psid);
     if (userState != null) {
       const stateLevel1 = userState.stateLevel1;
       switch (stateLevel1) {
         case 1:
-<<<<<<< HEAD
           response = RESPONSES.ADD_PROFILE_PHOTO;
-=======
-          response = RESPONSES.UPLOAD_COVER_PHOTO;
->>>>>>> parent of eb70e91... [mod 1] profile photo, preview photo and cover photo
           db.setUserState(sender_psid, 2);
           break;
         case 2:
-          let attachment_url = received_message.attachments[0].payload.url;
+          const attachment_url = received_message.attachments[0].payload.url;
           response = RESPONSES.PREVIEW_PROFILE_PHOTO(attachment_url);
           db.setUserState(sender_psid, 3);
           break;
-          break;
         case 3:
-<<<<<<< HEAD
           response = RESPONSES.ADD_COVER_PHOTO;
-=======
-          response = {
-            "text": `State ${userState.stateLevel1} not implemented yet`
-          };
->>>>>>> parent of eb70e91... [mod 1] profile photo, preview photo and cover photo
           db.setUserState(sender_psid, 4);
           break;
         case 4:
@@ -339,15 +245,12 @@ function handlePostback(sender_psid, received_postback) {
   let payload = received_postback.payload;
 
   // Set the response based on the postback payload
-<<<<<<< HEAD
   if (payload === 'Add Photo') {
     response = { "text": "Please send me a profile photo." }
-=======
-  if (payload === 'yes') {
+  } else if (payload === 'yes') {
     response = { "text": "Thanks!" }
   } else if (payload === 'no') {
     response = { "text": "Looking forward to continue next time." }
->>>>>>> parent of eb70e91... [mod 1] profile photo, preview photo and cover photo
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);

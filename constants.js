@@ -13,7 +13,9 @@ module.exports.RESPONSES = {
       }
      ]
   },
-<<<<<<< HEAD
+  ADD_PROFILE_PHOTO: {
+    "text": "Please Upload your profile Photo!",
+  },
   PREVIEW_PROFILE_PHOTO(attachment_url) {
     return {
       "attachment": {
@@ -21,7 +23,7 @@ module.exports.RESPONSES = {
         "payload": {
           "template_type": "generic",
         }
-      }, 
+      },
       "text": "Looks good! Remember, your profile photo will be cropped to a circular shape in ads and posts.\n Are you happy with how it works?",
       "quick_replies": [
         {
@@ -38,13 +40,6 @@ module.exports.RESPONSES = {
   },
   ADD_COVER_PHOTO: {
     "text": "Great! Now, add a cover photo for your Page. This photo is public. You can use it to promote your business.",
-=======
-  UPLOAD_PROFILE_PHOTO: {
-    "text": "Please Upload your profile Photo!",
-  },
-  UPLOAD_COVER_PHOTO: {
-    "text": "Please Upload your cover Photo!",
->>>>>>> parent of eb70e91... [mod 1] profile photo, preview photo and cover photo
   },
   CHOOSE_BUSINESS_CATEGORY: {
     "text": "Your cover photo has been added! Now, choose your business category.",
