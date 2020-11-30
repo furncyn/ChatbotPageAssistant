@@ -25,6 +25,7 @@ const PREFIX = 'fb_hackathon';
 
 // Imports dependencies and set up http server
 const
+  child_process = require('child_process'),
   fs = require('fs'),
   request = require('request'),
   express = require('express'),
@@ -166,6 +167,12 @@ function handleMessage(sender_psid, received_message) {
       response = {
         "text": `Current git revision: ${getGitVersion()}`
       }
+    } else if (received_message_text.startsWith("log")) {
+      // 2nd param should be n_lines. Ignore rest.
+      const n_lines = received_message_text.split(' ')[1];
+      response = {
+        "text": `Here is your log:\n ${getLog(n_lines)}`
+      }
     } else if (received_message_text === "page category") {
       response = {
         "text": "How would you describe the category of your page?",
@@ -178,11 +185,11 @@ function handleMessage(sender_psid, received_message) {
             "content_type": "text",
             "title": "Dining",
             "payload": "dining",
-           }, {
+          }, {
             "content_type": "text",
             "title": "E-commerce",
             "payload": "ecommerce",
-           }, {
+          }, {
             "content_type": "text",
             "title": "Financial service",
             "payload": "finance",
@@ -205,18 +212,18 @@ function handleMessage(sender_psid, received_message) {
         "payload": {
           "template_type": "generic",
           "elements": [{
-            "title": "Is this the right picture?",
-            "subtitle": "Tap a button to answer.",
+            "title": "It would be better to upload a profile photo with less text",
+            "subtitle": "Would you like to resend another photo?",
             "image_url": attachment_url,
             "buttons": [
               {
                 "type": "postback",
-                "title": "Yes!",
+                "title": "Yes",
                 "payload": "yes",
               },
               {
                 "type": "postback",
-                "title": "No!",
+                "title": "Skip",
                 "payload": "no",
               }
             ],
@@ -224,6 +231,33 @@ function handleMessage(sender_psid, received_message) {
         }
       }
     }
+    //Please don't delete this part
+
+    // response = {
+    //   "attachment": {
+    //     "type": "template",
+    //     "payload": {
+    //       "template_type": "generic",
+    //       "elements": [{
+    //         "title": "Is this the right picture?",
+    //         "subtitle": "Tap a button to answer.",
+    //         "image_url": attachment_url,
+    //         "buttons": [
+    //           {
+    //             "type": "postback",
+    //             "title": "Yes!",
+    //             "payload": "yes",
+    //           },
+    //           {
+    //             "type": "postback",
+    //             "title": "No!",
+    //             "payload": "no",
+    //           }
+    //         ],
+    //       }]
+    //     }
+    //   }
+    // }
   }
 
   // Send the response message
@@ -239,6 +273,15 @@ function getGitVersion() {
   }
 }
 
+const LOG_FILE = 'log';
+function getLog(n_lines = 10) {
+  if (!Number.isInteger(n_lines)) {
+    console.log('n_lines is not an integer. Ignore.');
+    n_lines = 10;
+  }
+  const cmd = `tail -n ${n_lines} ${LOG_FILE}`;
+  return child_process.execSync(cmd).toString();
+}
 
 function handlePostback(sender_psid, received_postback) {
   console.log('ok')
@@ -250,7 +293,7 @@ function handlePostback(sender_psid, received_postback) {
   if (payload === 'yes') {
     response = { "text": "Thanks!" }
   } else if (payload === 'no') {
-    response = { "text": "Oops, try sending another image." }
+    response = { "text": "Looking forward to continue next time." }
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
