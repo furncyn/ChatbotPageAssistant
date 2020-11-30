@@ -117,25 +117,19 @@ function handleMessage(sender_psid, received_message) {
   } else if (received_message.text && received_message.text.toLowerCase() === "hi") {
     // Initialize conversation
     response = RESPONSES.GET_STARTED;
-    db.setUserState(sender_psid, 0);
+    db.setUserState(sender_psid, 1);
   } else {
     const userState = db.getUserState(sender_psid);
     if (userState != null) {
       const stateLevel1 = userState.stateLevel1;
       switch(stateLevel1) {
-        case 0:
+        case 1:
           response = RESPONSES.UPLOAD_PROFILE_PHOTO;
           db.setUserState(sender_psid, 1);
           break;
-        case 1:
+        case 2:
           response = RESPONSES.UPLOAD_COVER_PHOTO;
           db.setUserState(sender_psid, 2);
-          break;
-        case 2:
-          response = {
-            "text": `State ${stateLevel1} - ${STATES[stateLevel1]} not implemented yet`
-          };
-          db.setUserState(sender_psid, 3);
           break;
         case 3:
           response = RESPONSES.CHOOSE_BUSINESS_CATEGORY;
@@ -170,7 +164,7 @@ function handleMessage(sender_psid, received_message) {
           db.setUserState(sender_psid, 9);
           break;
         case 9:
-          response = RESPONSES.ADD_AUTO_REPLAY;
+          response = RESPONSES.SET_AUTO_REPLAY;
           db.setUserState(sender_psid, 10);
           break;
         default:

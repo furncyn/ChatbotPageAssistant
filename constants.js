@@ -41,6 +41,12 @@ module.exports.RESPONSES = {
       }
     ]
   },
+  SET_LOCATION: {
+  },
+  SET_OPENING_HOURS: {
+  },
+  SET_CONTACT_INFO: {
+  },
   START_MODULE_2: {
     "text": `Do you want to connect to more people?`,
      "quick_replies": [
@@ -55,8 +61,12 @@ module.exports.RESPONSES = {
       }
      ]
   },
-  ADD_AUTO_REPLAY: {
+  SET_PAGE_BUTTON: {
+  },
+  SET_AUTO_REPLAY: {
     "text": "Please input the auto reply!",
+  },
+  SET_SERVICE_FLOW: {
   },
 }
 
@@ -75,9 +85,9 @@ module.exports.STATES = {
    */
   3: "Page category",
   4: "Page location",
-
   5: "Opening hours",
   /**
+   * Webview
    * A: 4 selections (No hours, Always open, Permanently closed, Selected hours)
    * B: specify Selected hours
    */
