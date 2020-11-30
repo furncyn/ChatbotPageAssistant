@@ -125,11 +125,11 @@ function handleMessage(sender_psid, received_message) {
       switch(stateLevel1) {
         case 1:
           response = RESPONSES.UPLOAD_PROFILE_PHOTO;
-          db.setUserState(sender_psid, 1);
+          db.setUserState(sender_psid, 2);
           break;
         case 2:
           response = RESPONSES.UPLOAD_COVER_PHOTO;
-          db.setUserState(sender_psid, 2);
+          db.setUserState(sender_psid, 3);
           break;
         case 3:
           response = RESPONSES.CHOOSE_BUSINESS_CATEGORY;
