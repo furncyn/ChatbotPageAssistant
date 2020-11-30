@@ -110,130 +110,140 @@ app.get('/' + PREFIX + '/webhook', (req, res) => {
 
 function handleMessage(sender_psid, received_message) {
   let response;
-
-  const debugReponse = getDebugReponse(received_message);
-  if (debugReponse) {
-    response = debugReponse;
-  } else if (received_message.text && received_message.text.toLowerCase() === "hi") {
-    // Initialize conversation
-    response = RESPONSES.GET_STARTED;
-    db.setUserState(sender_psid, 1);
-  } else {
-    const userState = db.getUserState(sender_psid);
-    if (userState != null) {
-      const stateLevel1 = userState.stateLevel1;
-      switch (stateLevel1) {
-        case 1:
-          response = RESPONSES.ADD_PROFILE_PHOTO;
-          db.setUserState(sender_psid, 2);
-          break;
-        case 2:
-          const attachment_url = received_message.attachments[0].payload.url;
-          response = RESPONSES.PREVIEW_PROFILE_PHOTO(attachment_url);
-          db.setUserState(sender_psid, 3);
-          break;
-        case 3:
-          response = RESPONSES.ADD_COVER_PHOTO;
-          db.setUserState(sender_psid, 4);
-          break;
-        case 4:
-          response = RESPONSES.CHOOSE_BUSINESS_CATEGORY;
-          db.setUserState(sender_psid, 5);
-          break;
-        case 5:
-          response = {
-            "text": `State ${userState.stateLevel1} not implemented yet`
-          };
-          db.setUserState(sender_psid, 6);
-          break;
-        case 6:
-          response = {
-            "text": `State ${userState.stateLevel1} not implemented yet`
-          };
-          db.setUserState(sender_psid, 7);
-          break;
-        case 7:
-          response = RESPONSES.START_MODULE_2;
-          db.setUserState(sender_psid, 8);
-          break;
-        case 8:
-          response = {
-            "text": `State ${userState.stateLevel1} not implemented yet`
-          };
-          db.setUserState(sender_psid, 9);
-          break;
-        case 9:
-          response = RESPONSES.SET_AUTO_REPLAY;
-          db.setUserState(sender_psid, 10);
-          break;
-        default:
-          response = {
-            "text": `State ${userState.stateLevel1} not implemented yet`
-          };
+  try {
+    const debugReponse = getDebugReponse(received_message);
+    if (debugReponse) {
+      response = debugReponse;
+    } else if (received_message.text && received_message.text.toLowerCase() === "hi") {
+      // Initialize conversation
+      response = RESPONSES.GET_STARTED;
+      db.setUserState(sender_psid, 1, 'A');
+    } else {
+      const userState = db.getUserState(sender_psid);
+      if (userState != null) {
+        const stateLevel1 = userState.stateLevel1;
+        const stateLevel2 = userState.stateLevel2;
+        switch (stateLevel1) {
+          case 1:
+            if (stateLevel2 === 'A') {
+              response = RESPONSES.ADD_PROFILE_PHOTO;
+              db.setUserState(sender_psid, 1, 'B');
+            } else {
+              const attachment_url = received_message.attachments[0].payload.url;
+              response = RESPONSES.PREVIEW_PROFILE_PHOTO(attachment_url);
+              db.setUserState(sender_psid, 2, 'A');
+            }
+            break;
+          case 2:
+            response = RESPONSES.ADD_COVER_PHOTO;
+            db.setUserState(sender_psid, 4);
+            break;
+          case 3:
+            response = RESPONSES.CHOOSE_BUSINESS_CATEGORY;
+            db.setUserState(sender_psid, 5);
+            break;
+          case 4:
+            response = {
+              "text": `State ${userState.stateLevel1} not implemented yet`
+            };
+            db.setUserState(sender_psid, 6);
+            break;
+          case 5:
+            response = {
+              "text": `State ${userState.stateLevel1} not implemented yet`
+            };
+            db.setUserState(sender_psid, 7);
+            break;
+          case 6:
+            response = {
+              "text": `State ${userState.stateLevel1} not implemented yet`
+            };
+            db.setUserState(sender_psid, 7);
+            break;
+          case 7:
+            response = RESPONSES.START_MODULE_2;
+            db.setUserState(sender_psid, 8);
+            break;
+          case 8:
+            response = {
+              "text": `State ${userState.stateLevel1} not implemented yet`
+            };
+            db.setUserState(sender_psid, 9);
+            break;
+          case 9:
+            response = RESPONSES.SET_AUTO_REPLAY;
+            db.setUserState(sender_psid, 10);
+            break;
+          default:
+            response = {
+              "text": `State ${userState.stateLevel1} not implemented yet`
+            };
+        }
+        // // Create the payload for a basic text message, which
+        // // will be added to the body of our request to the Send API
+        // response = {
+        //   "text": `You sent the message: "${received_message_text}". Now send me an attachment!`
+        // }
       }
-      // // Create the payload for a basic text message, which
-      // // will be added to the body of our request to the Send API
+
+      // Get the URL of the message attachment
+      // let attachment_url = received_message.attachments[0].payload.url;
       // response = {
-      //   "text": `You sent the message: "${received_message_text}". Now send me an attachment!`
+      //   "attachment": {
+      //     "type": "template",
+      //     "payload": {
+      //       "template_type": "generic",
+      //       "elements": [{
+      //         "title": "It would be better to upload a profile photo with less text",
+      //         "subtitle": "Would you like to resend another photo?",
+      //         "image_url": attachment_url,
+      //         "buttons": [
+      //           {
+      //             "type": "postback",
+      //             "title": "Yes",
+      //             "payload": "yes",
+      //           },
+      //           {
+      //             "type": "postback",
+      //             "title": "Skip",
+      //             "payload": "no",
+      //           }
+      //         ],
+      //       }]
+      //     }
+      //   }
+      // }
+      //Please don't delete this part
+
+      // response = {
+      //   "attachment": {
+      //     "type": "template",
+      //     "payload": {
+      //       "template_type": "generic",
+      //       "elements": [{
+      //         "title": "Is this the right picture?",
+      //         "subtitle": "Tap a button to answer.",
+      //         "image_url": attachment_url,
+      //         "buttons": [
+      //           {
+      //             "type": "postback",
+      //             "title": "Yes!",
+      //             "payload": "yes",
+      //           },
+      //           {
+      //             "type": "postback",
+      //             "title": "No!",
+      //             "payload": "no",
+      //           }
+      //         ],
+      //       }]
+      //     }
+      //   }
       // }
     }
-
-    // Get the URL of the message attachment
-    // let attachment_url = received_message.attachments[0].payload.url;
-    // response = {
-    //   "attachment": {
-    //     "type": "template",
-    //     "payload": {
-    //       "template_type": "generic",
-    //       "elements": [{
-    //         "title": "It would be better to upload a profile photo with less text",
-    //         "subtitle": "Would you like to resend another photo?",
-    //         "image_url": attachment_url,
-    //         "buttons": [
-    //           {
-    //             "type": "postback",
-    //             "title": "Yes",
-    //             "payload": "yes",
-    //           },
-    //           {
-    //             "type": "postback",
-    //             "title": "Skip",
-    //             "payload": "no",
-    //           }
-    //         ],
-    //       }]
-    //     }
-    //   }
-    // }
-    //Please don't delete this part
-
-    // response = {
-    //   "attachment": {
-    //     "type": "template",
-    //     "payload": {
-    //       "template_type": "generic",
-    //       "elements": [{
-    //         "title": "Is this the right picture?",
-    //         "subtitle": "Tap a button to answer.",
-    //         "image_url": attachment_url,
-    //         "buttons": [
-    //           {
-    //             "type": "postback",
-    //             "title": "Yes!",
-    //             "payload": "yes",
-    //           },
-    //           {
-    //             "type": "postback",
-    //             "title": "No!",
-    //             "payload": "no",
-    //           }
-    //         ],
-    //       }]
-    //     }
-    //   }
-    // }
+  } catch(err) {
+    response = {"text": err};
   }
-
   // Send the response message
   callSendAPI(sender_psid, response);
 }
