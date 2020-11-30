@@ -169,9 +169,9 @@ function handleMessage(sender_psid, received_message) {
       }
     } else if (received_message_text.startsWith("log")) {
       // 2nd param should be n_lines. Ignore rest.
-      const n_lines = received_message_text.split(' ')[1];
+      const n_lines = received_message_text.trim().split(' ')[1];
       response = {
-        "text": `Here is your log:\n ${getLog(n_lines)}`
+        "text": `Here is your log:\n ${getLog(parseInt(n_lines))}`
       }
     } else if (received_message_text === "page category") {
       response = {
