@@ -1,42 +1,34 @@
 module.exports.RESPONSES = {
   GET_STARTED: {
     "text": `Welcome! Should we get started?`,
-     "quick_replies": [
+    "quick_replies": [
       {
         "content_type": "text",
-        "title": "YES",
-        "payload": "YES",
+        "title": "YeS",
+        "payload": "YeS",
       }, {
         "content_type": "text",
-        "title": "NO",
-        "payload": "NO",
+        "title": "No",
+        "payload": "No",
       }
-     ]
+    ]
   },
   ADD_PROFILE_PHOTO: {
-    "text": "Please Upload your profile Photo!",
+    "text": "Great, let's get started. \n Add a profile photo that represents your business well. \n Many people choose to use their business logo as their profile photo.",
   },
-  PREVIEW_PROFILE_PHOTO(attachment_url) {
-    return {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-        }
-      },
-      "text": "Looks good! Remember, your profile photo will be cropped to a circular shape in ads and posts.\n Are you happy with how it works?",
-      "quick_replies": [
-        {
-          "content_type": "text",
-          "title": "Yes",
-          "payload": "Yes",
-        }, {
-          "content_type": "text",
-          "title": "No",
-          "payload": "No",
-        }
-      ]
-    }
+  PREVIEW_PROFILE_PHOTO: {
+    "text": "Looks good! Remember, your profile photo will be cropped to a circular shape in ads and posts.\n Are you happy with how it works?",
+    "quick_replies": [
+      {
+        "content_type": "text",
+        "title": "Yes",
+        "payload": "Yes",
+      }, {
+        "content_type": "text",
+        "title": "No",
+        "payload": "No",
+      }
+    ]
   },
   ADD_COVER_PHOTO: {
     "text": "Great! Now, add a cover photo for your Page. This photo is public. You can use it to promote your business.",
@@ -71,17 +63,17 @@ module.exports.RESPONSES = {
   },
   START_MODULE_2: {
     "text": `Do you want to connect to more people?`,
-     "quick_replies": [
+    "quick_replies": [
       {
         "content_type": "text",
-        "title": "YES",
-        "payload": "YES",
+        "title": "Yes",
+        "payload": "Yes",
       }, {
         "content_type": "text",
-        "title": "NO",
-        "payload": "NO",
+        "title": "No",
+        "payload": "No",
       }
-     ]
+    ]
   },
   SET_PAGE_BUTTON: {
   },
