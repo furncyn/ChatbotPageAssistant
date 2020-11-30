@@ -6,3 +6,6 @@ log
 
 # editors
 *.swp
+
+# db.json
+db.json

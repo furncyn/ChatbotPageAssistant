@@ -23,6 +23,18 @@
 const PAGE_ACCESS_TOKEN = process.env.PAGE_TOKEN;
 const PREFIX = 'fb_hackathon';
 
+const db = require('./db');
+
+// SAMPLE DB APIs
+// db.setUserState('12345', 1, 'A');
+// db.setUserState('23456', 7, 'B');
+// console.log(db.getUserState('12345')); // { stateLevel1: 1, stateLevel2: 'A' }
+// console.log(db.getUserState('23456')); // { stateLevel1: 7, stateLevel2: 'B' }
+
+// db.setUserPageInfoCompletion('12345', 'profilePhoto', true);
+// db.setUserPageInfoCompletion('12345', 'coverPhoto', true);
+// console.log(db.getUserPageInfoCompletion('12345')); // { coverPhoto: true, profilePhoto: true }
+
 // Imports dependencies and set up http server
 const
   child_process = require('child_process'),
