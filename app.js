@@ -34,7 +34,6 @@ const
 const
   {STATES, RESPONSES} = require('./constants'),
   {getDebugReponse} = require('./utils');
-console.log(RESPONSES);
 
 // Sets server port and logs message on success
 app.listen(1337, () => console.log('webhook is listening on port 1337'));
@@ -115,7 +114,7 @@ function handleMessage(sender_psid, received_message) {
   const debugReponse = getDebugReponse(received_message);
   if (debugReponse) {
     response = debugReponse;
-  } else if (received_message.text && received_message_text.toLowerCase() === "hi") {
+  } else if (received_message.text && received_message.text.toLowerCase() === "hi") {
     // Initialize conversation
     response = RESPONSES.GET_STARTED;
     db.setUserState(sender_psid, 0);
