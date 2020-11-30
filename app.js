@@ -150,6 +150,22 @@ function handleMessage(sender_psid, received_message) {
       response = {
         "text": `Here is your log:\n ${getLog(parseInt(n_lines))}`
       }
+    } else if (received_message_text.toLowerCase() === "hi") {
+      response = {
+        "text": `Welcome! Should we get started?`,
+         "quick_replies": [
+          {
+            "content_type": "text",
+            "title": "YES",
+            "payload": "YES",
+          }, {
+            "content_type": "text",
+            "title": "NO",
+            "payload": "NO",
+          }
+         ]
+      };
+      db.setUserState(sender_psid, 0);
     } else if (received_message_text === "page category") {
       response = {
         "text": "How would you describe the category of your page?",
@@ -174,40 +190,75 @@ function handleMessage(sender_psid, received_message) {
         ]
       }
     } else {
-      // Create the payload for a basic text message, which
-      // will be added to the body of our request to the Send API
-      response = {
-        "text": `You sent the message: "${received_message_text}". Now send me an attachment!`
-      }
-    }
-  } else if (received_message.attachments) {
-    // Get the URL of the message attachment
-    let attachment_url = received_message.attachments[0].payload.url;
-    response = {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": [{
-            "title": "It would be better to upload a profile photo with less text",
-            "subtitle": "Would you like to resend another photo?",
-            "image_url": attachment_url,
-            "buttons": [
-              {
-                "type": "postback",
-                "title": "Yes",
-                "payload": "yes",
-              },
-              {
-                "type": "postback",
-                "title": "Skip",
-                "payload": "no",
-              }
-            ],
-          }]
+      const userState = db.getUserState(sender_psid);
+      if (userState != null) {
+        switch(userState.stateLevel1) {
+          case 0:
+            response = {
+              "text": "Please Upload your profile Photo!",
+            };
+            db.setUserState(sender_psid, 1);
+            break;
+          case 1:
+            // code block
+            break;
+          default:
+            // code block
         }
       }
+      // // Create the payload for a basic text message, which
+      // // will be added to the body of our request to the Send API
+      // response = {
+      //   "text": `You sent the message: "${received_message_text}". Now send me an attachment!`
+      // }
     }
+  } else if (received_message.attachments) {
+
+
+    const userState = db.getUserState(sender_psid);
+    if (userState != null) {
+        switch(userState.stateLevel1) {
+          case 1:
+            response = {
+              "text": "Thanks for the profile photo! Please upload your cover photo next! ",
+            };
+            db.setUserState(sender_psid, 2);
+            break;
+          case 2:
+            // code block
+            break;
+          default:
+            // code block
+        }
+      }
+
+    // Get the URL of the message attachment
+    // let attachment_url = received_message.attachments[0].payload.url;
+    // response = {
+    //   "attachment": {
+    //     "type": "template",
+    //     "payload": {
+    //       "template_type": "generic",
+    //       "elements": [{
+    //         "title": "It would be better to upload a profile photo with less text",
+    //         "subtitle": "Would you like to resend another photo?",
+    //         "image_url": attachment_url,
+    //         "buttons": [
+    //           {
+    //             "type": "postback",
+    //             "title": "Yes",
+    //             "payload": "yes",
+    //           },
+    //           {
+    //             "type": "postback",
+    //             "title": "Skip",
+    //             "payload": "no",
+    //           }
+    //         ],
+    //       }]
+    //     }
+    //   }
+    // }
     //Please don't delete this part
 
     // response = {
