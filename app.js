@@ -27,7 +27,6 @@ const db = require('./db');
 const constants = require('./constants');
 
 const STATES = constants.states;
-console.log(STATES);
 
 // SAMPLE DB APIs
 // db.setUserState('12345', 1, 'A');
@@ -166,29 +165,6 @@ function handleMessage(sender_psid, received_message) {
          ]
       };
       db.setUserState(sender_psid, 0);
-    } else if (received_message_text === "page category") {
-      response = {
-        "text": "How would you describe the category of your page?",
-        "quick_replies": [
-          {
-            "content_type": "text",
-            "title": "Beauty service",
-            "payload": "beauty",
-          }, {
-            "content_type": "text",
-            "title": "Dining",
-            "payload": "dining",
-          }, {
-            "content_type": "text",
-            "title": "E-commerce",
-            "payload": "ecommerce",
-          }, {
-            "content_type": "text",
-            "title": "Financial service",
-            "payload": "finance",
-          }
-        ]
-      }
     } else {
       const userState = db.getUserState(sender_psid);
       if (userState != null) {
