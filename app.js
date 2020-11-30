@@ -25,6 +25,7 @@ const PREFIX = 'fb_hackathon';
 
 // Imports dependencies and set up http server
 const
+  child_process = require('child_process'),
   fs = require('fs'),
   request = require('request'),
   express = require('express'),
@@ -117,6 +118,11 @@ function handleMessage(sender_psid, received_message) {
       response = {
         "text": `Current git revision: ${getGitVersion()}`
       }
+    } else if (received_message_text === "log") {
+      // TODO: Accept `n_lines` as param and pass to getLog()
+      response = {
+        "text": `Log\n ${getLog()}`
+      }
     } else if (received_message_text === "page category") {
       response = {
         "text": "How would you describe the category of your page?",
@@ -190,6 +196,16 @@ function getGitVersion() {
   }
 }
 
+const LOG_FILE = 'log';
+function getLog(n_lines = 10) {
+    if (!Number.isInteger(n_lines)) {
+        console.log('n_lines is not an integer. Ignore.');
+        n_lines = 10;
+    }
+    const cmd = `tail -n ${n_lines} ${LOG_FILE}`;
+    return child_process.execSync(cmd).toString();
+}
+console.log(getLog());
 
 function handlePostback(sender_psid, received_postback) {
   console.log('ok')
