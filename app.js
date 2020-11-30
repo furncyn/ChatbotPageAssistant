@@ -121,7 +121,8 @@ function handleMessage(sender_psid, received_message) {
   } else {
     const userState = db.getUserState(sender_psid);
     if (userState != null) {
-      switch(userState.stateLevel1) {
+      const stateLevel1 = userState.stateLevel1;
+      switch(stateLevel1) {
         case 0:
           response = RESPONSES.UPLOAD_PROFILE_PHOTO;
           db.setUserState(sender_psid, 1);
@@ -132,7 +133,7 @@ function handleMessage(sender_psid, received_message) {
           break;
         case 2:
           response = {
-            "text": `State ${userState.stateLevel1} not implemented yet`
+            "text": `State ${stateLevel1} - ${STATES[stateLevel1]} not implemented yet`
           };
           db.setUserState(sender_psid, 3);
           break;
@@ -142,19 +143,19 @@ function handleMessage(sender_psid, received_message) {
           break;
         case 4:
           response = {
-            "text": `State ${userState.stateLevel1} not implemented yet`
+            "text": `State ${stateLevel1} - ${STATES[stateLevel1]} not implemented yet`
           };
           db.setUserState(sender_psid, 5);
           break;
         case 5:
           response = {
-            "text": `State ${userState.stateLevel1} not implemented yet`
+            "text": `State ${stateLevel1} - ${STATES[stateLevel1]} not implemented yet`
           };
           db.setUserState(sender_psid, 6);
           break;
         case 6:
           response = {
-            "text": `State ${userState.stateLevel1} not implemented yet`
+            "text": `State ${stateLevel1} - ${STATES[stateLevel1]} not implemented yet`
           };
           db.setUserState(sender_psid, 7);
           break;
@@ -164,7 +165,7 @@ function handleMessage(sender_psid, received_message) {
           break;
         case 8:
           response = {
-            "text": `State ${userState.stateLevel1} not implemented yet`
+            "text": `State ${stateLevel1} - ${STATES[stateLevel1]} not implemented yet`
           };
           db.setUserState(sender_psid, 9);
           break;
@@ -174,7 +175,7 @@ function handleMessage(sender_psid, received_message) {
           break;
         default:
           response = {
-            "text": `State ${userState.stateLevel1} not implemented yet`
+            "text": `State ${stateLevel1} - ${STATES[stateLevel1]} not implemented yet`
           };
       }
     }
