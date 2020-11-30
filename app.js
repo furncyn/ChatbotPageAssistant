@@ -1,22 +1,10 @@
 /**
- * Copyright 2017-present, Facebook, Inc. All rights reserved.
- *
- * This source code is licensed under the license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * Messenger Platform Quick Start Tutorial
- *
- * This is the completed code for the Messenger Platform quick start tutorial
- *
- * https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start/
- *
  * To run this code, you must do the following:
  *
  * 1. Deploy this code to a server running Node.js
  * 2. Run `npm install`
  * 3. Update the VERIFY_TOKEN
  * 4. Add your PAGE_ACCESS_TOKEN to your environment vars
- *
  */
 
 'use strict';
@@ -27,6 +15,8 @@ const db = require('./db');
 const constants = require('./constants');
 
 const STATES = constants.states;
+const RESPONSES = constants.responses;
+console.log(RESPONSES);
 
 // SAMPLE DB APIs
 // db.setUserState('12345', 1, 'A');
@@ -69,7 +59,6 @@ app.post('/' + PREFIX + '/webhook', (req, res) => {
       let webhook_event = entry.messaging[0];
       console.log(webhook_event);
 
-
       // Get the sender PSID
       let sender_psid = webhook_event.sender.id;
       console.log('Sender ID: ' + sender_psid);
@@ -79,7 +68,6 @@ app.post('/' + PREFIX + '/webhook', (req, res) => {
       if (webhook_event.message) {
         handleMessage(sender_psid, webhook_event.message);
       } else if (webhook_event.postback) {
-
         handlePostback(sender_psid, webhook_event.postback);
       }
 
@@ -150,58 +138,44 @@ function handleMessage(sender_psid, received_message) {
         "text": `Here is your log:\n ${getLog(parseInt(n_lines))}`
       }
     } else if (received_message_text.toLowerCase() === "hi") {
-      response = {
-        "text": `Welcome! Should we get started?`,
-         "quick_replies": [
-          {
-            "content_type": "text",
-            "title": "YES",
-            "payload": "YES",
-          }, {
-            "content_type": "text",
-            "title": "NO",
-            "payload": "NO",
-          }
-         ]
-      };
+      // Initialize conversation
+      response = RESPONSES.GET_STARTED;
       db.setUserState(sender_psid, 0);
     } else {
       const userState = db.getUserState(sender_psid);
       if (userState != null) {
         switch(userState.stateLevel1) {
           case 0:
-            response = {
-              "text": "Please Upload your profile Photo!",
-            };
+            response = RESPONSES.UPLOAD_PROFILE_PHOTO;
             db.setUserState(sender_psid, 1);
             break;
           case 1:
             // code block
             break;
+          case 2:
+              // code block
+            break;
           case 3:
-            response = {
-              "text": "Your cover photo has been added! Now, choose your business category.",
-              "quick_replies": [
-                {
-                  "content_type": "text",
-                  "title": "Beauty service",
-                  "payload": "beauty",
-                }, {
-                  "content_type": "text",
-                  "title": "Dining",
-                  "payload": "dining",
-                }, {
-                  "content_type": "text",
-                  "title": "E-commerce",
-                  "payload": "ecommerce",
-                }, {
-                  "content_type": "text",
-                  "title": "Financial service",
-                  "payload": "finance",
-                }
-              ]
-            };
+            response = RESPONSES.CHOOSE_BUSINESS_CATEGORY;
             db.setUserState(sender_psid, 4);
+            break;
+          case 4:
+            // code block
+            break;
+          case 5:
+            // code block
+            break;
+          case 6:
+            // code block
+            break;
+          case 7:
+            // code block
+            break;
+          case 8:
+            // code block
+            break;
+          case 9:
+            // code block
             break;
           default:
             // code block
@@ -216,20 +190,39 @@ function handleMessage(sender_psid, received_message) {
   } else if (received_message.attachments) {
     const userState = db.getUserState(sender_psid);
     if (userState != null) {
-        switch(userState.stateLevel1) {
-          case 1:
-            response = {
-              "text": "Thanks for the profile photo! Please upload your cover photo next! ",
-            };
-            db.setUserState(sender_psid, 2);
-            break;
-          case 2:
-            // code block
-            break;
-          default:
-            // code block
-        }
+      switch(userState.stateLevel1) {
+        case 1:
+          response = RESPONSES.UPLOAD_COVER_PHOTO;
+          db.setUserState(sender_psid, 2);
+          break;
+        case 2:
+          // code block
+          break;
+        case 3:
+          // code block
+          break;
+        case 4:
+          // code block
+          break;
+        case 5:
+          // code block
+          break;
+        case 6:
+          // code block
+          break;
+        case 7:
+          // code block
+          break;
+        case 8:
+          // code block
+          break;
+        case 9:
+          // code block
+          break;
+        default:
+          // code block
       }
+    }
 
     // Get the URL of the message attachment
     // let attachment_url = received_message.attachments[0].payload.url;

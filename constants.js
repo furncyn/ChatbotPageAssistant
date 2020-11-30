@@ -1,3 +1,48 @@
+const RESPONSES = {
+  GET_STARTED: {
+    "text": `Welcome! Should we get started?`,
+     "quick_replies": [
+      {
+        "content_type": "text",
+        "title": "YES",
+        "payload": "YES",
+      }, {
+        "content_type": "text",
+        "title": "NO",
+        "payload": "NO",
+      }
+     ]
+  },
+  UPLOAD_PROFILE_PHOTO: {
+    "text": "Please Upload your profile Photo!",
+  },
+  UPLOAD_COVER_PHOTO: {
+    "text": "Please Upload your cover Photo!",
+  },
+  CHOOSE_BUSINESS_CATEGORY: {
+    "text": "Your cover photo has been added! Now, choose your business category.",
+    "quick_replies": [
+      {
+        "content_type": "text",
+        "title": "Beauty service",
+        "payload": "beauty",
+      }, {
+        "content_type": "text",
+        "title": "Dining",
+        "payload": "dining",
+      }, {
+        "content_type": "text",
+        "title": "E-commerce",
+        "payload": "ecommerce",
+      }, {
+        "content_type": "text",
+        "title": "Financial service",
+        "payload": "finance",
+      }
+    ]
+  },
+}
+
 const STATES = {
   /** Module 1 */
   0: "Module 1 Welcome Message",
@@ -40,13 +85,7 @@ const STATES = {
    * D: duration
    * E: include an image
   */
-  // 10: "Link WA",
-  // /**
-  //  * A: ask for phone number
-  //  * B: ask for verification code
-  //  * C: add contact button on page
-  //  */
-  // 11: "Automated reply",
 }
 
 module.exports.states = STATES;
+module.exports.responses = RESPONSES;
