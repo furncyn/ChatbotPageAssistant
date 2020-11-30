@@ -39,7 +39,7 @@ module.exports.RESPONSES = {
           "template_type": "generic",
         }
       }, 
-      "text": "Looks good! Keep in mind your Page's profile photo will be cropped to a circular shapw in ads and posts. Are you happy with how it works?",
+      "text": "Looks good! Remember, your profile photo will be cropped to a circular shape in ads and posts.\n Are you happy with how it works?",
       "quick_replies": [
         {
           "content_type": "text",
@@ -53,7 +53,7 @@ module.exports.RESPONSES = {
       ]
     }
   },
-  UPLOAD_COVER_PHOTO: {
+  ADD_COVER_PHOTO: {
     "text": "Great! Now, add a cover photo for your Page. This photo is public. You can use it to promote your business.",
   },
   CHOOSE_BUSINESS_CATEGORY: {
@@ -78,6 +78,12 @@ module.exports.RESPONSES = {
       }
     ]
   },
+  SET_LOCATION: {
+  },
+  SET_OPENING_HOURS: {
+  },
+  SET_CONTACT_INFO: {
+  },
   START_MODULE_2: {
     "text": `Do you want to connect to more people?`,
     "quick_replies": [
@@ -92,8 +98,12 @@ module.exports.RESPONSES = {
       }
     ]
   },
-  ADD_AUTO_REPLAY: {
+  SET_PAGE_BUTTON: {
+  },
+  SET_AUTO_REPLAY: {
     "text": "Please input the auto reply!",
+  },
+  SET_SERVICE_FLOW: {
   },
 }
 
@@ -112,9 +122,9 @@ module.exports.STATES = {
    */
   3: "Page category",
   4: "Page location",
-
   5: "Opening hours",
   /**
+   * Webview
    * A: 4 selections (No hours, Always open, Permanently closed, Selected hours)
    * B: specify Selected hours
    */
