@@ -118,10 +118,11 @@ function handleMessage(sender_psid, received_message) {
       response = {
         "text": `Current git revision: ${getGitVersion()}`
       }
-    } else if (received_message_text === "log") {
-      // TODO: Accept `n_lines` as param and pass to getLog()
+    } else if (received_message_text.startsWith("log")) {
+      // 2nd param should be n_lines. Ignore rest.
+      const n_lines = received_message_text.split(' ')[1];
       response = {
-        "text": `Log\n ${getLog()}`
+        "text": `Here is your log:\n ${getLog(n_lines)}`
       }
     } else if (received_message_text === "page category") {
       response = {
