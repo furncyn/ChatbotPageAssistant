@@ -128,23 +128,23 @@ function handleMessage(sender_psid, received_message) {
       if (userState != null) {
         switch(userState.stateLevel1) {
           case 0:
-            response = RESPONSES.UPLOAD_PROFILE_PHOTO;
+            response = RESPONSES.ADD_PROFILE_PHOTO;
             db.setUserState(sender_psid, 1);
             break;
           case 1:
             response = {
-              "text": `State ${userState.stateLevel1} not implemented yet`
+              "text": `State ${userState.stateLevel1} implemented in attachment`
             };
             db.setUserState(sender_psid, 2);
             break;
           case 2:
-            response = {
-              "text": `State ${userState.stateLevel1} not implemented yet`
-            };
+            response = RESPONSES.UPLOAD_COVER_PHOTO;
             db.setUserState(sender_psid, 3);
             break;
           case 3:
-            response = RESPONSES.CHOOSE_BUSINESS_CATEGORY;
+            response = {
+              "text": `State ${userState.stateLevel1} implemented in attachment`
+            };
             db.setUserState(sender_psid, 4);
             break;
           case 4:
@@ -196,7 +196,8 @@ function handleMessage(sender_psid, received_message) {
     if (userState != null) {
       switch(userState.stateLevel1) {
         case 1:
-          response = RESPONSES.UPLOAD_COVER_PHOTO;
+          let attachment_url = received_message.attachments[0].payload.url;
+          response = RESPONSES.PREVIEW_PROFILE_PHOTO(attachment_url);
           db.setUserState(sender_psid, 2);
           break;
         case 2:
@@ -206,9 +207,7 @@ function handleMessage(sender_psid, received_message) {
           db.setUserState(sender_psid, 3);
           break;
         case 3:
-          response = {
-            "text": `State ${userState.stateLevel1} not implemented yet`
-          };
+          response = RESPONSES.CHOOSE_BUSINESS_CATEGORY;
           db.setUserState(sender_psid, 4);
           break;
         case 4:
@@ -253,61 +252,6 @@ function handleMessage(sender_psid, received_message) {
           };
       }
     }
-
-    // Get the URL of the message attachment
-    // let attachment_url = received_message.attachments[0].payload.url;
-    // response = {
-    //   "attachment": {
-    //     "type": "template",
-    //     "payload": {
-    //       "template_type": "generic",
-    //       "elements": [{
-    //         "title": "It would be better to upload a profile photo with less text",
-    //         "subtitle": "Would you like to resend another photo?",
-    //         "image_url": attachment_url,
-    //         "buttons": [
-    //           {
-    //             "type": "postback",
-    //             "title": "Yes",
-    //             "payload": "yes",
-    //           },
-    //           {
-    //             "type": "postback",
-    //             "title": "Skip",
-    //             "payload": "no",
-    //           }
-    //         ],
-    //       }]
-    //     }
-    //   }
-    // }
-    //Please don't delete this part
-
-    // response = {
-    //   "attachment": {
-    //     "type": "template",
-    //     "payload": {
-    //       "template_type": "generic",
-    //       "elements": [{
-    //         "title": "Is this the right picture?",
-    //         "subtitle": "Tap a button to answer.",
-    //         "image_url": attachment_url,
-    //         "buttons": [
-    //           {
-    //             "type": "postback",
-    //             "title": "Yes!",
-    //             "payload": "yes",
-    //           },
-    //           {
-    //             "type": "postback",
-    //             "title": "No!",
-    //             "payload": "no",
-    //           }
-    //         ],
-    //       }]
-    //     }
-    //   }
-    // }
   }
 
   // Send the response message
@@ -321,11 +265,9 @@ function handlePostback(sender_psid, received_postback) {
   let payload = received_postback.payload;
 
   // Set the response based on the postback payload
-  if (payload === 'yes') {
-    response = { "text": "Thanks!" }
-  } else if (payload === 'no') {
-    response = { "text": "Looking forward to continue next time." }
-  }
+  if (payload === 'Add Photo') {
+    response = { "text": "Please send me a profile photo." }
+  } 
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
 }

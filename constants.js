@@ -1,7 +1,7 @@
 module.exports.RESPONSES = {
   GET_STARTED: {
     "text": `Welcome! Should we get started?`,
-     "quick_replies": [
+    "quick_replies": [
       {
         "content_type": "text",
         "title": "YES",
@@ -11,13 +11,50 @@ module.exports.RESPONSES = {
         "title": "NO",
         "payload": "NO",
       }
-     ]
+    ]
   },
-  UPLOAD_PROFILE_PHOTO: {
-    "text": "Please Upload your profile Photo!",
+  ADD_PROFILE_PHOTO: {
+    "text": "Great, let's get started.\n Establish your Page's identity by adding a profile photo. \n This is the first photo people will see on your Page.",
+    "quick_replies": [
+      {
+        "content_type": "text",
+        "title": "Add Photo",
+        "payload": "Add Photo",
+      }, {
+        "content_type": "text",
+        "title": "Learn More",
+        "payload": "Learn More",
+      }, {
+        "content_type": "text",
+        "title": "Not Now",
+        "payload": "Not Now",
+      }
+    ]
+  },
+  PREVIEW_PROFILE_PHOTO(attachment_url) {
+    return {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+        }
+      }, 
+      "text": "Looks good! Keep in mind your Page's profile photo will be cropped to a circular shapw in ads and posts. Are you happy with how it works?",
+      "quick_replies": [
+        {
+          "content_type": "text",
+          "title": "Yes",
+          "payload": "Yes",
+        }, {
+          "content_type": "text",
+          "title": "No",
+          "payload": "No",
+        }
+      ]
+    }
   },
   UPLOAD_COVER_PHOTO: {
-    "text": "Please Upload your cover Photo!",
+    "text": "Great! Now, add a cover photo for your Page. This photo is public. You can use it to promote your business.",
   },
   CHOOSE_BUSINESS_CATEGORY: {
     "text": "Your cover photo has been added! Now, choose your business category.",
@@ -43,7 +80,7 @@ module.exports.RESPONSES = {
   },
   START_MODULE_2: {
     "text": `Do you want to connect to more people?`,
-     "quick_replies": [
+    "quick_replies": [
       {
         "content_type": "text",
         "title": "YES",
@@ -53,7 +90,7 @@ module.exports.RESPONSES = {
         "title": "NO",
         "payload": "NO",
       }
-     ]
+    ]
   },
   ADD_AUTO_REPLAY: {
     "text": "Please input the auto reply!",
