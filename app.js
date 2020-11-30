@@ -125,27 +125,27 @@ function handleMessage(sender_psid, received_message) {
       switch (stateLevel1) {
         case 1:
           response = RESPONSES.ADD_PROFILE_PHOTO;
-          db.setUserState(sender_psid, 1);
+          db.setUserState(sender_psid, 2);
           break;
         case 2:
           let attachment_url = received_message.attachments[0].payload.url;
           response = RESPONSES.PREVIEW_PROFILE_PHOTO(attachment_url);
-          db.setUserState(sender_psid, 2);
+          db.setUserState(sender_psid, 3);
           break;
           break;
         case 3:
           response = RESPONSES.ADD_COVER_PHOTO;
-          db.setUserState(sender_psid, 3);
+          db.setUserState(sender_psid, 4);
           break;
         case 4:
           response = RESPONSES.CHOOSE_BUSINESS_CATEGORY;
-          db.setUserState(sender_psid, 4);
+          db.setUserState(sender_psid, 5);
           break;
         case 5:
           response = {
             "text": `State ${userState.stateLevel1} not implemented yet`
           };
-          db.setUserState(sender_psid, 5);
+          db.setUserState(sender_psid, 6);
           break;
         case 6:
           response = {
