@@ -37,7 +37,7 @@ app.listen(1337, () => console.log('webhook is listening on port 1337'));
 // Accepts POST requests at /webhook endpoint
 app.post('/' + PREFIX + '/webhook', (req, res) => {
   console.log('POST request received');
-  console.log(req);
+  // console.log(req);
 
   // Parse the request body from the POST
   let body = req.body;
