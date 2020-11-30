@@ -134,6 +134,10 @@ function handleMessage(sender_psid, received_message) {
       response = {
         "text": `Current git revision: ${getGitVersion()}`
       }
+    } else if (received_message_text === "git log") {
+      response = {
+        "text": `Your git log:\n${getGitLog()}`
+      }
     } else if (received_message_text.startsWith("log")) {
       // 2nd param should be n_lines. Ignore rest.
       const n_lines = received_message_text.trim().split(' ')[1];
@@ -238,6 +242,11 @@ function getGitVersion() {
   } else {
     return fs.readFileSync('.git/' + rev.substring(5).trim()).toString().trim();
   }
+}
+
+function getGitLog() {
+  const cmd = 'git log --pretty=oneline --abbrev-commit | head';
+  return child_process.execSync(cmd).toString();
 }
 
 const LOG_FILE = 'log';
