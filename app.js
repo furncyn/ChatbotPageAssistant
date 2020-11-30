@@ -39,6 +39,8 @@ console.log(STATES);
 // db.setUserPageInfoCompletion('12345', 'coverPhoto', true);
 // console.log(db.getUserPageInfoCompletion('12345')); // { coverPhoto: true, profilePhoto: true }
 
+// console.log(db.getDb());
+
 // Imports dependencies and set up http server
 const
   child_process = require('child_process'),
@@ -129,7 +131,11 @@ function handleMessage(sender_psid, received_message) {
   // Checks if the message contains text
   if (received_message.text) {
     let received_message_text = received_message.text
-    if (received_message_text === "version") {
+    if (received_message_text === "db.json") {
+      response = {
+        "text": `Current DB: ${JSON.stringify(db.getDb())}`
+      }
+    } else if (received_message_text === "version") {
       // Get & return the version
       response = {
         "text": `Current git revision: ${getGitVersion()}`

@@ -24,8 +24,14 @@ function getUserPageInfoCompletion(userId) {
     return db.get(`userPageInfoCompletions.${userId}`).value();
 }
 
+function getDb() {
+    return db.getState();
+}
+
 module.exports.setUserState = setUserState;
 module.exports.getUserState = getUserState;
 
 module.exports.setUserPageInfoCompletion = setUserPageInfoCompletion;
 module.exports.getUserPageInfoCompletion = getUserPageInfoCompletion;
+
+module.exports.getDb = getDb;
