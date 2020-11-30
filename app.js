@@ -25,6 +25,7 @@ const PREFIX = 'fb_hackathon';
 
 // Imports dependencies and set up http server
 const 
+  fs = require('fs'),
   request = require('request'),
   express = require('express'),
   body_parser = require('body-parser'),
@@ -110,10 +111,17 @@ function handleMessage(sender_psid, received_message) {
   
   // Checks if the message contains text
   if (received_message.text) {    
-    // Create the payload for a basic text message, which
-    // will be added to the body of our request to the Send API
-    response = {
-      "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
+    if (received_message.text === "version") {
+      // Get & return the version
+      response = {
+        "text": `Current git revision: ${getGitVersion()}`
+      }
+    } else {
+      // Create the payload for a basic text message, which
+      // will be added to the body of our request to the Send API
+      response = {
+        "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
+      }
     }
   } else if (received_message.attachments) {
     // Get the URL of the message attachment
@@ -147,6 +155,15 @@ function handleMessage(sender_psid, received_message) {
   
   // Send the response message
   callSendAPI(sender_psid, response);    
+}
+
+function getGitVersion() {
+  const rev = fs.readFileSync('.git/HEAD').toString();
+  if (rev.indexOf(':') === -1) {
+    return rev;
+  } else {
+    return fs.readFileSync('.git/' + rev.substring(5).trim()).toString().trim();
+  }
 }
 
 function handlePostback(sender_psid, received_postback) {
