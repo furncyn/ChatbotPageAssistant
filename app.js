@@ -202,6 +202,31 @@ function handleMessage(sender_psid, received_message) {
           case 1:
             // code block
             break;
+          case 3:
+            response = {
+              "text": "Your cover photo has been added! Now, choose your business category.",
+              "quick_replies": [
+                {
+                  "content_type": "text",
+                  "title": "Beauty service",
+                  "payload": "beauty",
+                }, {
+                  "content_type": "text",
+                  "title": "Dining",
+                  "payload": "dining",
+                }, {
+                  "content_type": "text",
+                  "title": "E-commerce",
+                  "payload": "ecommerce",
+                }, {
+                  "content_type": "text",
+                  "title": "Financial service",
+                  "payload": "finance",
+                }
+              ]
+            };
+            db.setUserState(sender_psid, 4);
+            break;
           default:
             // code block
         }
@@ -213,8 +238,6 @@ function handleMessage(sender_psid, received_message) {
       // }
     }
   } else if (received_message.attachments) {
-
-
     const userState = db.getUserState(sender_psid);
     if (userState != null) {
         switch(userState.stateLevel1) {
