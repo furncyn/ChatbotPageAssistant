@@ -157,14 +157,15 @@ function handleMessage(sender_psid, received_message) {
             response = {
               "text": `State ${userState.stateLevel1} not implemented yet`
             };
-            db.setUserState(sender_psid, 6);
+            db.setUserState(sender_psid, 6, 'A');
             break;
           case 6:
-            if (Object.keys(CONTACT_INFOS).includes(received_message.text)) {
+            if (stateLevel2 === 'A') {
+              response = RESPONSES.SET_CONTACT_INFO;
+              db.setUserState(sender_psid, 6, 'B');
+            } else {
               response = { "text": `What's your business's ${CONTACT_INFOS[received_message.text]}?`}
               db.setUserState(sender_psid, 7);
-            } else {
-               response = RESPONSES.SET_CONTACT_INFO;
             }
             break;
           case 7:
