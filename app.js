@@ -187,10 +187,6 @@ function handleMessage(sender_psid, received_message) {
               db.setUserState(sender_psid, 11);
             }
             break;
-          case 11:
-            response = RESPONSES.SET_SERVICE_FLOW;
-            db.setUserState(sender_psid, 12);
-            break;
           case 12:
             response = RESPONSES.FINISH_MODULE_2;
             db.setUserState(sender_psid, 13);

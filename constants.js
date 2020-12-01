@@ -134,18 +134,15 @@ module.exports.RESPONSES = {
     ]
   },
   SET_AUTO_REPLAY_A: {
-    "text": "You're ready to get messages for your business. \nWould you like to set up instant replies to let new customers know you'll get back to them shortly?",
+    "text": "You're ready to get messages for your business. \nWould you like to set up instant replies? \nThis is an automatic reply people will receive when they message you",
     "quick_replies": YES_NO_QUICK_REPLIES,
   },
   SET_AUTO_REPLAY_B: {
-    "text": "Great! Type the message you'd like new customers to get when they message you.",
-  },
-  SET_SERVICE_FLOW: {
-    "text": "Do you want to set up your service?",
+    "text": "Great! Here's a suggestion. \n\n'Hi, thanks for contacting us. We've received your message and will respond shortly.' \n\nDo you want to use this message?",
     "quick_replies": YES_NO_QUICK_REPLIES,
   },
   FINISH_MODULE_2: {
-    "text": "Congrats! Your customers will find it easier to connect to you now.",
+    "text": "Nice work! You've made it even easier for potential customers to contact you. Come back any time to keep improving your Page.",
   },
 }
 
@@ -200,13 +197,5 @@ module.exports.STATES = {
    * C: double-booking (bool)
    * D: sync to google calendar (bool)
    */
-  11: "Service flow",
-  /**
-   * A: service name
-   * B: price
-   * C: description (optional)
-   * D: duration
-   * E: include an image
-  */
-  12: "Finish Message",
+  11: "Finish Message",
 }
