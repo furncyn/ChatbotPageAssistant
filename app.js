@@ -140,8 +140,7 @@ function handleMessage(sender_psid, received_message) {
               db.setUserState(sender_psid, 1, 'C');
             } else {
               const attachment_url = received_message.attachments[0].payload.url;
-              //response = PREVIEW_PROFILE_PHOTO_SUCCESS(attachment_url);
-              response = RESPONSES.PREVIEW_PROFILE_PHOTO_FAIL;
+              response = PREVIEW_PROFILE_PHOTO_SUCCESS(attachment_url);
               db.setUserState(sender_psid, 2);
             }
             break;
@@ -167,15 +166,9 @@ function handleMessage(sender_psid, received_message) {
               } else {
                 db.setUserState(sender_psid, 6);
               }
-            } else if (stateLevel2 === 'C') {
-              response = CONFIRM_LOCATION(received_message.text);
-              db.setUserState(sender_psid, 5, 'D');
             } else {
-              if (received_message.text === 'Yes') {
-                db.setUserState(sender_psid, 6);
-              } else {
-                db.setUserState(sender_psid, 5, 'B');
-              }
+              response = CONFIRM_LOCATION(received_message.text);
+              db.setUserState(sender_psid, 6);
             }
             break;
           case 6:
@@ -277,7 +270,7 @@ function handleMessage(sender_psid, received_message) {
     response = { "text": err };
   }
   // Send the response message
-  common.callSendAPI(sender_psid, response);
+  common.sendResponse(sender_psid, response);
 }
 
 function handlePostback(sender_psid, received_postback) {
@@ -296,5 +289,5 @@ function handlePostback(sender_psid, received_postback) {
     response = { "text": "Please send me a profile photo." }
   }
   // Send the message to acknowledge the postback
-  common.callSendAPI(sender_psid, response);
+  common.sendResponse(sender_psid, response);
 }

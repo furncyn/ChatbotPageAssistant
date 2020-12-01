@@ -18,11 +18,11 @@ module.exports.RESPONSES = {
   ADD_PROFILE_PHOTO: {
     "text": "Great!\n\nLet's start by adding a profile photo that represents your business well.\n\nMany people use their business logo as their profile photo.",
   },
-  PREVIEW_PROFILE_PHOTO_FAIL:{
+  PREVIEW_PROFILE_PHOTO_FAIL: {
     "text": "Your profile photo is not clear. For best quality, it should be at least 320 pixels wide and 320 pixels tall.\n\nWould you like to send another photo?",
   },
   ADD_COVER_PHOTO: {
-    "text": "Great!\n\nNow, add a cover photo for your Page.\n\nThis photo is public. You can use it to promote your business.",
+    "text": "Great!\n\nNow, add a cover photo for your Page.\n\nThis photo appears at the top of your page.\n\nYou might like to choose a photo of your shop or products.",
   },
   SET_LOCATION: {
     "text": "Great. Your business is always open.\nDo you want to add location information?",
@@ -45,24 +45,24 @@ module.exports.RESPONSES = {
     "text": "We noticed you have a food business.\n\nAdd a photo of your menu to let people know what [Page Name] offers.",
     "quick_replies": [{
       "content_type": "text",
-        "title": "Add Menu",
-        "payload": "Add Menu",
-      }, {
-        "content_type": "text",
-        "title": "Skip",
-        "payload": "Skip",
+      "title": "Add Menu",
+      "payload": "Add Menu",
+    }, {
+      "content_type": "text",
+      "title": "Skip",
+      "payload": "Skip",
     }]
   },
   ADD_MENU_DESCRIPTION: {
     "text": "You can give your menu a name.\n\nHere are some suggestions.",
     "quick_replies": [{
-        "content_type": "text",
-        "title": "Fried Chicken",
-        "payload": "Fried Chicken",
+      "content_type": "text",
+      "title": "Fried Chicken",
+      "payload": "Fried Chicken",
     }, {
-        "content_type": "text",
-        "title": "Nasi Lemak",
-        "payload": "Nasi Lemak",
+      "content_type": "text",
+      "title": "Nasi Lemak",
+      "payload": "Nasi Lemak",
     }]
   },
   SET_OPENING_HOURS: {
@@ -105,20 +105,25 @@ module.exports.RESPONSES = {
       }
     ]
   },
-  FINISH_MODULE_1: {
-    "text": "Great job! You have added some basic information to your Page. Do you want to see the changes you made?",
-    "quick_replies": [
-      {
-        "content_type": "text",
-        "title": "Go to Page",
-        "payload": "Yes",
-      }, {
-        "content_type": "text",
-        "title": "No thanks",
-        "payload": "No",
-      }
-    ]
-  },
+  FINISH_MODULE_1: [
+    {
+      "text": "Great job! You have added some basic information to your Page.",
+    },
+    {
+      "text": "Do you want to see the changes you made?",
+      "quick_replies": [
+        {
+          "content_type": "text",
+          "title": "Go to Page",
+          "payload": "Yes",
+        }, {
+          "content_type": "text",
+          "title": "No thanks",
+          "payload": "No",
+        }
+      ]
+    }
+  ],
   START_MODULE_2_A: {
     "text": "Hi, your page is looking great! \nHave you found our tips helpful so far?",
     "quick_replies": YES_NO_QUICK_REPLIES,
@@ -169,36 +174,35 @@ module.exports.PREVIEW_PROFILE_PHOTO_SUCCESS = (attachment_url) => {
       "payload": {
         "template_type": "generic",
         "elements": [{
-          "title": "Preview your photo above.",
-          "subtitle": "Are you happy with how it looks?",
-              "image_url": attachment_url,
-              // "buttons": [
-              //   {
-              //     "type": "text",
-              //     "title": "Yes",
-              //     "payload": "yes",
-              //   },
-              //   {
-              //     "type": "text",
-              //     "title": "No",
-              //     "payload": "no",
-              //   }
-              // ],
+          "title": "Are you happy with how it looks?",
+          // "subtitle": "Tap a button to answer.",
+          "image_url": attachment_url,
+          // "buttons": [
+          //   {
+          //     "type": "postback",
+          //     "title": "Yes!",
+          //     "payload": "yes",
+          //   },
+          //   {
+          //     "type": "postback",
+          //     "title": "No!",
+          //     "payload": "no",
+          //   }
+          // ],
         }]
       }
     },
+    "quick_replies": YES_NO_QUICK_REPLIES,
   };
-};
+}
 
 module.exports.CONFIRM_LOCATION = (address) => {
   address_arr = address.split(", ");
   return {
-    "text": `Your business address is\n
-      Street Address: ${address_arr[0]}\n
-      City: ${address_arr[1]}\n
-      Zip code: ${address_arr[2]}.\n\n
-      Is this correct?`,
-    "quick_replies": YES_NO_QUICK_REPLIES,
+    "text": `Your business address is
+      Street Address: ${address_arr[0]}
+      City: ${address_arr[1]}
+      Zip code: ${address_arr[2]}\nIs this correct?`,
   }
 }
 
