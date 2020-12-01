@@ -42,7 +42,7 @@ module.exports.RESPONSES = {
     "text": "OK. Simply enter your business address here.",
   },
   ADD_MENU: {
-    "text": "We noticed you have a food business. Add a photo of your menu to let people know what [Page Name] offers.",
+    "text": "We noticed you have a food business.\n\n Add a photo of your menu to let people know what [Page Name] offers.",
     "quick_replies": [{
       "content_type": "text",
         "title": "Add Menu",
@@ -54,7 +54,7 @@ module.exports.RESPONSES = {
     }]
   },
   ADD_MENU_DESCRIPTION: {
-    "text": "You can give your menu a name. Here are some suggestions.",
+    "text": "You can give your menu a name.\n\n Here are some suggestions.",
     "quick_replies": [{
         "content_type": "text",
         "title": "Fried Chicken",
@@ -172,18 +172,18 @@ module.exports.PREVIEW_PROFILE_PHOTO_SUCCESS = (attachment_url) => {
           "title": "Preview your photo above.",
           "subtitle": "Are you happy with how it looks?",
               "image_url": attachment_url,
-              "buttons": [
-                {
-                  "type": "text",
-                  "title": "Yes",
-                  "payload": "yes",
-                },
-                {
-                  "type": "text",
-                  "title": "No",
-                  "payload": "no",
-                }
-              ],
+              // "buttons": [
+              //   {
+              //     "type": "text",
+              //     "title": "Yes",
+              //     "payload": "yes",
+              //   },
+              //   {
+              //     "type": "text",
+              //     "title": "No",
+              //     "payload": "no",
+              //   }
+              // ],
         }]
       }
     },
