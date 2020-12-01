@@ -155,15 +155,11 @@ function handleMessage(sender_psid, received_message) {
             break;
           case 5:
             response = RESPONSES.SET_LOCATION;
-            db.setUserState(sender_psid, 6, 'A');
+            db.setUserState(sender_psid, 6);
             break;
           case 6:
-            if (stateLevel2 === 'A') {
-              response = RESPONSES.SET_CONTACT_INFO;
-              db.setUserState(sender_psid, 6, 'B');
-            } else {
-              db.setUserState(sender_psid, 7);
-            }
+            response = RESPONSES.SET_CONTACT_INFO;
+            db.setUserState(sender_psid, 7);
             break;
           case 7:
             response = RESPONSES.FINISH_MODULE_1;
