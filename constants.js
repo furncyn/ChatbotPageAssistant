@@ -207,6 +207,7 @@ module.exports.CONFIRM_LOCATION = (address) => {
       Street Address: ${address_arr[0]}
       City: ${address_arr[1]}
       Zip code: ${address_arr[2]}\nIs this correct?`,
+    "quick_replies": YES_NO_QUICK_REPLIES,
   }
 }
 
