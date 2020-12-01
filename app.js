@@ -167,14 +167,14 @@ function handleMessage(sender_psid, received_message) {
               response = { "text": `What's your ${CONTACT_INFOS[received_message.text]}?` };
               db.setUserState(sender_psid, 6, 'C');
             } else if (stateLevel2 === 'C') {
-              response = RESPONSES.SET_CONTACT_INFO_C
+              response = RESPONSES.SET_CONTACT_INFO_C;
               db.setUserState(sender_psid, 6, 'D');
             } else {
-              // start over again
               if (received_message.text === 'Yes') {
-                db.setUserState(sender_psid, 6, 'A')
+                db.setUserState(sender_psid, 6, 'A');
               } else {
-                db.setUserState(sender_psid, 7)
+                response = RESPONSES.SET_CONTACT_INFO_FINISH;
+                db.setUserState(sender_psid, 7);
               }
             }
             break;
