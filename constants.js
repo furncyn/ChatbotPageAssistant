@@ -50,7 +50,22 @@ module.exports.RESPONSES = {
     "text": "Upload menu images.",
   },
   SET_OPENING_HOURS: {
-    "text": "Set opening hours.",
+    "text": "Got it! Add more Page details so potential customers can learn about yout business. \n Select your business hours",
+    "quick_replies": [
+      {
+        "content_type": "text",
+        "title": "Standard Hours",
+        "payload": "standard",
+      }, {
+        "content_type": "text",
+        "title": "Always Open",
+        "payload": "open",
+      }, {
+        "content_type": "text",
+        "title": "Skip",
+        "payload": "skip",
+      }
+    ]
   },
   SET_CONTACT_INFO: {
     "text": "Add more information to your Page so people can contact you.",
