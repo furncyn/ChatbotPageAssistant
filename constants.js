@@ -170,22 +170,23 @@ module.exports.PREVIEW_PROFILE_PHOTO_SUCCESS = (attachment_url) => {
         "template_type": "generic",
         "elements": [{
           "title": "Preview your photo above.",
-          "image_url": attachment_url,
+          "subtitle": "Are you happy with how it looks?",
+              "image_url": attachment_url,
+              "buttons": [
+                {
+                  "type": "text",
+                  "title": "Yes",
+                  "payload": "yes",
+                },
+                {
+                  "type": "text",
+                  "title": "No",
+                  "payload": "no",
+                }
+              ],
         }]
       }
     },
-    "text":"Are you happy with how it looks?",
-    "quick_replies": [
-     {
-        "content_type": "text",
-        "title": "Yes",
-        "payload": "Yes",
-      }, {
-        "content_type": "text",
-        "title": "No",
-        "payload": "No",
-      }
-    ]
   };
 };
 

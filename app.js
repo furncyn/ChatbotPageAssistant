@@ -136,18 +136,21 @@ function handleMessage(sender_psid, received_message) {
             if (stateLevel2 === 'A') {
               response = RESPONSES.ADD_PROFILE_PHOTO;
               db.setUserState(sender_psid, 1, 'B');
-            } else if(stateLevel2 === 'B') {
+            } else {
               response = RESPONSES.PREVIEW_PROFILE_PHOTO_FAIL;
-              db.setUserState(sender_psid, 1, 'C');
-            }else {
-              const attachment_url = received_message.attachments[0].payload.url;
-              response = PREVIEW_PROFILE_PHOTO_SUCCESS(attachment_url);
               db.setUserState(sender_psid, 2, 'A');
             }
             break;
           case 2:
-            response = RESPONSES.ADD_COVER_PHOTO;
-            db.setUserState(sender_psid, 3, 'A');
+            if (stateLevel2 === 'A') {
+              const attachment_url = received_message.attachments[0].payload.url;
+              response = PREVIEW_PROFILE_PHOTO_SUCCESS(attachment_url);
+              db.setUserState(sender_psid, 2, 'B');
+            }else {
+              response = RESPONSES.ADD_COVER_PHOTO;
+              db.setUserState(sender_psid, 3, 'A');
+            }
+            
             break;
           case 3:
             menuUpload.handleMenuUpload(sender_psid, stateLevel1, stateLevel2, db);
