@@ -157,7 +157,7 @@ function handleMessage(sender_psid, received_message) {
             break;
           case 5:
             response = RESPONSES.SET_LOCATION;
-            db.setUserState(sender_psid, 6);
+            db.setUserState(sender_psid, 6, 'A');
             break;
           case 6:
             if (stateLevel2 === 'A') {
@@ -194,9 +194,7 @@ function handleMessage(sender_psid, received_message) {
             }
             break;
           case 11:
-            response = {
-              "text": `State ${userState.stateLevel1} not implemented yet`
-            };
+            response = RESPONSES.SET_SERVICE_FLOW;
             db.setUserState(sender_psid, 12);
             break;
           case 12:

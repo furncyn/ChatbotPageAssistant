@@ -16,7 +16,7 @@ module.exports.RESPONSES = {
     "quick_replies": YES_NO_QUICK_REPLIES,
   },
   ADD_PROFILE_PHOTO: {
-    "text": "Great, let's get started. \nAdd a profile photo that represents your business well. \nMany people choose to use their business logo as their profile photo.",
+    "text": "Great, let's get started. \nSend me a profile photo that represents your business well. \nMany people choose to use their business logo as their profile photo.",
   },
   ADD_COVER_PHOTO: {
     "text": "Great! Now, add a cover photo for your Page. This photo is public. You can use it to promote your business.",
@@ -89,7 +89,7 @@ module.exports.RESPONSES = {
     "quick_replies": YES_NO_QUICK_REPLIES,
   },
   START_MODULE_2_B: {
-    "text": "Great! \nWould you like to learn more about how customers can contact you?",
+    "text": "Great! Would you like to learn more about how customers can contact you?",
     "quick_replies": YES_NO_QUICK_REPLIES,
   },
   SET_PAGE_BUTTON: {
@@ -120,9 +120,10 @@ module.exports.RESPONSES = {
   },
   SET_AUTO_REPLAY_B: {
     "text": "Great! Type the message you'd like new constomers to get when they message you.",
-    "quick_replies": YES_NO_QUICK_REPLIES,
   },
   SET_SERVICE_FLOW: {
+    "text": "Do you want to set up your service?"
+    "quick_replies": YES_NO_QUICK_REPLIES,
   },
   FINISH_MODULE_2: {
     "text": "Congrats! Your customers will find it easier to connect to you now.",
