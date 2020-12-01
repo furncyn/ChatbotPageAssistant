@@ -32,7 +32,7 @@ const
   app = express().use(body_parser.json()); // creates express http server
 
 const
-  { STATES, RESPONSES } = require('./constants'),
+  { STATES, RESPONSES, CONTACT_INFOS } = require('./constants'),
   { getDebugReponse } = require('./utils');
 
 // Sets server port and logs message on success
@@ -163,11 +163,19 @@ function handleMessage(sender_psid, received_message) {
             if (stateLevel2 === 'A') {
               response = RESPONSES.SET_CONTACT_INFO;
               db.setUserState(sender_psid, 6, 'B');
+            } else if (stateLevel2 === 'B') {
+              response = { "text": `What's your ${CONTACT_INFOS[received_message.text]}?` };
+              db.setUserState(sender_psid, 6, 'C');
+            } else if (stateLevel2 === 'C') {
+              response = RESPONSES.SET_CONTACT_INFO_C
+              db.setUserState(sender_psid, 6, 'D');
             } else {
-              response = {
-                "text": `Input your ${received_message.text}, ${received_message.payload}`
-              };
-              db.setUserState(sender_psid, 7);
+              // start over again
+              if (received_message.text === 'Yes') {
+                db.setUserState(sender_psid, 6, 'A')
+              } else {
+                db.setUserState(sender_psid, 7)
+              }
             }
             break;
           case 7:
