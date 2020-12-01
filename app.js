@@ -32,7 +32,7 @@ const
   app = express().use(body_parser.json()); // creates express http server
 
 const
-  { CONTACT_INFOS, PREVIEW_PROFILE_PHOTO, RESPONSES, STATES } = require('./constants'),
+  { PREVIEW_PROFILE_PHOTO, RESPONSES, STATES } = require('./constants'),
   { getDebugReponse } = require('./utils');
 
 // Sets server port and logs message on success
@@ -161,10 +161,10 @@ function handleMessage(sender_psid, received_message) {
             break;
           case 6:
             if (stateLevel2 === 'A') {
-              response = RESPONSES.SET_CONTACT_INFO
-              db.setUserState(sender_psid, 6, 'B')
+              response = RESPONSES.SET_CONTACT_INFO;
+              db.setUserState(sender_psid, 6, 'B');
             } else {
-               db.setUserState(sender_psid, 7);
+              db.setUserState(sender_psid, 7);
             }
             break;
           case 7:

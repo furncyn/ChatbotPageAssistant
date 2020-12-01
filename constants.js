@@ -1,9 +1,3 @@
-module.exports.CONTACT_INFOS = {
-  Website: "website",
-  Phone: "phone number",
-  Email: "email",
-}
-
 module.exports.RESPONSES = {
   GET_STARTED: {
     "text": `Welcome! Should we get started?`,
