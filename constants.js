@@ -50,7 +50,28 @@ module.exports.RESPONSES = {
     "text": "Great. You've chosen your business category. Now tell us your business location.",
   },
   ADD_MENU: {
-    "text": "Upload menu images.",
+    "text": "We noticed you have a food business. Add a photo of your menu to let people know what [Page Name] offers.",
+    "quick_replies": [{
+      "content_type": "text",
+        "title": "Add Menu",
+        "payload": "Add Menu",
+      }, {
+        "content_type": "text",
+        "title": "Skip",
+        "payload": "Skip",
+    }]
+  },
+  ADD_MENU_DESCRIPTION: {
+    "text": "You can give your menu a name. Here are some suggestions.",
+    "quick_replies": [{
+        "content_type": "text",
+        "title": "Fried Chicken",
+        "payload": "Fried Chicken",
+    }, {
+        "content_type": "text",
+        "title": "Nasi Lemak",
+        "payload": "Nasi Lemak",
+    }]
   },
   SET_OPENING_HOURS: {
     "text": "Got it! Add more Page details so potential customers can learn about yout business. \n Select your business hours",
@@ -190,6 +211,10 @@ module.exports.STATES = {
    * B: suggestion about cover photo
    */
   3: "Upload menu",
+  /**
+   * A: user upload menu
+   * B: user type menu description
+   */
   4: "Opening hours",
   5: "Page location",
   /**
