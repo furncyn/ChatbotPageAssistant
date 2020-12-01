@@ -10,11 +10,12 @@ const YES_NO_QUICK_REPLIES = [
   }
 ]
 
+const user_name = "Sheryl";
 const biz_name = "Authentic Phoever";
 
 module.exports.RESPONSES = {
   GET_STARTED: [
-    { "text": "Hi, Sherry!" },
+    { "text":  `Hi, ${user_name}!` },
     { "text": "I'm here to help you complete your your Page and find potential customers." },
     {
       "text": "Would you like to get started?",
