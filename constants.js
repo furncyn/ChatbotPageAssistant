@@ -172,18 +172,18 @@ module.exports.PREVIEW_PROFILE_PHOTO_SUCCESS = (attachment_url) => {
           "title": "Preview your photo above.",
           "subtitle": "Are you happy with how it looks?",
               "image_url": attachment_url,
-              "buttons": [
-                {
-                  "type": "text",
-                  "title": "Yes",
-                  "payload": "yes",
-                },
-                {
-                  "type": "text",
-                  "title": "No",
-                  "payload": "no",
-                }
-              ],
+              // "buttons": [
+              //   {
+              //     "type": "text",
+              //     "title": "Yes",
+              //     "payload": "yes",
+              //   },
+              //   {
+              //     "type": "text",
+              //     "title": "No",
+              //     "payload": "no",
+              //   }
+              // ],
         }]
       }
     },

@@ -124,7 +124,7 @@ function handleMessage(sender_psid, received_message) {
         // 2nd param should be jump state. Ignore rest.
         const n_state = parseInt(received_message.text.trim().split(' ')[1]);
         if (n_state) {
-          userState = {'stateLevel1': n_state, 'stateLevel2': 'A'};
+          userState = { 'stateLevel1': n_state, 'stateLevel2': 'A' };
         }
       }
       if (userState != null) {
@@ -135,20 +135,19 @@ function handleMessage(sender_psid, received_message) {
             if (stateLevel2 === 'A') {
               response = RESPONSES.ADD_PROFILE_PHOTO;
               db.setUserState(sender_psid, 1, 'B');
-            } else {
+            } else if (stateLevel2 === 'B') {
               response = RESPONSES.PREVIEW_PROFILE_PHOTO_FAIL;
-              db.setUserState(sender_psid, 2, 'A');
+              db.setUserState(sender_psid, 1, 'C');
+            } else {
+              const attachment_url = received_message.attachments[0].payload.url;
+              //response = PREVIEW_PROFILE_PHOTO_SUCCESS(attachment_url);
+              response = RESPONSES.PREVIEW_PROFILE_PHOTO_FAIL;
+              db.setUserState(sender_psid, 2);
             }
             break;
           case 2:
-            if (stateLevel2 === 'A') {
-              const attachment_url = received_message.attachments[0].payload.url;
-              response = PREVIEW_PROFILE_PHOTO_SUCCESS(attachment_url);
-              db.setUserState(sender_psid, 2, 'B');
-            }else {
-              response = RESPONSES.ADD_COVER_PHOTO;
-              db.setUserState(sender_psid, 3, 'A');
-            }
+            response = RESPONSES.ADD_COVER_PHOTO;
+            db.setUserState(sender_psid, 3, 'A');
             break;
           case 3:
             menuUpload.handleMenuUpload(sender_psid, stateLevel1, stateLevel2, db);
@@ -162,7 +161,7 @@ function handleMessage(sender_psid, received_message) {
               response = RESPONSES.SET_LOCATION;
               db.setUserState(sender_psid, 5, 'B');
             } else if (stateLevel2 === 'B') {
-              if(received_message.text === "Add location") {
+              if (received_message.text === "Add location") {
                 response = RESPONSES.SET_LOCATION_B;
                 db.setUserState(sender_psid, 5, 'C');
               } else {
@@ -274,8 +273,8 @@ function handleMessage(sender_psid, received_message) {
       //   }
       // }
     }
-  } catch(err) {
-    response = {"text": err};
+  } catch (err) {
+    response = { "text": err };
   }
   // Send the response message
   common.callSendAPI(sender_psid, response);
