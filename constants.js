@@ -16,10 +16,13 @@ module.exports.RESPONSES = {
     "quick_replies": YES_NO_QUICK_REPLIES,
   },
   ADD_PROFILE_PHOTO: {
-    "text": "Great, let's get started. \nSend me a profile photo that represents your business well. \nMany people choose to use their business logo as their profile photo.",
+    "text": "Great!\n\nLet's start by adding a profile photo that represents your business well.\n\nMany people use their business logo as their profile photo.",
+  },
+  PREVIEW_PROFILE_PHOTO_FAIL:{
+    "text": "Your profile photo is not clear. For best quality, it should be at least 320 pixels wide and 320 pixels tall.\n\nWould you like to send another photo?",
   },
   ADD_COVER_PHOTO: {
-    "text": "Great! Now, add a cover photo for your Page. This photo is public. You can use it to promote your business.",
+    "text": "Great!\n\nNow, add a cover photo for your Page.\n\nThis photo is public. You can use it to promote your business.",
   },
   SET_LOCATION: {
     "text": "Great. Your business is always open.\nDo you want to add location information?",
@@ -39,7 +42,28 @@ module.exports.RESPONSES = {
     "text": "OK. Simply enter your business address here.",
   },
   ADD_MENU: {
-    "text": "Upload menu images.",
+    "text": "We noticed you have a food business. Add a photo of your menu to let people know what [Page Name] offers.",
+    "quick_replies": [{
+      "content_type": "text",
+        "title": "Add Menu",
+        "payload": "Add Menu",
+      }, {
+        "content_type": "text",
+        "title": "Skip",
+        "payload": "Skip",
+    }]
+  },
+  ADD_MENU_DESCRIPTION: {
+    "text": "You can give your menu a name. Here are some suggestions.",
+    "quick_replies": [{
+        "content_type": "text",
+        "title": "Fried Chicken",
+        "payload": "Fried Chicken",
+    }, {
+        "content_type": "text",
+        "title": "Nasi Lemak",
+        "payload": "Nasi Lemak",
+    }]
   },
   SET_OPENING_HOURS: {
     "text": "Got it! Add more Page details so potential customers can learn about yout business. \n Select your business hours",
@@ -138,19 +162,30 @@ module.exports.RESPONSES = {
   },
 }
 
-module.exports.PREVIEW_PROFILE_PHOTO = (attachment_url) => {
+module.exports.PREVIEW_PROFILE_PHOTO_SUCCESS = (attachment_url) => {
   return {
     "attachment": {
       "type": "template",
       "payload": {
         "template_type": "generic",
         "elements": [{
-          "title": "Your profile photo is not clear. For best quality, it should be at least 320 pixels wide and 320 pixels tall.",
-          "subtitle": "Would you like to resend another photo?",
+          "title": "Preview your photo above.",
           "image_url": attachment_url,
         }]
       }
-    }
+    },
+    "text":"Are you happy with how it looks?",
+    "quick_replies": [
+     {
+        "content_type": "text",
+        "title": "Yes",
+        "payload": "Yes",
+      }, {
+        "content_type": "text",
+        "title": "No",
+        "payload": "No",
+      }
+    ]
   };
 };
 
@@ -175,6 +210,10 @@ module.exports.STATES = {
    * B: suggestion about cover photo
    */
   3: "Upload menu",
+  /**
+   * A: user upload menu
+   * B: user type menu description
+   */
   4: "Opening hours",
   5: "Page location",
   /**

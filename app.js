@@ -26,13 +26,14 @@ const PREFIX = 'fb_hackathon';
 // Imports dependencies and set up http server
 const
   db = require('./db'),
-  request = require('request'),
+  common = require('./common'),
+  menuUpload = require('./menu-upload'),
   express = require('express'),
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
 
 const
-  { CONFIRM_LOCATION, PREVIEW_PROFILE_PHOTO, RESPONSES, STATES } = require('./constants'),
+  { CONFIRM_LOCATION, PREVIEW_PROFILE_PHOTO_SUCCESS, RESPONSES, STATES } = require('./constants'),
   { getDebugReponse } = require('./utils');
 
 // Sets server port and logs message on success
@@ -135,20 +136,22 @@ function handleMessage(sender_psid, received_message) {
             if (stateLevel2 === 'A') {
               response = RESPONSES.ADD_PROFILE_PHOTO;
               db.setUserState(sender_psid, 1, 'B');
-            } else {
+            } else if(stateLevel2 === 'B') {
+              response = RESPONSES.PREVIEW_PROFILE_PHOTO_FAIL;
+              db.setUserState(sender_psid, 1, 'C');
+            }else {
               const attachment_url = received_message.attachments[0].payload.url;
-              response = PREVIEW_PROFILE_PHOTO(attachment_url);
+              response = PREVIEW_PROFILE_PHOTO_SUCCESS(attachment_url);
               db.setUserState(sender_psid, 2, 'A');
             }
             break;
           case 2:
             response = RESPONSES.ADD_COVER_PHOTO;
-            db.setUserState(sender_psid, 3);
+            db.setUserState(sender_psid, 3, 'A');
             break;
           case 3:
-            response = RESPONSES.ADD_MENU;
-            db.setUserState(sender_psid, 4);
-            break;
+            menuUpload.handleMenuUpload(sender_psid, stateLevel1, stateLevel2, db);
+            return;
           case 4:
             response = RESPONSES.SET_OPENING_HOURS;;
             db.setUserState(sender_psid, 5);
@@ -274,7 +277,7 @@ function handleMessage(sender_psid, received_message) {
     response = {"text": err};
   }
   // Send the response message
-  callSendAPI(sender_psid, response);
+  common.callSendAPI(sender_psid, response);
 }
 
 function handlePostback(sender_psid, received_postback) {
@@ -293,29 +296,5 @@ function handlePostback(sender_psid, received_postback) {
     response = { "text": "Please send me a profile photo." }
   }
   // Send the message to acknowledge the postback
-  callSendAPI(sender_psid, response);
-}
-
-function callSendAPI(sender_psid, response) {
-  // Construct the message body
-  let request_body = {
-    "recipient": {
-      "id": sender_psid
-    },
-    "message": response
-  }
-
-  // Send the HTTP request to the Messenger Platform
-  request({
-    "uri": "https://graph.facebook.com/v2.6/me/messages",
-    "qs": { "access_token": PAGE_ACCESS_TOKEN },
-    "method": "POST",
-    "json": request_body
-  }, (err, res, body) => {
-    if (!err) {
-      console.log('message sent!')
-    } else {
-      console.error("Unable to send message:" + err);
-    }
-  });
+  common.callSendAPI(sender_psid, response);
 }
