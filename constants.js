@@ -1,12 +1,12 @@
 const YES_NO_QUICK_REPLIES = [
   {
     "content_type": "text",
-    "title": "Yes",
-    "payload": "Yes",
-  }, {
-    "content_type": "text",
     "title": "No",
     "payload": "No",
+  }, {
+    "content_type": "text",
+    "title": "Yes",
+    "payload": "Yes",
   }
 ]
 
@@ -93,14 +93,39 @@ module.exports.RESPONSES = {
     "quick_replies": YES_NO_QUICK_REPLIES,
   },
   SET_PAGE_BUTTON: {
+    "text": "Add a button to your Page to make it easy for customers to shop or contact you. \nThis button appears at the top of your Page",
+    "quick_replies": [
+      {
+        "content_type": "text",
+        "title": "Send Messenger",
+        "payload": "wessenger",
+      }, {
+        "content_type": "text",
+        "title": "Contact me WhatsApp Number",
+        "payload": "whatsapp",
+      }, {
+        "content_type": "text",
+        "title": "Show me other options",
+        "payload": "others",
+      }, {
+        "content_type": "text",
+        "title": "Skip",
+        "payload": "skip",
+      }
+    ]
   },
-  SET_AUTO_REPLAY: {
-    "text": "Please input the auto reply!",
+  SET_AUTO_REPLAY_A: {
+    "text": "You're ready to get messages for your business. \nWould you like to set up instant replies to let new customers know you'll get back to them shortly?",
+    "quick_replies": YES_NO_QUICK_REPLIES,
+  },
+  SET_AUTO_REPLAY_B: {
+    "text": "Great! Type the message you'd like new constomers to get when they message you.",
+    "quick_replies": YES_NO_QUICK_REPLIES,
   },
   SET_SERVICE_FLOW: {
   },
   FINISH_MODULE_2: {
-    "text": "Congrats!",
+    "text": "Congrats! Your customers will find it easier to connect to you now.",
   },
 }
 

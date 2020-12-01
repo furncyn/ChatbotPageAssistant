@@ -181,14 +181,17 @@ function handleMessage(sender_psid, received_message) {
             }
             break;
           case 9:
-            response = {
-              "text": `State ${userState.stateLevel1} not implemented yet`
-            };
-            db.setUserState(sender_psid, 10);
+            response = RESPONSES.SET_PAGE_BUTTON;
+            db.setUserState(sender_psid, 10, 'A');
             break;
           case 10:
-            response = RESPONSES.SET_AUTO_REPLAY;
-            db.setUserState(sender_psid, 11);
+            if (stateLevel2 === 'A') {
+              response = RESPONSES.SET_AUTO_REPLAY_A;
+              db.setUserState(sender_psid, 10, 'B');
+            } else {
+              response = RESPONSES.SET_AUTO_REPLAY_B;
+              db.setUserState(sender_psid, 11);
+            }
             break;
           case 11:
             response = {
