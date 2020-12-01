@@ -26,7 +26,8 @@ const PREFIX = 'fb_hackathon';
 // Imports dependencies and set up http server
 const
   db = require('./db'),
-  request = require('request'),
+  common = require('./common'),
+  menuUpload = require('./menu-upload'),
   express = require('express'),
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
@@ -147,14 +148,13 @@ function handleMessage(sender_psid, received_message) {
               db.setUserState(sender_psid, 2, 'B');
             }else {
               response = RESPONSES.ADD_COVER_PHOTO;
-              db.setUserState(sender_psid, 3);
+              db.setUserState(sender_psid, 3, 'A');
             }
             
             break;
           case 3:
-            response = RESPONSES.ADD_MENU;
-            db.setUserState(sender_psid, 4);
-            break;
+            menuUpload.handleMenuUpload(sender_psid, stateLevel1, stateLevel2, db);
+            return;
           case 4:
             response = RESPONSES.SET_OPENING_HOURS;;
             db.setUserState(sender_psid, 5);
@@ -262,7 +262,7 @@ function handleMessage(sender_psid, received_message) {
     response = {"text": err};
   }
   // Send the response message
-  callSendAPI(sender_psid, response);
+  common.callSendAPI(sender_psid, response);
 }
 
 function handlePostback(sender_psid, received_postback) {
@@ -281,29 +281,5 @@ function handlePostback(sender_psid, received_postback) {
     response = { "text": "Please send me a profile photo." }
   }
   // Send the message to acknowledge the postback
-  callSendAPI(sender_psid, response);
-}
-
-function callSendAPI(sender_psid, response) {
-  // Construct the message body
-  let request_body = {
-    "recipient": {
-      "id": sender_psid
-    },
-    "message": response
-  }
-
-  // Send the HTTP request to the Messenger Platform
-  request({
-    "uri": "https://graph.facebook.com/v2.6/me/messages",
-    "qs": { "access_token": PAGE_ACCESS_TOKEN },
-    "method": "POST",
-    "json": request_body
-  }, (err, res, body) => {
-    if (!err) {
-      console.log('message sent!')
-    } else {
-      console.error("Unable to send message:" + err);
-    }
-  });
+  common.callSendAPI(sender_psid, response);
 }
