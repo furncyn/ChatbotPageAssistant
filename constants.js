@@ -55,14 +55,14 @@ module.exports.RESPONSES = {
         "payload": "Website",
       }, {
         "content_type": "text",
-        "title": "Phone",
+        "title": "Phone number",
         "payload": "Phone",
       }, {
         "content_type": "text",
         "title": "Email",
         "payload": "Email",
       }, {
-        "content-type": "text",
+        "content_type": "text",
         "title": "Skip for now",
         "payload": "skip",
       }
