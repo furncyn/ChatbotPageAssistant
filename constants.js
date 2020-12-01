@@ -126,7 +126,7 @@ module.exports.RESPONSES = {
     "text": "Great! Type the message you'd like new constomers to get when they message you.",
   },
   SET_SERVICE_FLOW: {
-    "text": "Do you want to set up your service?"
+    "text": "Do you want to set up your service?",
     "quick_replies": YES_NO_QUICK_REPLIES,
   },
   FINISH_MODULE_2: {
