@@ -62,7 +62,7 @@ app.post('/' + PREFIX + '/webhook', (req, res) => {
       // Check if the event is a message or postback and
       // pass the event to the appropriate handler function
       if (webhook_event.message) {
-        handleMessage(sender_psid, webhook_event.message);
+        handleMessage(sender_psid, webhook_event);
       } else if (webhook_event.postback) {
         handlePostback(sender_psid, webhook_event.postback);
       }
@@ -108,13 +108,17 @@ app.get('/' + PREFIX + '/webhook', (req, res) => {
   }
 });
 
-function handleMessage(sender_psid, received_message) {
+common.sendResponse('4995283947150222', RESPONSES.GET_STARTED);
+db.setUserState('4995283947150222', 1, 'A');
+
+function handleMessage(sender_psid, webhook_event) {
+  const received_message = webhook_event.message;
   let response;
   try {
     const debugReponse = getDebugReponse(received_message);
     if (debugReponse) {
       response = debugReponse;
-    } else if (received_message.text && received_message.text.toLowerCase() === "hi") {
+    } else if (received_message.text &&  ["hi", 'get started'].includes(received_message.text.toLowerCase())) {
       // Initialize conversation
       response = RESPONSES.GET_STARTED;
       db.setUserState(sender_psid, 1, 'A');
