@@ -111,9 +111,7 @@ module.exports.RESPONSES = {
   ],
   SET_LOCATION: [
     { "text": "Great. Your business is always open." },
-    { "text": "Do you want to add location information?" },
-    {
-      "text": "Select your business hours.",
+    { "text": "Do you want to add location information?",
       "quick_replies": [
         {
           "content_type": "text",
@@ -175,13 +173,16 @@ module.exports.RESPONSES = {
   ],
   START_MODULE_2: [
     { "text": "Hi, your page is looking great!" },
-    { "text": "Want to learn more about connecting with customers?" }
+    {
+      "text": "Want to learn more about connecting with customers?",
+      "quick_replies": YES_NO_QUICK_REPLIES,
+    }
   ],
   SET_PAGE_BUTTON: [
     { "text": "Let's get started" },
     { "text": "Choose the action you want people to take when they visit your Page." },
     {
-      "text": "This button will be shown at the top of your Page",
+      "text": "This button will be shown at the top of your Page.",
       "quick_replies": [
         {
           "content_type": "text",
@@ -225,7 +226,7 @@ module.exports.RESPONSES = {
   FINISH_MODULE_2: [
     { "text": "Nice work!" },
     { "text": "You've made it easier for potential customers to connect and communicate with you." },
-    { "text": "Learn how to add even more value to your Page with our free online courses" }
+    { "text": "Learn how to add even more value to your Page with our free online courses." }
   ]
 }
 
@@ -237,20 +238,7 @@ module.exports.PREVIEW_PROFILE_PHOTO_SUCCESS = (attachment_url) => {
         "template_type": "generic",
         "elements": [{
           "title": "Are you happy with how it looks?",
-          // "subtitle": "Tap a button to answer.",
           "image_url": attachment_url,
-          // "buttons": [
-          //   {
-          //     "type": "postback",
-          //     "title": "Yes!",
-          //     "payload": "yes",
-          //   },
-          //   {
-          //     "type": "postback",
-          //     "title": "No!",
-          //     "payload": "no",
-          //   }
-          // ],
         }]
       }
     },
@@ -273,27 +261,10 @@ module.exports.STATES = {
   /** Module 1 */
   0: "Module 1 Welcome Message",
   1: "Profile photo",
-  /**
-   * A: user uploads profile photo
-   * B: suggestion about profile photo
-   */
   2: "Cover photo",
-  /**
-   * A: user uploads cover photo
-   * B: suggestion about cover photo
-   */
   3: "Upload menu",
-  /**
-   * A: user upload menu
-   * B: user type menu description
-   */
   4: "Opening hours",
   5: "Page location",
-  /**
-   * Webview
-   * A: 4 selections (No hours, Always open, Permanently closed, Selected hours)
-   * B: specify Selected hours
-   */
   6: "Contact info",
   7: "See changes from module 1",
 
@@ -302,11 +273,5 @@ module.exports.STATES = {
   9: "Add Page Button",
   // only show if user wants to set up Appointment booking
   10: "Add Auto Reply",
-  /**
-   * A: select days and times for appointment
-   * B: appointment approval (bool)
-   * C: double-booking (bool)
-   * D: sync to google calendar (bool)
-   */
   11: "Finish Message",
 }
