@@ -161,13 +161,11 @@ function handleMessage(sender_psid, received_message) {
             break;
           case 6:
             if (stateLevel2 === 'A') {
-              console.log(stateLevel1, stateLevel2);
               response = RESPONSES.SET_CONTACT_INFO;
               db.setUserState(sender_psid, 6, 'B');
             } else {
-              console.log(stateLevel1, stateLevel2);
               response = {
-                "text": `What's your business's ${CONTACT_INFOS[received_message.text]}?`
+                "text": "Please input your contact information."
               };
               db.setUserState(sender_psid, 7);
             }
