@@ -160,7 +160,7 @@ function handleMessage(sender_psid, received_message) {
             db.setUserState(sender_psid, 6);
             break;
           case 6:
-            if (CONTACT_INFOS.keys().includes(received_message.text)) {
+            if (Object.keys(CONTACT_INFOS).includes(received_message.text)) {
               response = { "text": `What's your business's ${CONTACT_INFOS[received_message.text]}?`}
               db.setUserState(sender_psid, 7);
             } else {
