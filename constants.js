@@ -74,20 +74,6 @@ module.exports.RESPONSES = {
       }
     ]
   },
-  SET_CONTACT_INFO_C: {
-    "text": "Do you want to add more contact information?",
-    "quick_replies": [
-      {
-        "content_type": "text",
-        "title": "Yes",
-        "payload": "Yes",
-      }, {
-        "content_type": "text",
-        "title": "No",
-        "payload": "No",
-      }
-    ]
-  },
   START_MODULE_2: {
     "text": `Do you want to connect to more people?`,
     "quick_replies": [
