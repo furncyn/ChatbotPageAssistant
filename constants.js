@@ -18,7 +18,7 @@ module.exports.RESPONSES = {
   ADD_PROFILE_PHOTO: {
     "text": "Great!\n\nLet's start by adding a profile photo that represents your business well.\n\nMany people use their business logo as their profile photo.",
   },
-  PREVIEW_PROFILE_PHOTO_FAIL:{
+  PREVIEW_PROFILE_PHOTO_FAIL: {
     "text": "Your profile photo is not clear. For best quality, it should be at least 320 pixels wide and 320 pixels tall.\n\nWould you like to send another photo?",
   },
   ADD_COVER_PHOTO: {
@@ -45,24 +45,24 @@ module.exports.RESPONSES = {
     "text": "We noticed you have a food business.\n\n Add a photo of your menu to let people know what [Page Name] offers.",
     "quick_replies": [{
       "content_type": "text",
-        "title": "Add Menu",
-        "payload": "Add Menu",
-      }, {
-        "content_type": "text",
-        "title": "Skip",
-        "payload": "Skip",
+      "title": "Add Menu",
+      "payload": "Add Menu",
+    }, {
+      "content_type": "text",
+      "title": "Skip",
+      "payload": "Skip",
     }]
   },
   ADD_MENU_DESCRIPTION: {
     "text": "You can give your menu a name.\n\n Here are some suggestions.",
     "quick_replies": [{
-        "content_type": "text",
-        "title": "Fried Chicken",
-        "payload": "Fried Chicken",
+      "content_type": "text",
+      "title": "Fried Chicken",
+      "payload": "Fried Chicken",
     }, {
-        "content_type": "text",
-        "title": "Nasi Lemak",
-        "payload": "Nasi Lemak",
+      "content_type": "text",
+      "title": "Nasi Lemak",
+      "payload": "Nasi Lemak",
     }]
   },
   SET_OPENING_HOURS: {
@@ -164,29 +164,32 @@ module.exports.RESPONSES = {
 
 module.exports.PREVIEW_PROFILE_PHOTO_SUCCESS = (attachment_url) => {
   return {
-    "attachment": {
-      "type": "template",
-      "payload": {
-        "template_type": "generic",
-        "elements": [{
-          "title": "Preview your photo above.",
-          "subtitle": "Are you happy with how it looks?",
-              "image_url": attachment_url,
-              // "buttons": [
-              //   {
-              //     "type": "text",
-              //     "title": "Yes",
-              //     "payload": "yes",
-              //   },
-              //   {
-              //     "type": "text",
-              //     "title": "No",
-              //     "payload": "no",
-              //   }
-              // ],
-        }]
+    response = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Is this the right picture?",
+            "subtitle": "Tap a button to answer.",
+            "image_url": attachment_url,
+            // "buttons": [
+            //   {
+            //     "type": "postback",
+            //     "title": "Yes!",
+            //     "payload": "yes",
+            //   },
+            //   {
+            //     "type": "postback",
+            //     "title": "No!",
+            //     "payload": "no",
+            //   }
+            // ],
+          }]
+        }
       }
-    },
+    }
+  },
   };
 };
 
