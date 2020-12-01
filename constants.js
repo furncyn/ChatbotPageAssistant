@@ -193,11 +193,11 @@ module.exports.PREVIEW_PROFILE_PHOTO_SUCCESS = (attachment_url) => {
 module.exports.CONFIRM_LOCATION = (address) => {
   address_arr = address.split(", ");
   return {
-    "text": `Your business address is\n
-      Street Address: ${address_arr[0]}\n
-      City: ${address_arr[1]}\n
-      Zip code: ${address_arr[2]}.\n\n
-      Is this correct?`,
+    "text": `Your business address is
+      Street Address: ${address_arr[0]}
+      City: ${address_arr[1]}
+      Zip code: ${address_arr[2]}\n
+    Is this correct?`,
     "quick_replies": YES_NO_QUICK_REPLIES,
   }
 }
