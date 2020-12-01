@@ -108,9 +108,6 @@ app.get('/' + PREFIX + '/webhook', (req, res) => {
   }
 });
 
-common.sendResponse('4995283947150222', RESPONSES.GET_STARTED);
-db.setUserState('4995283947150222', 1, 'A');
-
 function handleMessage(sender_psid, received_message) {
   let response;
   try {

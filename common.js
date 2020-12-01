@@ -1,5 +1,6 @@
 const rp = require('request-promise');
-const PAGE_ACCESS_TOKEN = process.env.PAGE_TOKEN;
+// const PAGE_ACCESS_TOKEN = process.env.PAGE_TOKEN;
+const PAGE_ACCESS_TOKEN = 'EAAB51ZBkNWZAYBAAQKiktG0mZBdgvVfQxZCQ4GQO1txMZCpxeojb5wXpzNeYaTnNTZCZClaZBNdQPhZCcGLpZBt2pmhXaoNA6hTMV2HBvbfmu6kktMD9bvAdJ4LO3QlmvWGtZAK0n6WZBWrtxrU9QZB735IaixZB8EKDC2v4xiYcUIk3fZCaZC9WjPxedcbmEIlwxlS89pYZD'
 
 function sendResponse(sender_psid, response) {
   let call = null;
