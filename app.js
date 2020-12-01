@@ -167,10 +167,8 @@ function handleMessage(sender_psid, received_message) {
               } else {
                 db.setUserState(sender_psid, 6);
               }
-            } else if (stateLevel2 === 'C') {
-              response = CONFIRM_LOCATION(received_message.text);
-              db.setUserState(sender_psid, 5, 'D');
             } else {
+              response = CONFIRM_LOCATION(received_message.text);
               db.setUserState(sender_psid, 6);
             }
             break;
