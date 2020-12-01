@@ -165,7 +165,7 @@ function handleMessage(sender_psid, received_message) {
               db.setUserState(sender_psid, 6, 'B');
             } else {
               response = {
-                "text": "Please input your contact information."
+                "text": `Input your ${received_message.text}, ${received_message.payload}`
               };
               db.setUserState(sender_psid, 7);
             }
