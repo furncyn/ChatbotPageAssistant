@@ -1,17 +1,19 @@
+const YES_NO_QUICK_REPLIES = [
+  {
+    "content_type": "text",
+    "title": "Yes",
+    "payload": "Yes",
+  }, {
+    "content_type": "text",
+    "title": "No",
+    "payload": "No",
+  }
+]
+
 module.exports.RESPONSES = {
   GET_STARTED: {
-    "text": `Welcome! Should we get started?`,
-    "quick_replies": [
-      {
-        "content_type": "text",
-        "title": "Yes",
-        "payload": "Yes",
-      }, {
-        "content_type": "text",
-        "title": "No",
-        "payload": "No",
-      }
-    ]
+    "text": "Welcome! Should we get started?",
+    "quick_replies": YES_NO_QUICK_REPLIES,
   },
   ADD_PROFILE_PHOTO: {
     "text": "Great, let's get started. \nAdd a profile photo that represents your business well. \nMany people choose to use their business logo as their profile photo.",
@@ -82,19 +84,13 @@ module.exports.RESPONSES = {
       }
     ]
   },
-  START_MODULE_2: {
-    "text": `Do you want to connect to more people?`,
-    "quick_replies": [
-      {
-        "content_type": "text",
-        "title": "Yes",
-        "payload": "Yes",
-      }, {
-        "content_type": "text",
-        "title": "No",
-        "payload": "No",
-      }
-    ]
+  START_MODULE_2_A: {
+    "text": "Hi, your page is looking great! \nHave you found our tips helpful so far?",
+    "quick_replies": YES_NO_QUICK_REPLIES,
+  },
+  START_MODULE_2_B: {
+    "text": "Great! \nWould you like to learn more about how customers can contact you?",
+    "quick_replies": YES_NO_QUICK_REPLIES,
   },
   SET_PAGE_BUTTON: {
   },
