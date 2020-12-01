@@ -46,7 +46,7 @@ module.exports.RESPONSES = {
     "text": "OK. Simply enter your business address here.",
   },
   ADD_MENU: {
-    "text": "We noticed you have a food business.\n\nAdd a photo of your menu to let people know what [Page Name] offers.",
+    "text": "🍴 We noticed you have a food business.\n\n📷 Add a photo of your menu to let people know what [Page Name] offers.",
     "quick_replies": [{
       "content_type": "text",
       "title": "Add Menu",

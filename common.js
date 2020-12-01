@@ -36,3 +36,4 @@ function callSendAPI(sender_psid, response) {
 }
 
 module.exports.sendResponse = sendResponse;
+module.exports.callSendAPI = callSendAPI;
