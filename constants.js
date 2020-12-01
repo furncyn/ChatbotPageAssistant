@@ -1,4 +1,4 @@
-module.exports.CONTACT_INFOS= {
+module.exports.CONTACT_INFOS = {
   Website: "website",
   Phone: "phone number",
   Email: "email",

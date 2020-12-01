@@ -160,15 +160,10 @@ function handleMessage(sender_psid, received_message) {
             db.setUserState(sender_psid, 6);
             break;
           case 6:
-            if (stateLevel2 === 'A') {
-              response = RESPONSES.SET_CONTACT_INFO;
-              db.setUserState(sender_psid, 6, 'B');
-            } else if (stateLevel2 === 'B') {
-              if (received_message.text !== "Skip for now") {
-                response = { "text": `What's your ${CONTACT_INFOS[received_message.text]}?` };
-              }
-              db.setUserState(sender_psid, 7);
-            }
+            response = {
+              "text": `State ${userState.stateLevel1} not implemented yet`
+            };
+            db.setUserState(sender_psid, 7);
             break;
           case 7:
               response = {
