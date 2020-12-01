@@ -138,6 +138,9 @@ function handleMessage(sender_psid, received_message) {
             } else if (stateLevel2 === 'B') {
               response = RESPONSES.PREVIEW_PROFILE_PHOTO_FAIL;
               db.setUserState(sender_psid, 1, 'C');
+            } else if (stateLevel2 === 'C') {
+              response = RESPONSES.ADD_PROFILE_PHOTO_AGAIN;
+              db.setUserState(sender_psid, 1, 'D');
             } else {
               const attachment_url = received_message.attachments[0].payload.url;
               response = PREVIEW_PROFILE_PHOTO_SUCCESS(attachment_url);
