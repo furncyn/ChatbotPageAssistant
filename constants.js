@@ -56,10 +56,27 @@ module.exports.RESPONSES = {
     ]
   },
   SET_LOCATION: {
+    "text": "Great. You've chosen your business category. Now tell us your business location.",
   },
   SET_OPENING_HOURS: {
   },
   SET_CONTACT_INFO: {
+    "text": "Add more information to your Page so people can contact you.",
+    "quick_replies": [
+      {
+        "content_type": "text",
+        "title": "Website",
+        "payload": "Website",
+      }, {
+        "content_type": "text",
+        "title": "Phone",
+        "payload": "Phone",
+      }, {
+        "content_type": "text",
+        "title": "Email",
+        "payload": "Email",
+      }
+    ]
   },
   START_MODULE_2: {
     "text": `Do you want to connect to more people?`,
