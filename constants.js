@@ -237,7 +237,7 @@ module.exports.PREVIEW_PROFILE_PHOTO_SUCCESS = (attachment_url) => {
       "payload": {
         "template_type": "generic",
         "elements": [{
-          "title": "Are you happy with how it looks?",
+          "subtitle": "Are you happy with how it looks?",
           "image_url": attachment_url,
         }]
       }
