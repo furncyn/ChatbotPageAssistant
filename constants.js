@@ -22,20 +22,6 @@ module.exports.RESPONSES = {
   ADD_PROFILE_PHOTO: {
     "text": "Great, let's get started. \nAdd a profile photo that represents your business well. \nMany people choose to use their business logo as their profile photo.",
   },
-  PREVIEW_PROFILE_PHOTO: {
-    "text": "Looks good! Remember, your profile photo will be cropped to a circular shape in ads and posts.\nAre you happy with how it works?",
-    "quick_replies": [
-      {
-        "content_type": "text",
-        "title": "Yes",
-        "payload": "Yes",
-      }, {
-        "content_type": "text",
-        "title": "No",
-        "payload": "No",
-      }
-    ]
-  },
   ADD_COVER_PHOTO: {
     "text": "Great! Now, add a cover photo for your Page. This photo is public. You can use it to promote your business.",
   },
@@ -109,6 +95,22 @@ module.exports.RESPONSES = {
     "text": "Congrats!",
   },
 }
+
+module.exports.PREVIEW_PROFILE_PHOTO = (attachment_url) => {
+  return {
+    "attachment": {
+      "type": "template",
+      "payload": {
+        "template_type": "generic",
+        "elements": [{
+          "title": "Your profile photo is not clear. For best quality, it should be at least 320 pixels wide and 320 pixels tall.",
+          "subtitle": "Would you like to resend another photo?",
+          "image_url": attachment_url,
+        }]
+      }
+    }
+  };
+};
 
 module.exports.STATES = {
   /** Module 1 */

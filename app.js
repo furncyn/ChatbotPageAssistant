@@ -32,7 +32,7 @@ const
   app = express().use(body_parser.json()); // creates express http server
 
 const
-  { STATES, RESPONSES } = require('./constants'),
+  { STATES, RESPONSES, PREVIEW_PROFILE_PHOTO} = require('./constants'),
   { getDebugReponse } = require('./utils');
 
 // Sets server port and logs message on success
@@ -137,7 +137,7 @@ function handleMessage(sender_psid, received_message) {
               db.setUserState(sender_psid, 1, 'B');
             } else {
               const attachment_url = received_message.attachments[0].payload.url;
-              response = RESPONSES.PREVIEW_PROFILE_PHOTO;
+              response = PREVIEW_PROFILE_PHOTO(attachment_url);
               db.setUserState(sender_psid, 2, 'A');
             }
             break;
@@ -235,7 +235,6 @@ function handleMessage(sender_psid, received_message) {
       //     }
       //   }
       // }
-      //Please don't delete this part
 
       // response = {
       //   "attachment": {
