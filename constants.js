@@ -1,6 +1,6 @@
 module.exports.CONTACT_INFOS= {
   Website: "website",
-  Phone: "phone",
+  Phone: "phone number",
   Email: "email",
 }
 
@@ -69,6 +69,23 @@ module.exports.RESPONSES = {
         "payload": "Email",
       }
     ]
+  },
+  SET_CONTACT_INFO_C: {
+    "text": "Do you want to add more contact information?",
+    "quick_replies": [
+      {
+        "content_type": "text",
+        "title": "Yes",
+        "payload": "Yes",
+      }, {
+        "content_type": "text",
+        "title": "No",
+        "payload": "No",
+      }
+    ]
+  },
+  SET_CONTACT_INFO_FINISH: {
+    "text": "Nice. Now more people can reach your business!",
   },
   START_MODULE_2: {
     "text": `Do you want to connect to more people?`,

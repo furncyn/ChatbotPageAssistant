@@ -161,15 +161,21 @@ function handleMessage(sender_psid, received_message) {
             break;
           case 6:
             if (stateLevel2 === 'A') {
-              console.log(stateLevel1, stateLevel2);
               response = RESPONSES.SET_CONTACT_INFO;
               db.setUserState(sender_psid, 6, 'B');
+            } else if (stateLevel2 === 'B') {
+              response = { "text": `What's your ${CONTACT_INFOS[received_message.text]}?` };
+              db.setUserState(sender_psid, 6, 'C');
+            } else if (stateLevel2 === 'C') {
+              response = RESPONSES.SET_CONTACT_INFO_C;
+              db.setUserState(sender_psid, 6, 'D');
             } else {
-              console.log(stateLevel1, stateLevel2);
-              response = {
-                "text": `What's your business's ${CONTACT_INFOS[received_message.text]}?`
-              };
-              db.setUserState(sender_psid, 7);
+              if (received_message.text === 'Yes') {
+                db.setUserState(sender_psid, 6, 'A');
+              } else {
+                response = RESPONSES.SET_CONTACT_INFO_FINISH;
+                db.setUserState(sender_psid, 7);
+              }
             }
             break;
           case 7:
