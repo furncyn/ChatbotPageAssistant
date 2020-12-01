@@ -1,6 +1,16 @@
 const request = require('request');
 const PAGE_ACCESS_TOKEN = process.env.PAGE_TOKEN;
 
+function sendResponse(sender_psid, response) {
+  if (Array.isArray(response)) {
+    for (r of response) {
+      callSendAPI(sender_psid, r);
+    }
+  } else {
+    callSendAPI(sender_psid, response)
+  }
+}
+
 function callSendAPI(sender_psid, response) {
   // Construct the message body
   let request_body = {
@@ -25,4 +35,4 @@ function callSendAPI(sender_psid, response) {
   });
 }
 
-module.exports.callSendAPI = callSendAPI;
+module.exports.sendResponse = sendResponse;

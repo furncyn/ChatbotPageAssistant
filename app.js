@@ -270,7 +270,7 @@ function handleMessage(sender_psid, received_message) {
     response = { "text": err };
   }
   // Send the response message
-  common.callSendAPI(sender_psid, response);
+  common.sendResponse(sender_psid, response);
 }
 
 function handlePostback(sender_psid, received_postback) {
@@ -289,5 +289,5 @@ function handlePostback(sender_psid, received_postback) {
     response = { "text": "Please send me a profile photo." }
   }
   // Send the message to acknowledge the postback
-  common.callSendAPI(sender_psid, response);
+  common.sendResponse(sender_psid, response);
 }
