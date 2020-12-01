@@ -152,7 +152,7 @@ module.exports.STATES = {
    * B: specify Selected hours
    */
   6: "Contact info",
-  7: "See changes from module 1"
+  7: "See changes from module 1",
 
   /** Module 2 */
   8: "Module 2 Welcome Message",

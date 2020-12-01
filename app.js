@@ -32,7 +32,7 @@ const
   app = express().use(body_parser.json()); // creates express http server
 
 const
-  { STATES, RESPONSES, PREVIEW_PROFILE_PHOTO} = require('./constants'),
+  { CONTACT_INFOS, PREVIEW_PROFILE_PHOTO, RESPONSES, STATES } = require('./constants'),
   { getDebugReponse } = require('./utils');
 
 // Sets server port and logs message on success
@@ -186,6 +186,7 @@ function handleMessage(sender_psid, received_message) {
                 "text": `State ${userState.stateLevel1} not implemented yet`
               }
               db.setUserState(sender_psid, 8);
+              break;
           case 8:
             response = RESPONSES.START_MODULE_2;
             db.setUserState(sender_psid, 9);
