@@ -168,9 +168,7 @@ function handleMessage(sender_psid, received_message) {
             }
             break;
           case 7:
-            response = {
-              "text": `State ${userState.stateLevel1} not implemented yet`
-            }
+            response = RESPONSES.FINISH_MODULE_1;
             db.setUserState(sender_psid, 8);
             break;
           case 8:
