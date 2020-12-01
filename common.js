@@ -1,3 +1,4 @@
+const rp = require('request-promise');
 const request = require('request');
 const sequential = require('promise-sequential');
 const PAGE_ACCESS_TOKEN = process.env.PAGE_TOKEN;

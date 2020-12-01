@@ -17,7 +17,8 @@
     "express": "^4.13.4",
     "lowdb": "^1.0.0",
     "promise-sequential": "^1.1.1",
-    "request": "^2.72.0"
+    "request": "^2.72.0",
+    "request-promise": "^4.2.6"
   },
   "engines": {
     "node": "~4.1.2"
