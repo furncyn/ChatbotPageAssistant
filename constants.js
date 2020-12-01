@@ -105,20 +105,25 @@ module.exports.RESPONSES = {
       }
     ]
   },
-  FINISH_MODULE_1: {
-    "text": "Great job! You have added some basic information to your Page. Do you want to see the changes you made?",
-    "quick_replies": [
-      {
-        "content_type": "text",
-        "title": "Go to Page",
-        "payload": "Yes",
-      }, {
-        "content_type": "text",
-        "title": "No thanks",
-        "payload": "No",
-      }
-    ]
-  },
+  FINISH_MODULE_1: [
+    {
+      "text": "Great job! You have added some basic information to your Page.",
+    },
+    {
+      "text": "Do you want to see the changes you made?",
+      "quick_replies": [
+        {
+          "content_type": "text",
+          "title": "Go to Page",
+          "payload": "Yes",
+        }, {
+          "content_type": "text",
+          "title": "No thanks",
+          "payload": "No",
+        }
+      ]
+    }
+  ],
   START_MODULE_2_A: {
     "text": "Hi, your page is looking great! \nHave you found our tips helpful so far?",
     "quick_replies": YES_NO_QUICK_REPLIES,
