@@ -282,6 +282,11 @@ function handlePostback(sender_psid, received_postback) {
   // Get the payload for the postback
   let payload = received_postback.payload;
 
+  if (payload && payload.toLowerCase().includes('get started')) {
+    response = RESPONSES.ADD_PROFILE_PHOTO;
+    db.setUserState(sender_psid, 1, 'B');
+  }
+
   // Set the response based on the postback payload
   if (payload === 'Add Photo') {
     response = { "text": "Please send me a profile photo." }
