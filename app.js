@@ -146,17 +146,17 @@ function handleMessage(sender_psid, received_message) {
             db.setUserState(sender_psid, 3);
             break;
           case 3:
-            response = RESPONSES.CHOOSE_BUSINESS_CATEGORY;
+            // response = RESPONSES.CHOOSE_BUSINESS_CATEGORY;
             db.setUserState(sender_psid, 4);
             break;
           case 4:
-            response = RESPONSES.SET_LOCATION;
-            db.setUserState(sender_psid, 5);
-            break;
-          case 5:
             response = {
               "text": `State ${userState.stateLevel1} not implemented yet`
             };
+            db.setUserState(sender_psid, 5);
+            break;
+          case 5:
+            response = RESPONSES.SET_LOCATION;
             db.setUserState(sender_psid, 6);
             break;
           case 6:

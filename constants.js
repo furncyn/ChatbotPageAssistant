@@ -123,9 +123,9 @@ module.exports.STATES = {
    * A: user uploads cover photo
    * B: suggestion about cover photo
    */
-  3: "Page category",
-  4: "Page location",
-  5: "Opening hours",
+  3: "Upload menu",
+  4: "Opening hours",
+  5: "Page location",
   /**
    * Webview
    * A: 4 selections (No hours, Always open, Permanently closed, Selected hours)
