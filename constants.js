@@ -169,8 +169,8 @@ module.exports.PREVIEW_PROFILE_PHOTO_SUCCESS = (attachment_url) => {
       "payload": {
         "template_type": "generic",
         "elements": [{
-          "title": "Is this the right picture?",
-          "subtitle": "Tap a button to answer.",
+          "title": "Are you happy with how it looks?",
+          // "subtitle": "Tap a button to answer.",
           "image_url": attachment_url,
           // "buttons": [
           //   {
@@ -186,7 +186,8 @@ module.exports.PREVIEW_PROFILE_PHOTO_SUCCESS = (attachment_url) => {
           // ],
         }]
       }
-    }
+    },
+    "quick_replies": YES_NO_QUICK_REPLIES,
   };
 }
 
