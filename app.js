@@ -160,8 +160,12 @@ function handleMessage(sender_psid, received_message) {
             db.setUserState(sender_psid, 6);
             break;
           case 6:
-            response = RESPONSES.SET_CONTACT_INFO;
-            db.setUserState(sender_psid, 7);
+            if (CONTACT_INFOS.keys().includes(received_message.text)) {
+              response = { "text": `What's your business's ${CONTACT_INFOS[received_message.text]}?`}
+              db.setUserState(sender_psid, 7);
+            } else {
+               response = RESPONSES.SET_CONTACT_INFO;
+            }
             break;
           case 7:
             response = RESPONSES.START_MODULE_2;
