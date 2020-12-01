@@ -1,4 +1,5 @@
 const request = require('request');
+const PAGE_ACCESS_TOKEN = process.env.PAGE_TOKEN;
 
 function callSendAPI(sender_psid, response) {
   // Construct the message body

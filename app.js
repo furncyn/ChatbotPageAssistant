@@ -8,7 +8,6 @@
  */
 
 'use strict';
-const PAGE_ACCESS_TOKEN = process.env.PAGE_TOKEN;
 const PREFIX = 'fb_hackathon';
 
 // SAMPLE DB APIs
