@@ -169,11 +169,16 @@ function handleMessage(sender_psid, received_message) {
             break;
           case 7:
             response = RESPONSES.FINISH_MODULE_1;
-            db.setUserState(sender_psid, 8);
+            db.setUserState(sender_psid, 8, 'A');
             break;
           case 8:
-            response = RESPONSES.START_MODULE_2;
-            db.setUserState(sender_psid, 9);
+            if (stateLevel2 === 'A') {
+              response = RESPONSES.START_MODULE_2_A;
+              db.setUserState(sender_psid, 8, 'B');
+            } else {
+              response = RESPONSES.START_MODULE_2_B;
+              db.setUserState(sender_psid, 9);
+            }
             break;
           case 9:
             response = {
