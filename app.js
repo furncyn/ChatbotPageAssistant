@@ -160,17 +160,19 @@ function handleMessage(sender_psid, received_message) {
             db.setUserState(sender_psid, 6);
             break;
           case 6:
-            response = {
-              "text": `State ${userState.stateLevel1} not implemented yet`
-            };
-            db.setUserState(sender_psid, 7);
+            if (stateLevel2 === 'A') {
+              response = RESPONSES.SET_CONTACT_INFO
+              db.setUserState(sender_psid, 6, 'B')
+            } else {
+               db.setUserState(sender_psid, 7);
+            }
             break;
           case 7:
-              response = {
-                "text": `State ${userState.stateLevel1} not implemented yet`
-              }
-              db.setUserState(sender_psid, 8);
-              break;
+            response = {
+              "text": `State ${userState.stateLevel1} not implemented yet`
+            }
+            db.setUserState(sender_psid, 8);
+            break;
           case 8:
             response = RESPONSES.START_MODULE_2;
             db.setUserState(sender_psid, 9);
