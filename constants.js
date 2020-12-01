@@ -20,6 +20,10 @@ module.exports.RESPONSES = {
   },
   PREVIEW_PROFILE_PHOTO_FAIL: {
     "text": "Your profile photo is not clear. For best quality, it should be at least 320 pixels wide and 320 pixels tall.\n\nWould you like to send another photo?",
+    "quick_replies": YES_NO_QUICK_REPLIES,
+  },
+  ADD_PROFILE_PHOTO_AGAIN: {
+    "text": "Send a photo and we'll use it for your profile picture.",
   },
   ADD_COVER_PHOTO: {
     "text": "Great!\n\nNow, add a cover photo for your Page.\n\nThis photo appears at the top of your page.\n\nYou might like to choose a photo of your shop or products.",
