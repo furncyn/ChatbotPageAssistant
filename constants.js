@@ -46,7 +46,11 @@ module.exports.RESPONSES = {
   SET_LOCATION: {
     "text": "Great. You've chosen your business category. Now tell us your business location.",
   },
+  ADD_MENU: {
+    "text": "Upload menu images.",
+  },
   SET_OPENING_HOURS: {
+    "text": "Set opening hours.",
   },
   SET_CONTACT_INFO: {
     "text": "Add more information to your Page so people can contact you.",

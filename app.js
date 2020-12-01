@@ -146,13 +146,11 @@ function handleMessage(sender_psid, received_message) {
             db.setUserState(sender_psid, 3);
             break;
           case 3:
-            // response = RESPONSES.CHOOSE_BUSINESS_CATEGORY;
+            response = RESPONSES.ADD_MENU;
             db.setUserState(sender_psid, 4);
             break;
           case 4:
-            response = {
-              "text": `State ${userState.stateLevel1} not implemented yet`
-            };
+            response = RESPONSES.SET_OPENING_HOURS;;
             db.setUserState(sender_psid, 5);
             break;
           case 5:
@@ -206,11 +204,6 @@ function handleMessage(sender_psid, received_message) {
               "text": `State ${userState.stateLevel1} not implemented yet`
             };
         }
-        // // Create the payload for a basic text message, which
-        // // will be added to the body of our request to the Send API
-        // response = {
-        //   "text": `You sent the message: "${received_message_text}". Now send me an attachment!`
-        // }
       }
 
       // Get the URL of the message attachment
