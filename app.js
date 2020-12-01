@@ -33,7 +33,7 @@ const
   app = express().use(body_parser.json()); // creates express http server
 
 const
-  { PREVIEW_PROFILE_PHOTO_SUCCESS, RESPONSES, STATES } = require('./constants'),
+  { CONFIRM_LOCATION, PREVIEW_PROFILE_PHOTO_SUCCESS, RESPONSES, STATES } = require('./constants'),
   { getDebugReponse } = require('./utils');
 
 // Sets server port and logs message on success
@@ -160,8 +160,26 @@ function handleMessage(sender_psid, received_message) {
             db.setUserState(sender_psid, 5);
             break;
           case 5:
-            response = RESPONSES.SET_LOCATION;
-            db.setUserState(sender_psid, 6);
+            if (stateLevel2 === 'A') {
+              response = RESPONSES.SET_LOCATION;
+              db.setUserState(sender_psid, 5, 'B');
+            } else if (stateLevel2 === 'B') {
+              if(received_message.text === "Add location") {
+                response = RESPONSES.SET_LOCATION_B;
+                db.setUserState(sender_psid, 5, 'C');
+              } else {
+                db.setUserState(sender_psid, 6);
+              }
+            } else if (stateLEvel2 === 'C') {
+              response = CONFIRM_LOCATION;
+              db.setUserState(sender_psid, 5, 'D');
+            } else {
+              if (received_message.text === 'Yes') {
+                db.setUserState(sender_psid, 6);
+              } else {
+                db.setUserState(sender_psid, 5, 'B');
+              }
+            }
             break;
           case 6:
             response = RESPONSES.SET_CONTACT_INFO;

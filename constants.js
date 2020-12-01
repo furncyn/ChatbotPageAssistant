@@ -24,30 +24,22 @@ module.exports.RESPONSES = {
   ADD_COVER_PHOTO: {
     "text": "Great!\n\nNow, add a cover photo for your Page.\n\nThis photo is public. You can use it to promote your business.",
   },
-  CHOOSE_BUSINESS_CATEGORY: {
-    "text": "Your cover photo has been added! Now, choose your business category.",
+  SET_LOCATION: {
+    "text": "Great. Your business is always open.\nDo you want to add location information?",
     "quick_replies": [
       {
         "content_type": "text",
-        "title": "Beauty service",
-        "payload": "beauty",
+        "title": "Add location",
+        "payload": "location",
       }, {
         "content_type": "text",
-        "title": "Dining",
-        "payload": "dining",
-      }, {
-        "content_type": "text",
-        "title": "E-commerce",
-        "payload": "ecommerce",
-      }, {
-        "content_type": "text",
-        "title": "Financial service",
-        "payload": "finance",
+        "title": "Skip for now",
+        "payload": "skip",
       }
     ]
   },
-  SET_LOCATION: {
-    "text": "Great. You've chosen your business category. Now tell us your business location.",
+  SET_LOCATION_B: {
+    "text": "OK. Simply enter your business address here.",
   },
   ADD_MENU: {
     "text": "We noticed you have a food business. Add a photo of your menu to let people know what [Page Name] offers.",
@@ -92,7 +84,7 @@ module.exports.RESPONSES = {
     ]
   },
   SET_CONTACT_INFO: {
-    "text": "Add more information to your Page so people can contact you.",
+    "text": "Great. Your business is always open.\nDo you want to add location information?",
     "quick_replies": [
       {
         "content_type": "text",
@@ -197,6 +189,13 @@ module.exports.PREVIEW_PROFILE_PHOTO_SUCCESS = (attachment_url) => {
     },
   };
 };
+
+module.exports.CONFIRM_LOCATION = (address) => {
+  return {
+    "text": `Your business address is ${received_message.text}.\n\nIs this correct?`,
+    "quick_replies": YES_NO_QUICK_REPLIES
+  }
+}
 
 module.exports.STATES = {
   /** Module 1 */
