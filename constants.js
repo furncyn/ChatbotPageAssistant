@@ -22,7 +22,7 @@ module.exports.RESPONSES = {
     "text": "Your profile photo is not clear. For best quality, it should be at least 320 pixels wide and 320 pixels tall.\n\nWould you like to send another photo?",
   },
   ADD_COVER_PHOTO: {
-    "text": "Great!\n\nNow, add a cover photo for your Page.\n\nThis photo is public. You can use it to promote your business.",
+    "text": "Great!\n\nNow, add a cover photo for your Page.\n\nThis photo appears at the top of your page.\n\nYou might like to choose a photo of your shop or products.",
   },
   SET_LOCATION: {
     "text": "Great. Your business is always open.\nDo you want to add location information?",
