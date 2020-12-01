@@ -10,6 +10,8 @@ const YES_NO_QUICK_REPLIES = [
   }
 ]
 
+const biz_name = "Authentic Phoever";
+
 module.exports.RESPONSES = {
   GET_STARTED: [
     { "text": "Hi, Sherry!" },
@@ -53,18 +55,7 @@ module.exports.RESPONSES = {
   ],
   ADD_MENU: [
     { "text": "🍴 We noticed you have a food business." },
-    {
-      "text": "Add a photo of your menu to let people know what Authentic Phoever offers.",
-      "quick_replies": [{
-        "content_type": "text",
-        "title": "Add Menu",
-        "payload": "Add Menu",
-      }, {
-        "content_type": "text",
-        "title": "Skip",
-        "payload": "Skip",
-      }]
-     }
+    { "text": `Add a photo of your menu to let people know what ${biz_name} offers.` }
   ],
   ADD_MENU_DESCRIPTION: [
     { "text": "You can give your menu a name." },
@@ -217,7 +208,7 @@ module.exports.RESPONSES = {
   SET_AUTO_REPLAY_B: [
     { "text": "Great!" },
     { "text": "Here's a suggestion." },
-    { "text": "*'Hi, thanks for contacting Authentic Phoever. We've received your message and will respond shortly.'*" },
+    { "text": `*'Hi, thanks for contacting ${biz_name}. We've received your message and will respond shortly.'*` },
     {
       "text": "Do you want to use this message?",
       "quick_replies": YES_NO_QUICK_REPLIES,
