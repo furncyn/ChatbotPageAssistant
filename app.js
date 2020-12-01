@@ -122,9 +122,9 @@ function handleMessage(sender_psid, received_message) {
       let userState = db.getUserState(sender_psid);
       if (received_message.text && received_message.text.startsWith("jump")) {
         // 2nd param should be jump state. Ignore rest.
-        const n_state = received_message.text.trim().split(' ')[1];
-        if (Number.isInteger(n_state)) {
-          userState = parseInt(n_state);
+        const n_state = parseInt(received_message.text.trim().split(' ')[1]);
+        if (n_state) {
+          userState = {'stateLevel1': n_state, 'stateLevel2': 'A'};
         }
       }
       if (userState != null) {
