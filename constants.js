@@ -164,34 +164,31 @@ module.exports.RESPONSES = {
 
 module.exports.PREVIEW_PROFILE_PHOTO_SUCCESS = (attachment_url) => {
   return {
-    response = {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": [{
-            "title": "Is this the right picture?",
-            "subtitle": "Tap a button to answer.",
-            "image_url": attachment_url,
-            // "buttons": [
-            //   {
-            //     "type": "postback",
-            //     "title": "Yes!",
-            //     "payload": "yes",
-            //   },
-            //   {
-            //     "type": "postback",
-            //     "title": "No!",
-            //     "payload": "no",
-            //   }
-            // ],
-          }]
-        }
+    "attachment": {
+      "type": "template",
+      "payload": {
+        "template_type": "generic",
+        "elements": [{
+          "title": "Is this the right picture?",
+          "subtitle": "Tap a button to answer.",
+          "image_url": attachment_url,
+          // "buttons": [
+          //   {
+          //     "type": "postback",
+          //     "title": "Yes!",
+          //     "payload": "yes",
+          //   },
+          //   {
+          //     "type": "postback",
+          //     "title": "No!",
+          //     "payload": "no",
+          //   }
+          // ],
+        }]
       }
     }
-  },
   };
-};
+}
 
 module.exports.CONFIRM_LOCATION = (address) => {
   address_arr = address.split(", ");
