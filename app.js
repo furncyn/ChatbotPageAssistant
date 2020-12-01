@@ -145,7 +145,7 @@ function handleMessage(sender_psid, received_message) {
               const attachment_url = received_message.attachments[0].payload.url;
               response = PREVIEW_PROFILE_PHOTO_SUCCESS(attachment_url);
               db.setUserState(sender_psid, 2, 'B');
-            }else {
+            } else {
               response = RESPONSES.ADD_COVER_PHOTO;
               db.setUserState(sender_psid, 3, 'A');
             }
@@ -168,7 +168,7 @@ function handleMessage(sender_psid, received_message) {
               } else {
                 db.setUserState(sender_psid, 6);
               }
-            } else if (stateLEvel2 === 'C') {
+            } else if (stateLevel2 === 'C') {
               response = CONFIRM_LOCATION(received_message.text);
               db.setUserState(sender_psid, 5, 'D');
             } else {
