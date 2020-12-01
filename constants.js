@@ -16,17 +16,7 @@ module.exports.RESPONSES = {
     { "text": "I'm here to help you complete your your Page and find potential customers." },
     {
       "text": "Would you like to get started?",
-      "quick_replies": [
-        {
-          "content_type": "text",
-          "title": "Go to Page",
-          "payload": "Yes",
-        }, {
-          "content_type": "text",
-          "title": "No thanks",
-          "payload": "No",
-        }
-      ]
+      "quick_replies": YES_NO_QUICK_REPLIES
     }
   ],
   ADD_PROFILE_PHOTO: [
