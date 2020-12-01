@@ -1,11 +1,20 @@
 const request = require('request');
+const sequential = require('promise-sequential');
 const PAGE_ACCESS_TOKEN = process.env.PAGE_TOKEN;
 
 function sendResponse(sender_psid, response) {
   if (Array.isArray(response)) {
-    for (r of response) {
-      callSendAPI(sender_psid, r);
-    }
+    const async_actions = response.map(r => {
+      // return a *function* which executes sendMessage when the function is called
+      return () => {
+        callSendAPI(sender_psid, r);
+      };
+    });
+    sequential(async_actions)
+      .then(res => {
+        console.log("all done");
+        console.log(res);
+      });
   } else {
     callSendAPI(sender_psid, response)
   }
