@@ -154,7 +154,7 @@ function handleMessage(sender_psid, received_message) {
             return;
           case 4:
             response = RESPONSES.SET_OPENING_HOURS;;
-            db.setUserState(sender_psid, 5);
+            db.setUserState(sender_psid, 5, 'A');
             break;
           case 5:
             if (stateLevel2 === 'A') {
