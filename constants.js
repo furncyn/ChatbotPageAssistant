@@ -11,110 +11,11 @@ const YES_NO_QUICK_REPLIES = [
 ]
 
 module.exports.RESPONSES = {
-  GET_STARTED: {
-    "text": "Welcome! Should we get started?",
-    "quick_replies": YES_NO_QUICK_REPLIES,
-  },
-  ADD_PROFILE_PHOTO: {
-    "text": "Great!\n\nLet's start by adding a profile photo that represents your business well.\n\nMany people use their business logo as their profile photo.",
-  },
-  PREVIEW_PROFILE_PHOTO_FAIL: {
-    "text": "Your profile photo is not clear. For best quality, it should be at least 320 pixels wide and 320 pixels tall.\n\nWould you like to send another photo?",
-    "quick_replies": YES_NO_QUICK_REPLIES,
-  },
-  ADD_PROFILE_PHOTO_AGAIN: {
-    "text": "Send a photo and we'll use it for your profile picture.",
-  },
-  ADD_COVER_PHOTO: {
-    "text": "Great!\n\nNow, add a cover photo for your Page.\n\nThis photo appears at the top of your page.\n\nYou might like to choose a photo of your shop or products.",
-  },
-  SET_LOCATION: {
-    "text": "Great. Your business is always open.\nDo you want to add location information?",
-    "quick_replies": [
-      {
-        "content_type": "text",
-        "title": "Add location",
-        "payload": "location",
-      }, {
-        "content_type": "text",
-        "title": "Skip for now",
-        "payload": "skip",
-      }
-    ]
-  },
-  SET_LOCATION_B: {
-    "text": "OK. Simply enter your business address here.",
-  },
-  ADD_MENU: {
-    "text": "🍴 We noticed you have a food business.\n\n📷 Add a photo of your menu to let people know what [Page Name] offers.",
-    "quick_replies": [{
-      "content_type": "text",
-      "title": "Add Menu",
-      "payload": "Add Menu",
-    }, {
-      "content_type": "text",
-      "title": "Skip",
-      "payload": "Skip",
-    }]
-  },
-  ADD_MENU_DESCRIPTION: {
-    "text": "You can give your menu a name.\n\nHere are some suggestions.",
-    "quick_replies": [{
-      "content_type": "text",
-      "title": "Fried Chicken",
-      "payload": "Fried Chicken",
-    }, {
-      "content_type": "text",
-      "title": "Nasi Lemak",
-      "payload": "Nasi Lemak",
-    }]
-  },
-  SET_OPENING_HOURS: {
-    "text": "Got it! Add more Page details so potential customers can learn about yout business. \n Select your business hours",
-    "quick_replies": [
-      {
-        "content_type": "text",
-        "title": "Standard Hours",
-        "payload": "standard",
-      }, {
-        "content_type": "text",
-        "title": "Always Open",
-        "payload": "open",
-      }, {
-        "content_type": "text",
-        "title": "Skip",
-        "payload": "skip",
-      }
-    ]
-  },
-  SET_CONTACT_INFO: {
-    "text": "Great. Your business is always open.\nDo you want to add location information?",
-    "quick_replies": [
-      {
-        "content_type": "text",
-        "title": "Website",
-        "payload": "Website",
-      }, {
-        "content_type": "text",
-        "title": "Phone number",
-        "payload": "Phone",
-      }, {
-        "content_type": "text",
-        "title": "Email",
-        "payload": "Email",
-      }, {
-        "content_type": "text",
-        "title": "Skip for now",
-        "payload": "skip",
-      }
-    ]
-  },
-  FINISH_MODULE_1: [
+  GET_STARTED: [
+    { "text": "Hi, Sherry!" },
+    { "text": "I'm here to help you complete your your Page and find potential customers." },
     {
-      "text": "Great job! You have added some basic information to your Page.",
-    },
-    {
-      "text": "Do you want to see the changes you made?",
+      "text": "Would you like to get started?",
       "quick_replies": [
         {
           "content_type": "text",
@@ -128,51 +29,218 @@ module.exports.RESPONSES = {
       ]
     }
   ],
-  START_MODULE_2_A: {
-    "text": "Hi, your page is looking great! \nHave you found our tips helpful so far?",
-    "quick_replies": YES_NO_QUICK_REPLIES,
-  },
-  START_MODULE_2_B: {
-    "text": "Great! Would you like to learn more about how customers can contact you?",
-    "quick_replies": YES_NO_QUICK_REPLIES,
-  },
-  SET_PAGE_BUTTON: {
-    "text": "Add a button to your Page to make it easy for customers to shop or contact you. \nThis button appears at the top of your Page",
-    "quick_replies": [
-      {
+  ADD_PROFILE_PHOTO: [
+    { "text": "Great!" },
+    { "text": "Let's start by adding a profile photo that represents your business." },
+    { "text": "Many people use their business logo as their profile photo." }
+  ],
+  PREVIEW_PROFILE_PHOTO_FAIL: [
+    { "text": "Your profile photo is not clear." },
+    { "text": "For best quality, it should be at least 320 pixels wide and 320 pixels tall." },
+    {
+      "text": "Would you like to send another photo?",
+      "quick_replies": YES_NO_QUICK_REPLIES,
+    }
+  ],
+  ADD_COVER_PHOTO: [
+    { "text": "Great!" },
+    { "text": "Now, add a cover photo for your Page." },
+    { "text": "This photo appears at the top of your page." },
+    {
+      "text": "You might like to choose a photo of your shop or products.",
+      "quick_replies": [
+        {
+          "content_type": "text",
+          "title": "Add photo",
+          "payload": "yes",
+        }, {
+          "content_type": "text",
+          "title": "Skip",
+          "payload": "skip",
+        }
+      ],
+    }
+  ],
+  ADD_MENU: [
+    { "text": "🍴 We noticed you have a food business." },
+    {
+      "text": "Add a photo of your menu to let people know what Authentic Phoever offers.",
+      "quick_replies": [{
         "content_type": "text",
-        "title": "Send Messenger",
-        "payload": "wessenger",
-      }, {
-        "content_type": "text",
-        "title": "Contact me WhatsApp Number",
-        "payload": "whatsapp",
-      }, {
-        "content_type": "text",
-        "title": "Show me other options",
-        "payload": "others",
+        "title": "Add Menu",
+        "payload": "Add Menu",
       }, {
         "content_type": "text",
         "title": "Skip",
-        "payload": "skip",
-      }
-    ]
-  },
-  SET_AUTO_REPLAY_A: {
-    "text": "You're ready to get messages for your business. \nWould you like to set up instant replies? \nThis is an automatic reply people will receive when they message you",
-    "quick_replies": YES_NO_QUICK_REPLIES,
-  },
-  SET_AUTO_REPLAY_B: {
-    "text": "Great! Here's a suggestion. \n\n'Hi, thanks for contacting us. We've received your message and will respond shortly.' \n\nDo you want to use this message?",
-    "quick_replies": YES_NO_QUICK_REPLIES,
-  },
-  FINISH_MODULE_2: {
-    "text": "Nice work! You've made it even easier for potential customers to contact you. Come back any time to keep improving your Page.",
-  },
+        "payload": "Skip",
+      }]
+     }
+  ],
+  ADD_MENU_DESCRIPTION: [
+    { "text": "You can give your menu a name." },
+    {
+      "text": "Here are some suggestions.",
+      "quick_replies": [{
+        "content_type": "text",
+        "title": "Fried Chicken",
+        "payload": "Fried Chicken",
+      }, {
+        "content_type": "text",
+        "title": "Nasi Lemak",
+        "payload": "Nasi Lemak",
+      }]
+     }
+  ],
+  ADD_MORE_MENU: [
+    {
+      "text": "Do you want to add another photo for your menu?",
+      "quick_replies": YES_NO_QUICK_REPLIES,
+    }
+  ],
+  SET_OPENING_HOURS: [
+    { "text": "Got it!" },
+    { "text": "Now, add more details so potential customers can learn about your business." },
+    {
+      "text": "Select your business hours.",
+      "quick_replies": [
+        {
+          "content_type": "text",
+          "title": "Standard Hours",
+          "payload": "standard",
+        }, {
+          "content_type": "text",
+          "title": "Always Open",
+          "payload": "open",
+        }, {
+          "content_type": "text",
+          "title": "Skip",
+          "payload": "skip",
+        }
+      ]
+    }
+  ],
+  SET_LOCATION: [
+    { "text": "Great. Your business is always open." },
+    { "text": "Do you want to add location information?" },
+    {
+      "text": "Select your business hours.",
+      "quick_replies": [
+        {
+          "content_type": "text",
+          "title": "Add location",
+          "payload": "location",
+        }, {
+          "content_type": "text",
+          "title": "Skip for now",
+          "payload": "skip",
+        }
+      ]
+    }
+  ],
+  SET_LOCATION_B: [
+    { "text": "OK." },
+    { "text": "Simply send me your business address here." },
+  ],
+  SET_CONTACT_INFO: [
+    { "text": "Your location has been added." },
+    {
+      "text": "Now, add contact information to your Page.",
+      "quick_replies": [
+        {
+          "content_type": "text",
+          "title": "Website",
+          "payload": "Website",
+        }, {
+          "content_type": "text",
+          "title": "Phone number",
+          "payload": "Phone",
+        }, {
+          "content_type": "text",
+          "title": "Email",
+          "payload": "Email",
+        }, {
+          "content_type": "text",
+          "title": "Skip for now",
+          "payload": "skip",
+        }
+      ]
+    }
+  ],
+  FINISH_MODULE_1: [
+    { "text": "Great job! You have added some basic information to your Page." },
+    {
+      "text": "Do you want to see the changes you made?",
+      "quick_replies": [
+        {
+          "content_type": "text",
+          "title": "Go to Page",
+          "payload": "yes",
+        }, {
+          "content_type": "text",
+          "title": "No thanks",
+          "payload": "no",
+        }
+      ]
+    }
+  ],
+  START_MODULE_2: [
+    { "text": "Hi, your page is looking great!" },
+    { "text": "Want to learn more about connecting with customers?" }
+  ],
+  SET_PAGE_BUTTON: [
+    { "text": "Let's get started" },
+    { "text": "Choose the action you want people to take when they visit your Page." },
+    {
+      "text": "This button will be shown at the top of your Page",
+      "quick_replies": [
+        {
+          "content_type": "text",
+          "title": "Order Food",
+          "payload": "order_food",
+        },
+        {
+          "content_type": "text",
+          "title": "Send Message",
+          "payload": "messenger",
+        }, {
+          "content_type": "text",
+          "title": "WhatsApp",
+          "payload": "whatsapp",
+        }, {
+          "content_type": "text",
+          "title": "More Options",
+          "payload": "others",
+        }
+      ]
+    }
+  ],
+  SET_AUTO_REPLAY_A: [
+    { "text": "OK, we've added a button so people can message your business." },
+    { "text": "Would you like to set up instant replies?" },
+    { "text": "This is an automatic reply people receive when they send a message." },
+    {
+      "text": "You can thank people for their message and tell them when they can expect a response",
+      "quick_replies": YES_NO_QUICK_REPLIES,
+    }
+  ],
+  SET_AUTO_REPLAY_B: [
+    { "text": "Great!" },
+    { "text": "Here's a suggestion." },
+    { "text": "*'Hi, thanks for contacting Authentic Phoever. We've received your message and will respond shortly.'*" },
+    {
+      "text": "Do you want to use this message?",
+      "quick_replies": YES_NO_QUICK_REPLIES,
+    },
+  ],
+  FINISH_MODULE_2: [
+    { "text": "Nice work!" },
+    { "text": "You've made it easier for potential customers to connect and communicate with you." },
+    { "text": "Learn how to add even more value to your Page with our free online courses" }
+  ]
 }
 
 module.exports.PREVIEW_PROFILE_PHOTO_SUCCESS = (attachment_url) => {
-  return {
+  return [{
     "attachment": {
       "type": "template",
       "payload": {
@@ -197,18 +265,18 @@ module.exports.PREVIEW_PROFILE_PHOTO_SUCCESS = (attachment_url) => {
       }
     },
     "quick_replies": YES_NO_QUICK_REPLIES,
-  };
+  }];
 }
 
 module.exports.CONFIRM_LOCATION = (address) => {
   address_arr = address.split(", ");
-  return {
+  return [{
     "text": `Your business address is
       Street Address: ${address_arr[0]}
       City: ${address_arr[1]}
       Zip code: ${address_arr[2]}\nIs this correct?`,
     "quick_replies": YES_NO_QUICK_REPLIES,
-  }
+  }];
 }
 
 module.exports.STATES = {

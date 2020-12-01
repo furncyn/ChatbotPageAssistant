@@ -138,9 +138,6 @@ function handleMessage(sender_psid, received_message) {
             } else if (stateLevel2 === 'B') {
               response = RESPONSES.PREVIEW_PROFILE_PHOTO_FAIL;
               db.setUserState(sender_psid, 1, 'C');
-            } else if (stateLevel2 === 'C') {
-              response = RESPONSES.ADD_PROFILE_PHOTO_AGAIN;
-              db.setUserState(sender_psid, 1, 'D');
             } else {
               const attachment_url = received_message.attachments[0].payload.url;
               response = PREVIEW_PROFILE_PHOTO_SUCCESS(attachment_url);
@@ -180,16 +177,11 @@ function handleMessage(sender_psid, received_message) {
             break;
           case 7:
             response = RESPONSES.FINISH_MODULE_1;
-            db.setUserState(sender_psid, 8, 'A');
+            db.setUserState(sender_psid, 8);
             break;
           case 8:
-            if (stateLevel2 === 'A') {
-              response = RESPONSES.START_MODULE_2_A;
-              db.setUserState(sender_psid, 8, 'B');
-            } else {
-              response = RESPONSES.START_MODULE_2_B;
-              db.setUserState(sender_psid, 9);
-            }
+            response = RESPONSES.START_MODULE_2;
+            db.setUserState(sender_psid, 9);
             break;
           case 9:
             response = RESPONSES.SET_PAGE_BUTTON;
