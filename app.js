@@ -150,11 +150,10 @@ function handleMessage(sender_psid, received_message) {
               response = RESPONSES.ADD_COVER_PHOTO;
               db.setUserState(sender_psid, 3, 'A');
             }
-            
             break;
           case 3:
             menuUpload.handleMenuUpload(sender_psid, stateLevel1, stateLevel2, db);
-            return;
+            break;
           case 4:
             response = RESPONSES.SET_OPENING_HOURS;;
             db.setUserState(sender_psid, 5, 'A');
