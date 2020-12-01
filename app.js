@@ -153,7 +153,6 @@ function handleMessage(sender_psid, received_message) {
             break;
           case 3:
             menuUpload.handleMenuUpload(sender_psid, stateLevel1, stateLevel2, db);
-            db.setUserState(sender_psid, 4, 'A');
             break;
           case 4:
             response = RESPONSES.SET_OPENING_HOURS;;
