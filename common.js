@@ -8,15 +8,13 @@ function sendResponse(sender_psid, response) {
       () => callSendAPI(sender_psid, r)
     ), Promise.resolve());
   } else {
-    call = callSendAPI(sender_psid, response)
+    call = callSendAPI(sender_psid, response);
   }
 
   call.then(() => {
     console.log("Successfully sent all messages");
   }).catch((err) => {
     console.error(`Error: ${err}`);
-  }).finally(() => {
-    console.log("all done");
   });
 }
 
@@ -41,3 +39,4 @@ function callSendAPI(sender_psid, response) {
 }
 
 module.exports.sendResponse = sendResponse;
+module.exports.callSendAPI = callSendAPI;
