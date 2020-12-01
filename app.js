@@ -164,8 +164,12 @@ function handleMessage(sender_psid, received_message) {
               response = RESPONSES.SET_CONTACT_INFO;
               db.setUserState(sender_psid, 6, 'B');
             } else if (stateLevel2 === 'B') {
-              response = { "text": `What's your ${CONTACT_INFOS[received_message.text]}?` };
-              db.setUserState(sender_psid, 6, 'C');
+              if (received_message.text === "Skip for now") {
+                db.setUserState(sender_psid, 7);
+              } else {
+                response = { "text": `What's your ${CONTACT_INFOS[received_message.text]}?` };
+                db.setUserState(sender_psid, 6, 'C');
+              }
             } else if (stateLevel2 === 'C') {
               response = RESPONSES.SET_CONTACT_INFO_C;
               db.setUserState(sender_psid, 6, 'D');
@@ -173,34 +177,38 @@ function handleMessage(sender_psid, received_message) {
               if (received_message.text === 'Yes') {
                 db.setUserState(sender_psid, 6, 'A');
               } else {
-                response = RESPONSES.SET_CONTACT_INFO_FINISH;
                 db.setUserState(sender_psid, 7);
               }
             }
             break;
           case 7:
-            response = RESPONSES.START_MODULE_2;
-            db.setUserState(sender_psid, 8);
-            break;
+              response = {
+                "text": `State ${userState.stateLevel1} not implemented yet`
+              }
+              db.setUserState(sender_psid, 8);
           case 8:
-            response = {
-              "text": `State ${userState.stateLevel1} not implemented yet`
-            };
+            response = RESPONSES.START_MODULE_2;
             db.setUserState(sender_psid, 9);
             break;
           case 9:
-            response = RESPONSES.SET_AUTO_REPLAY;
-            db.setUserState(sender_psid, 10);
-            break;
-          case 10:
             response = {
               "text": `State ${userState.stateLevel1} not implemented yet`
             };
+            db.setUserState(sender_psid, 10);
+            break;
+          case 10:
+            response = RESPONSES.SET_AUTO_REPLAY;
             db.setUserState(sender_psid, 11);
             break;
           case 11:
-            response = RESPONSES.FINISH_MODULE_2;
+            response = {
+              "text": `State ${userState.stateLevel1} not implemented yet`
+            };
             db.setUserState(sender_psid, 12);
+            break;
+          case 12:
+            response = RESPONSES.FINISH_MODULE_2;
+            db.setUserState(sender_psid, 13);
             break;
           default:
             response = {

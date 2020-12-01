@@ -81,6 +81,10 @@ module.exports.RESPONSES = {
         "content_type": "text",
         "title": "Email",
         "payload": "Email",
+      }, {
+        "content-type": "text",
+        "title": "Skip for now",
+        "payload": "skip",
       }
     ]
   },
@@ -97,9 +101,6 @@ module.exports.RESPONSES = {
         "payload": "No",
       }
     ]
-  },
-  SET_CONTACT_INFO_FINISH: {
-    "text": "Nice. Now more people can reach your business!",
   },
   START_MODULE_2: {
     "text": `Do you want to connect to more people?`,
@@ -148,20 +149,21 @@ module.exports.STATES = {
    * A: 4 selections (No hours, Always open, Permanently closed, Selected hours)
    * B: specify Selected hours
    */
-  6: "Contact info", // to be finalized
+  6: "Contact info",
+  7: "See changes from module 1"
 
   /** Module 2 */
-  7: "Module 2 Welcome Message",
-  8: "Add Page Button",
+  8: "Module 2 Welcome Message",
+  9: "Add Page Button",
   // only show if user wants to set up Appointment booking
-  9: "Add Auto Reply",
+  10: "Add Auto Reply",
   /**
    * A: select days and times for appointment
    * B: appointment approval (bool)
    * C: double-booking (bool)
    * D: sync to google calendar (bool)
    */
-  10: "Service flow",
+  11: "Service flow",
   /**
    * A: service name
    * B: price
@@ -169,5 +171,5 @@ module.exports.STATES = {
    * D: duration
    * E: include an image
   */
-  11: "Finish Message",
+  12: "Finish Message",
 }
