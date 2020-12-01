@@ -1,18 +1,23 @@
 const rp = require('request-promise');
-const sequential = require('promise-sequential');
 const PAGE_ACCESS_TOKEN = process.env.PAGE_TOKEN;
 
-async function sendResponse(sender_psid, response) {
+function sendResponse(sender_psid, response) {
+  let call = null;
   if (Array.isArray(response)) {
-    const async_actions = response.map(r => callSendAPI(sender_psid, r));
-    const res = await sequential(async_actions);
-    console.log("all done");
-    console.log(res);
+    call = response.reduce((prev, r) => prev.then(
+      () => callSendAPI(sender_psid, r)
+    ), Promise.resolve());
   } else {
-    const res = await callSendAPI(sender_psid, response)
-    console.log("all done");
-    console.log(res);
+    call = callSendAPI(sender_psid, response)
   }
+
+  call.then(() => {
+    console.log("Successfully sent all messages");
+  }).catch((err) => {
+    console.error(`Error: ${err}`);
+  }).finally(() => {
+    console.log("all done");
+  });
 }
 
 function callSendAPI(sender_psid, response) {
@@ -36,4 +41,3 @@ function callSendAPI(sender_psid, response) {
 }
 
 module.exports.sendResponse = sendResponse;
-module.exports.callSendAPI = callSendAPI;

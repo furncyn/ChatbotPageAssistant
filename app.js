@@ -206,60 +206,6 @@ function handleMessage(sender_psid, received_message) {
             };
         }
       }
-
-      // Get the URL of the message attachment
-      // let attachment_url = received_message.attachments[0].payload.url;
-      // response = {
-      //   "attachment": {
-      //     "type": "template",
-      //     "payload": {
-      //       "template_type": "generic",
-      //       "elements": [{
-      //         "title": "It would be better to upload a profile photo with less text",
-      //         "subtitle": "Would you like to resend another photo?",
-      //         "image_url": attachment_url,
-      //         "buttons": [
-      //           {
-      //             "type": "postback",
-      //             "title": "Yes",
-      //             "payload": "yes",
-      //           },
-      //           {
-      //             "type": "postback",
-      //             "title": "Skip",
-      //             "payload": "no",
-      //           }
-      //         ],
-      //       }]
-      //     }
-      //   }
-      // }
-
-      // response = {
-      //   "attachment": {
-      //     "type": "template",
-      //     "payload": {
-      //       "template_type": "generic",
-      //       "elements": [{
-      //         "title": "Is this the right picture?",
-      //         "subtitle": "Tap a button to answer.",
-      //         "image_url": attachment_url,
-      //         "buttons": [
-      //           {
-      //             "type": "postback",
-      //             "title": "Yes!",
-      //             "payload": "yes",
-      //           },
-      //           {
-      //             "type": "postback",
-      //             "title": "No!",
-      //             "payload": "no",
-      //           }
-      //         ],
-      //       }]
-      //     }
-      //   }
-      // }
     }
   } catch (err) {
     response = { "text": err };
