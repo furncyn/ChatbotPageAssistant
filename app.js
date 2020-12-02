@@ -155,7 +155,6 @@ function handleMessage(sender_psid, received_message) {
               response = RESPONSES.SEND_PROFILE_PHOTO;
               db.setUserState(sender_psid, 1, 'E');
             } else {
-              const attachment_url = received_message.attachments[0].payload.url;
               response = RESPONSES.PREVIEW_PROFILE_PHOTO_SUCCESS;
               db.setUserState(sender_psid, 2, 'A');
             }

@@ -76,7 +76,7 @@ module.exports.RESPONSES = {
   PREVIEW_PROFILE_PHOTO_SUCCESS: [
     get_image_response(PREVIEW_PROFILE_PHOTO_ATTACHMENT_ID),
     {
-      "text": "Your photo is not clear.",
+      "text": "Are you happy with how it looks?",
       "quick_replies": YES_NO_QUICK_REPLIES,
     },
   ],
@@ -101,7 +101,7 @@ module.exports.RESPONSES = {
     }
   ],
   ADD_COVER_PHOTO_B: [
-    { "text": "Send your photo" },
+    { "text": "Send your photo." },
   ],
   ADD_MENU: [
     { "text": "Your cover photo has been added." },
@@ -135,9 +135,9 @@ module.exports.RESPONSES = {
   ],
   SET_OPENING_HOURS: [
     { "text": "Got it!" },
-    { "text": "Now, add more details so potential customers can learn about your business 🕒" },
+    { "text": "Now, add more details so potential customers can learn about your business." },
     {
-      "text": "Select your business hours.",
+      "text": "Select your business hours 🕒",
       "quick_replies": [
         {
           "content_type": "text",
@@ -165,7 +165,7 @@ module.exports.RESPONSES = {
           "payload": "location",
         }, {
           "content_type": "text",
-          "title": "Skip for now",
+          "title": "Skip",
           "payload": "skip",
         }
       ]
@@ -194,27 +194,31 @@ module.exports.RESPONSES = {
           "payload": "Email",
         }, {
           "content_type": "text",
-          "title": "Skip for now",
+          "title": "Skip",
           "payload": "skip",
         }
       ]
     }
   ],
   FINISH_MODULE_1: [
-    { "text": "Great job! You have added some basic information to your Page." },
+    { "text": "Great job! 👍 You have added some basic information to your Page." },
     {
-      "text": "Do you want to see the changes you made?",
-      "quick_replies": [
-        {
-          "content_type": "text",
-          "title": "Go to Page",
-          "payload": "yes",
-        }, {
-          "content_type": "text",
-          "title": "No thanks",
-          "payload": "no",
+      "attachment":
+      {
+        "type":"template",
+        "payload":{
+          "template_type":"button",
+          "text": "Go to your page to see the changes you have made.",
+          "buttons":[
+            {
+              "type":"web_url",
+              "url":"https://www.facebook.com/Authentic-Phoever-104912418137048/",
+              "title":"Go to Page",
+              "webview_height_ratio": "full"
+            }
+          ]
         }
-      ]
+      }
     }
   ],
   START_MODULE_2: [
