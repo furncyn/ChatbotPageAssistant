@@ -17,7 +17,7 @@ const PROFILE_PREVIEW_IMAGE_URL = "https://www.linkpicture.com/q/Profile-Photo-C
 module.exports.RESPONSES = {
   GET_STARTED: [
     { "text":  `Hi, ${user_name}!` },
-    { "text": "I'm here to help you complete your your Page and find potential customers." },
+    { "text": `I'm here to help you complete your Page ${biz_name} and find potential customers.` },
     {
       "text": "Would you like to get started?",
       "quick_replies": YES_NO_QUICK_REPLIES
@@ -26,15 +26,53 @@ module.exports.RESPONSES = {
   ADD_PROFILE_PHOTO: [
     { "text": "Great!" },
     { "text": "Let's start by adding a profile photo that represents your business." },
-    { "text": "Many people use their business logo as their profile photo." }
+    {
+      "text": "Many people use their business logo as their profile photo.",
+      "quick_replies": [
+        {
+          "content_type": "text",
+          "title": "Add Photo",
+          "payload": "yes",
+        }, {
+          "content_type": "text",
+          "title": "Tell Me More",
+          "payload": "more",
+        }, {
+          "content_type": "text",
+          "title": "Not Now",
+          "payload": "no",
+        }
+      ],
+    }
+  ],
+  SEND_PROFILE_PHOTO: [
+    { "text": "Send a photo and we'll use it for your profile picture" },
   ],
   PREVIEW_PROFILE_PHOTO_FAIL: [
-    { "text": "Your profile photo is not clear." },
+    { "text": "Your photo is not clear." },
     { "text": "For best quality, it should be at least 320 pixels wide and 320 pixels tall." },
     {
-      "text": "Would you like to send another photo?",
+      "text": "Would you like to change your photo?",
       "quick_replies": YES_NO_QUICK_REPLIES,
     }
+  ],
+  PREVIEW_PROFILE_PHOTO_SUCCESS: [
+    {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "media",
+          "elements": [{
+          "media_type": "image",
+          "attachment_id": "3597221143667783",
+          }]
+        }
+      },
+    },
+    {
+      "text": "Your photo is not clear.",
+      "quick_replies": YES_NO_QUICK_REPLIES,
+    },
   ],
   ADD_COVER_PHOTO: [
     { "text": "Great!" },
@@ -221,22 +259,6 @@ module.exports.RESPONSES = {
     { "text": "You've made it easier for potential customers to connect and communicate with you." },
     { "text": "Learn how to add even more value to your Page with our free online courses." }
   ]
-}
-
-module.exports.PREVIEW_PROFILE_PHOTO_SUCCESS = (attachment_url) => {
-  return [{
-    "attachment": {
-      "type": "template",
-      "payload": {
-        "template_type": "generic",
-        "elements": [{
-          "title": "Are you happy with how it looks?",
-          "image_url": PROFILE_PREVIEW_IMAGE_URL,
-        }]
-      }
-    },
-    "quick_replies": YES_NO_QUICK_REPLIES,
-  }];
 }
 
 module.exports.CONFIRM_LOCATION = (address) => {

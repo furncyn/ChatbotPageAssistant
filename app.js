@@ -32,7 +32,7 @@ const
   app = express().use(body_parser.json()); // creates express http server
 
 const
-  { CONFIRM_LOCATION, PREVIEW_PROFILE_PHOTO_SUCCESS, RESPONSES, STATES } = require('./constants'),
+  { CONFIRM_LOCATION, RESPONSES, STATES } = require('./constants'),
   { getDebugReponse } = require('./utils');
 
 // Sets server port and logs message on success
@@ -146,11 +146,17 @@ function handleMessage(sender_psid, received_message) {
               response = RESPONSES.ADD_PROFILE_PHOTO;
               db.setUserState(sender_psid, 1, 'B');
             } else if (stateLevel2 === 'B') {
-              response = RESPONSES.PREVIEW_PROFILE_PHOTO_FAIL;
+              response = RESPONSES.SEND_PROFILE_PHOTO;
               db.setUserState(sender_psid, 1, 'C');
+            } else if (stateLevel2 === 'C') {
+              response = RESPONSES.PREVIEW_PROFILE_PHOTO_FAIL;
+              db.setUserState(sender_psid, 1, 'D');
+            } else if (stateLevel2 === 'D') {
+              response = RESPONSES.SEND_PROFILE_PHOTO;
+              db.setUserState(sender_psid, 1, 'E');
             } else {
               const attachment_url = received_message.attachments[0].payload.url;
-              response = PREVIEW_PROFILE_PHOTO_SUCCESS(attachment_url);
+              response = RESPONSES.PREVIEW_PROFILE_PHOTO_SUCCESS;
               db.setUserState(sender_psid, 2);
             }
             break;
