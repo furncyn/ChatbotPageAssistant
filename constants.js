@@ -34,7 +34,7 @@ const get_image_response = (attachment_id) => {
 module.exports.RESPONSES = {
   GET_STARTED: [
     { "text":  `Hi, ${user_name}!` },
-    { "text": `I'm here to help you complete your Page ${biz_name} and find potential customers.` },
+    { "text": `I'm here to help you complete your Page *${biz_name}* and find potential customers.` },
     {
       "text": "Would you like to get started?",
       "quick_replies": YES_NO_QUICK_REPLIES
