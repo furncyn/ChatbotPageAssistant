@@ -122,12 +122,12 @@ function handleMessage(sender_psid, received_message) {
       // 2nd param should be n_lines. Ignore rest.
       const psid = received_message_text.trim().split(' ')[1];
       db.setUserState(psid, 1, 'A');
-      return RESPONSES.GET_STARTED;
+      response = RESPONSES.GET_STARTED;
     } else if (received_message_text.startsWith("init2")) {
       // 2nd param should be n_lines. Ignore rest.
       const psid = received_message_text.trim().split(' ')[1];
       db.setUserState(psid, 9);
-      return RESPONSES.START_MODULE_2;
+      response = RESPONSES.START_MODULE_2;
     } else {
       let userState = db.getUserState(sender_psid);
       if (received_message.text && received_message.text.startsWith("jump")) {
