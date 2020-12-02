@@ -12,6 +12,7 @@ const YES_NO_QUICK_REPLIES = [
 
 const user_name = "Nguyen Hoang Yen";
 const biz_name = "Authentic Phoever";
+const PROFILE_PREVIEW_IMAGE_URL = "https://ibb.co/hsjkd90"
 
 module.exports.RESPONSES = {
   GET_STARTED: [
@@ -230,7 +231,7 @@ module.exports.PREVIEW_PROFILE_PHOTO_SUCCESS = (attachment_url) => {
         "template_type": "generic",
         "elements": [{
           "subtitle": "Are you happy with how it looks?",
-          "image_url": attachment_url,
+          "image_url": PROFILE_PREVIEW_IMAGE_URL,
         }]
       }
     },
