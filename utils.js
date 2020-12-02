@@ -2,8 +2,7 @@ const LOG_FILE = 'log';
 const
   child_process = require('child_process'),
   fs = require('fs'),
-  db = require('./db'),
-  { RESPONSES} = require('./constants');
+  db = require('./db');
 
 function getLog(n_lines = 10) {
   if (!Number.isInteger(n_lines)) {
@@ -50,11 +49,6 @@ module.exports.getDebugReponse = (received_message) => {
       return {
         "text": `Here is your log:\n ${getLog(parseInt(n_lines))}`
       }
-    } else if (received_message_text.startsWith("init")) {
-      // 2nd param should be n_lines. Ignore rest.
-      const psid = received_message_text.trim().split(' ')[1];
-      db.setUserState(psid, 1, 'A');
-      return RESPONSES.GET_STARTED;
     }
   }
 }

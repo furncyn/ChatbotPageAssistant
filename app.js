@@ -118,6 +118,16 @@ function handleMessage(sender_psid, received_message) {
       // Initialize conversation
       response = RESPONSES.GET_STARTED;
       db.setUserState(sender_psid, 1, 'A');
+    } else if (received_message_text.startsWith("init1")) {
+      // 2nd param should be n_lines. Ignore rest.
+      const psid = received_message_text.trim().split(' ')[1];
+      db.setUserState(psid, 1, 'A');
+      return RESPONSES.GET_STARTED;
+    } else if (received_message_text.startsWith("init2")) {
+      // 2nd param should be n_lines. Ignore rest.
+      const psid = received_message_text.trim().split(' ')[1];
+      db.setUserState(psid, 9);
+      return RESPONSES.START_MODULE_2;
     } else {
       let userState = db.getUserState(sender_psid);
       if (received_message.text && received_message.text.startsWith("jump")) {
