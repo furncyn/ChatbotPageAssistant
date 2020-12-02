@@ -111,7 +111,23 @@ module.exports.RESPONSES = {
   ADD_MENU: [
     { "text": "Your cover photo has been added." },
     { "text": "We noticed you have a food business 🍜" },
-    { "text": `Add a photo of your menu to let people know what ${biz_name} offers.` }
+    {
+      "text": `Add a photo of your menu to let people know what ${biz_name} offers.`,
+      "quick_replies": [
+        {
+          "content_type": "text",
+          "title": "Add Photo",
+          "payload": "yes",
+        }, {
+          "content_type": "text",
+          "title": "Skip",
+          "payload": "skip",
+        }
+      ],
+    }
+  ],
+  SEND_MENU_PHOTO: [
+    { "text": "Send your photo." },
   ],
   ADD_MENU_DESCRIPTION: [
     { "text": "Give your menu a name." },

@@ -8,8 +8,13 @@ function handleMenuUpload(sender_psid, stateLevel1, stateLevel2, db) {
         common.sendResponse(sender_psid, response);
         return;
     } else if (stateLevel2 === 'B') {
-        const response = RESPONSES.ADD_MENU_DESCRIPTION;
+        const response = RESPONSES.SEND_MENU_PHOTO;
         db.setUserState(sender_psid, 3, 'C');
+        common.sendResponse(sender_psid, response);
+        return;
+    } else if (stateLevel2 === 'C') {
+        const response = RESPONSES.ADD_MENU_DESCRIPTION;
+        db.setUserState(sender_psid, 3, 'D');
         common.sendResponse(sender_psid, response);
         return;
     } else {
