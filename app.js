@@ -157,12 +157,17 @@ function handleMessage(sender_psid, received_message) {
             } else {
               const attachment_url = received_message.attachments[0].payload.url;
               response = RESPONSES.PREVIEW_PROFILE_PHOTO_SUCCESS;
-              db.setUserState(sender_psid, 2);
+              db.setUserState(sender_psid, 2, 'A');
             }
             break;
           case 2:
-            response = RESPONSES.ADD_COVER_PHOTO;
-            db.setUserState(sender_psid, 3, 'A');
+            if (stateLevel2 === 'A') {
+              response = RESPONSES.ADD_COVER_PHOTO_A;
+              db.setUserState(sender_psid, 2, 'B');
+            } else {
+              response = RESPONSES.ADD_COVER_PHOTO_B;
+              db.setUserState(sender_psid, 3, 'A');
+            }
             break;
           case 3:
             menuUpload.handleMenuUpload(sender_psid, stateLevel1, stateLevel2, db);

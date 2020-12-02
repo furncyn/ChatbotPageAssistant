@@ -12,7 +12,24 @@ const YES_NO_QUICK_REPLIES = [
 
 const user_name = "Nguyen Hoang Yen";
 const biz_name = "Authentic Phoever";
-const PROFILE_PREVIEW_IMAGE_URL = "https://www.linkpicture.com/q/Profile-Photo-Cropped.jpg"
+const PROFILE_PREVIEW_IMAGE_URL = "https://www.linkpicture.com/q/Profile-Photo-Cropped.jpg";
+const PREVIEW_PROFILE_PHOTO_ATTACHMENT_ID = "3597221143667783";
+const COVER_PHOTO_CUE_ATTACHMENT_ID = "407038450486817";
+
+const get_image_response = (attachment_id) => {
+  return {
+    "attachment": {
+      "type": "template",
+      "payload": {
+        "template_type": "media",
+        "elements": [{
+        "media_type": "image",
+        "attachment_id": attachment_id,
+        }]
+      }
+    },
+  }
+}
 
 module.exports.RESPONSES = {
   GET_STARTED: [
@@ -57,33 +74,23 @@ module.exports.RESPONSES = {
     }
   ],
   PREVIEW_PROFILE_PHOTO_SUCCESS: [
-    {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "media",
-          "elements": [{
-          "media_type": "image",
-          "attachment_id": "3597221143667783",
-          }]
-        }
-      },
-    },
+    get_image_response(PREVIEW_PROFILE_PHOTO_ATTACHMENT_ID),
     {
       "text": "Your photo is not clear.",
       "quick_replies": YES_NO_QUICK_REPLIES,
     },
   ],
-  ADD_COVER_PHOTO: [
+  ADD_COVER_PHOTO_A: [
     { "text": "Great!" },
     { "text": "Now, add a cover photo for your Page." },
     { "text": "This photo appears at the top of your page." },
+    get_image_response(COVER_PHOTO_CUE_ATTACHMENT_ID),
     {
       "text": "You might like to choose a photo of your shop or products.",
       "quick_replies": [
         {
           "content_type": "text",
-          "title": "Add photo",
+          "title": "Add Photo",
           "payload": "yes",
         }, {
           "content_type": "text",
@@ -93,22 +100,30 @@ module.exports.RESPONSES = {
       ],
     }
   ],
+  ADD_COVER_PHOTO_B: [
+    { "text": "Send your photo" },
+  ],
   ADD_MENU: [
-    { "text": "🍴 We noticed you have a food business." },
+    { "text": "Your cover photo has been added." },
+    { "text": "We noticed you have a food business 🍜" },
     { "text": `Add a photo of your menu to let people know what ${biz_name} offers.` }
   ],
   ADD_MENU_DESCRIPTION: [
-    { "text": "You can give your menu a name." },
+    { "text": "Give your menu a name." },
     {
       "text": "Here are some suggestions.",
       "quick_replies": [{
         "content_type": "text",
-        "title": "Fried Chicken",
-        "payload": "Fried Chicken",
+        "title": "Soup",
+        "payload": "soup",
       }, {
         "content_type": "text",
-        "title": "Nasi Lemak",
-        "payload": "Nasi Lemak",
+        "title": "Beef Pho",
+        "payload": "beef pho",
+      }, {
+        "content_type": "text",
+        "title": "Enter Menu Name",
+        "payload": "enter",
       }]
      }
   ],
@@ -120,7 +135,7 @@ module.exports.RESPONSES = {
   ],
   SET_OPENING_HOURS: [
     { "text": "Got it!" },
-    { "text": "Now, add more details so potential customers can learn about your business." },
+    { "text": "Now, add more details so potential customers can learn about your business 🕒" },
     {
       "text": "Select your business hours.",
       "quick_replies": [
