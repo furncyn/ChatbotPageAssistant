@@ -15,6 +15,10 @@ const biz_name = "Authentic Phoever";
 const PROFILE_PREVIEW_IMAGE_URL = "https://www.linkpicture.com/q/Profile-Photo-Cropped.jpg";
 const PREVIEW_PROFILE_PHOTO_ATTACHMENT_ID = "3265801710196360";
 const COVER_PHOTO_CUE_ATTACHMENT_ID = "296509938360959";
+const PAGE_BUTTON_CUE_ATTACHMENT_ID = "201521731558049";
+const START_MODULE_1_IMAGE_ATTACHMENT_ID = "437893500560161";
+const FINISH_MODULE_1_IMAGE_ATTACHMENT_ID = "3529675837108345";
+const FINISH_MODULE_2_IMAGE_ATTACHMENT_ID = "1287712881602047";
 
 const get_image_response = (attachment_id) => {
   return {
@@ -33,8 +37,9 @@ const get_image_response = (attachment_id) => {
 
 module.exports.RESPONSES = {
   GET_STARTED: [
+    get_image_response(START_MODULE_1_IMAGE_ATTACHMENT_ID),
     { "text":  `Hi, ${user_name}!` },
-    { "text": `I'm here to help you complete your Page *${biz_name}* and find potential customers.` },
+    { "text": `I'm here to help you complete your Page ${biz_name} and find potential customers.` },
     {
       "text": "Would you like to get started?",
       "quick_replies": YES_NO_QUICK_REPLIES
@@ -201,7 +206,8 @@ module.exports.RESPONSES = {
     }
   ],
   FINISH_MODULE_1: [
-    { "text": "Great job! 👍 You have added some basic information to your Page." },
+    get_image_response(FINISH_MODULE_1_IMAGE_ATTACHMENT_ID),
+    { "text": "Great job! 🥳 You have added some basic information to your Page." },
     {
       "attachment":
       {
@@ -222,7 +228,7 @@ module.exports.RESPONSES = {
     }
   ],
   START_MODULE_2: [
-    { "text": "Hi, your page is looking great!" },
+    { "text": "Hi, your page is looking great! 👍" },
     {
       "text": "Want to learn more about connecting with customers?",
       "quick_replies": YES_NO_QUICK_REPLIES,
@@ -231,6 +237,7 @@ module.exports.RESPONSES = {
   SET_PAGE_BUTTON: [
     { "text": "Let's get started" },
     { "text": "Choose the action you want people to take when they visit your Page." },
+    get_image_response(PAGE_BUTTON_CUE_ATTACHMENT_ID),
     {
       "text": "This button will be shown at the top of your Page.",
       "quick_replies": [
@@ -267,16 +274,34 @@ module.exports.RESPONSES = {
   SET_AUTO_REPLAY_B: [
     { "text": "Great!" },
     { "text": "Here's a suggestion." },
-    { "text": `*'Hi, thanks for contacting ${biz_name}. We've received your message and will respond shortly.'*` },
+    { "text": `"Hi, thanks for contacting ${biz_name}. We've received your message and will respond shortly."` },
     {
       "text": "Do you want to use this message?",
       "quick_replies": YES_NO_QUICK_REPLIES,
     },
   ],
   FINISH_MODULE_2: [
-    { "text": "Nice work!" },
+    get_image_response(FINISH_MODULE_2_IMAGE_ATTACHMENT_ID),
+    { "text": "Nice work! 🥳" },
     { "text": "You've made it easier for potential customers to connect and communicate with you." },
-    { "text": "Learn how to add even more value to your Page with our free online courses." }
+    {
+      "attachment":
+      {
+        "type":"template",
+        "payload":{
+          "template_type":"button",
+          "text": "Learn how to add even more value to your Page with our free online courses.",
+          "buttons":[
+            {
+              "type":"web_url",
+              "url":"https://www.facebook.com/help/282489752085908/?helpref=hc_fnav",
+              "title":"Learn More",
+              "webview_height_ratio": "full"
+            }
+          ]
+        }
+      }
+    }
   ]
 }
 
