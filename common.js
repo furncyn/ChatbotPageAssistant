@@ -33,7 +33,6 @@ function callSendAPI(sender_psid, response) {
     "method": "POST",
     "json": request_body
   };
-  console.log('token:', PAGE_ACCESS_TOKEN);
 
   // Send the HTTP request to the Messenger Platform
   return rp(options);
