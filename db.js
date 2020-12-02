@@ -7,6 +7,7 @@ db.defaults({ userStates: {}, userPageInfoCompletions: {}})
   .write()
 
 function setUserState(userId, stateLevel1, stateLevel2) {
+    console.log(`setUserState: stateLevel1 = ${stateLevel1}, stateLevel2 = ${stateLevel2}`);
     db.set(`userStates.${userId}`, { stateLevel1: stateLevel1, stateLevel2: stateLevel2} ).write();
 }
 
