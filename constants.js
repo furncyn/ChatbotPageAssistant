@@ -10,7 +10,7 @@ const YES_NO_QUICK_REPLIES = [
   }
 ]
 
-const user_name = "Sheryl";
+const user_name = "Nguyen Hoang Yen";
 const biz_name = "Authentic Phoever";
 
 module.exports.RESPONSES = {
