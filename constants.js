@@ -244,6 +244,7 @@ module.exports.RESPONSES = {
     }
   ],
   START_MODULE_2: [
+    get_image_response(START_MODULE_1_IMAGE_ATTACHMENT_ID),
     { "text": "Hi, your page is looking great! 👍" },
     {
       "text": "Want to learn more about connecting with customers?",
