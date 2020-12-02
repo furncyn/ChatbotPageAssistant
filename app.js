@@ -114,18 +114,18 @@ function handleMessage(sender_psid, received_message) {
     const debugReponse = getDebugReponse(received_message);
     if (debugReponse) {
       response = debugReponse;
-    } else if (received_message.text &&  ["hi", 'get started'].includes(received_message.text.toLowerCase())) {
+    } else if (received_message.text && ["hi", 'get started'].includes(received_message.text.toLowerCase())) {
       // Initialize conversation
       response = RESPONSES.GET_STARTED;
       db.setUserState(sender_psid, 1, 'A');
-    } else if (received_message_text.startsWith("init1")) {
+    } else if (received_message.text && received_message.text.startsWith("init1")) {
       // 2nd param should be n_lines. Ignore rest.
-      const psid = received_message_text.trim().split(' ')[1];
+      const psid = received_message.text.trim().split(' ')[1];
       db.setUserState(psid, 1, 'A');
       response = RESPONSES.GET_STARTED;
-    } else if (received_message_text.startsWith("init2")) {
+    } else if (received_message.text && received_message.text.startsWith("init2")) {
       // 2nd param should be n_lines. Ignore rest.
-      const psid = received_message_text.trim().split(' ')[1];
+      const psid = received_message.text.trim().split(' ')[1];
       db.setUserState(psid, 9);
       response = RESPONSES.START_MODULE_2;
     } else {

@@ -63,7 +63,7 @@ module.exports.RESPONSES = {
     }
   ],
   SEND_PROFILE_PHOTO: [
-    { "text": "Send a photo and we'll use it for your profile picture" },
+    { "text": "Send a photo and we'll use it for your profile picture." },
   ],
   PREVIEW_PROFILE_PHOTO_FAIL: [
     { "text": "Your photo is not clear." },
