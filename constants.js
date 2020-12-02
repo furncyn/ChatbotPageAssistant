@@ -13,7 +13,7 @@ const YES_NO_QUICK_REPLIES = [
 const user_name = "Nguyen Hoang Yen";
 const biz_name = "Authentic Phoever";
 const PROFILE_PREVIEW_IMAGE_URL = "https://www.linkpicture.com/q/Profile-Photo-Cropped.jpg";
-const PREVIEW_PROFILE_PHOTO_ATTACHMENT_ID = "3597221143667783";
+const PREVIEW_PROFILE_PHOTO_ATTACHMENT_ID = "311400886648790";
 const COVER_PHOTO_CUE_ATTACHMENT_ID = "407038450486817";
 
 const get_image_response = (attachment_id) => {
