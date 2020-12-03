@@ -180,7 +180,8 @@ function handleMessage(sender_psid, received_message) {
           case 5:
             if (stateLevel2 === 'A') {
               response = RESPONSES.SET_LOCATION;
-              db.setUserState(sender_psid, 5, 'B');
+              // db.setUserState(sender_psid, 5, 'B');
+              db.setUserState(sender_psid, 5, 'C');
             } else if (stateLevel2 === 'B') {
               if (received_message.text === "Add location") {
                 response = RESPONSES.SET_LOCATION_B;

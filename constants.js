@@ -109,21 +109,21 @@ module.exports.RESPONSES = {
     { "text": "Send your photo." },
   ],
   ADD_MENU: [
-    { "text": "Your cover photo has been added." },
+    // { "text": "Your cover photo has been added." },
     { "text": "We noticed you have a food business 🍜" },
     {
       "text": `Add a photo of your menu to let people know what ${biz_name} offers.`,
-      "quick_replies": [
-        {
-          "content_type": "text",
-          "title": "Add Photo",
-          "payload": "yes",
-        }, {
-          "content_type": "text",
-          "title": "Skip",
-          "payload": "skip",
-        }
-      ],
+      // "quick_replies": [
+      //   {
+      //     "content_type": "text",
+      //     "title": "Add Photo",
+      //     "payload": "yes",
+      //   }, {
+      //     "content_type": "text",
+      //     "title": "Skip",
+      //     "payload": "skip",
+      //   }
+      // ],
     }
   ],
   SEND_MENU_PHOTO: [
@@ -177,20 +177,22 @@ module.exports.RESPONSES = {
     }
   ],
   SET_LOCATION: [
-    { "text": "Great. Your business is always open." },
-    { "text": "Do you want to add location information?",
-      "quick_replies": [
-        {
-          "content_type": "text",
-          "title": "Add location",
-          "payload": "location",
-        }, {
-          "content_type": "text",
-          "title": "Skip",
-          "payload": "skip",
-        }
-      ]
-    }
+    // { "text": "Great. Your business is always open." },
+    { "text": "Got it!" },
+    { "text": "Do you also want to add location information?",
+      // "quick_replies": [
+      //   {
+      //     "content_type": "text",
+      //     "title": "Add location",
+      //     "payload": "location",
+      //   }, {
+      //     "content_type": "text",
+      //     "title": "Skip",
+      //     "payload": "skip",
+      //   }
+      // ]
+    },
+    { "text": "Simply send me your business address." },
   ],
   SET_LOCATION_B: [
     { "text": "OK." },

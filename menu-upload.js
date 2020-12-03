@@ -4,7 +4,7 @@ const { RESPONSES, STATES } = require('./constants');
 function handleMenuUpload(sender_psid, stateLevel1, stateLevel2, db) {
     if (stateLevel2 === 'A') {
         const response = RESPONSES.ADD_MENU;
-        db.setUserState(sender_psid, 3, 'B');
+        db.setUserState(sender_psid, 3, 'C');
         common.sendResponse(sender_psid, response);
         return;
     } else if (stateLevel2 === 'B') {
