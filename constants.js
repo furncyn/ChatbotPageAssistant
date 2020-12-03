@@ -18,6 +18,7 @@ const COVER_PHOTO_CUE_ATTACHMENT_ID = "296509938360959";
 const PAGE_BUTTON_CUE_ATTACHMENT_ID = "201521731558049";
 const START_MODULE_1_IMAGE_ATTACHMENT_ID = "437893500560161";
 const FINISH_MODULE_1_IMAGE_ATTACHMENT_ID = "3529675837108345";
+const START_MODULE_2_IMAGE_ATTACHMENT_ID = "437893500560161";
 const FINISH_MODULE_2_IMAGE_ATTACHMENT_ID = "1287712881602047";
 
 const get_image_response = (attachment_id) => {
@@ -39,7 +40,7 @@ module.exports.RESPONSES = {
   GET_STARTED: [
     get_image_response(START_MODULE_1_IMAGE_ATTACHMENT_ID),
     { "text":  `Hi, ${user_name}!` },
-    { "text": `I'm here to help you complete your Page ${biz_name} and find potential customers.` },
+    { "text": `We're here to help you complete your Page ${biz_name} and find potential customers.` },
     {
       "text": "Would you like to get started?",
       "quick_replies": YES_NO_QUICK_REPLIES
@@ -232,7 +233,7 @@ module.exports.RESPONSES = {
         "type":"template",
         "payload":{
           "template_type":"button",
-          "text": "Go to your page to see the changes you have made.",
+          "text": "Visit your page to see the changes.",
           "buttons":[
             {
               "type":"web_url",
@@ -246,7 +247,7 @@ module.exports.RESPONSES = {
     }
   ],
   START_MODULE_2: [
-    get_image_response(START_MODULE_1_IMAGE_ATTACHMENT_ID),
+    get_image_response(START_MODULE_2_IMAGE_ATTACHMENT_ID),
     { "text": "Hi, your page is looking great! 👍" },
     {
       "text": "Want to learn more about connecting with customers?",
