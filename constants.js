@@ -233,7 +233,7 @@ module.exports.RESPONSES = {
         "type":"template",
         "payload":{
           "template_type":"button",
-          "text": "Visit your page to see the changes.",
+          "text": "Visit your Page to see the changes.",
           "buttons":[
             {
               "type":"web_url",
