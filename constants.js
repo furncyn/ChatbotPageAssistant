@@ -248,14 +248,14 @@ module.exports.RESPONSES = {
   ],
   START_MODULE_2: [
     get_image_response(START_MODULE_2_IMAGE_ATTACHMENT_ID),
-    { "text": "Hi, your page is looking great! 👍" },
+    { "text": "Hi, your Page is looking great! 👍" },
     {
       "text": "Want to learn more about connecting with customers?",
       "quick_replies": YES_NO_QUICK_REPLIES,
     }
   ],
   SET_PAGE_BUTTON: [
-    { "text": "Let's get started" },
+    { "text": "Let's get started." },
     { "text": "Choose the action you want people to take when they visit your Page." },
     get_image_response(PAGE_BUTTON_CUE_ATTACHMENT_ID),
     {
@@ -286,7 +286,7 @@ module.exports.RESPONSES = {
     { "text": "OK, we've added a button so people can message your business." },
     { "text": "Want to send automatic replies to people who message your Page?" },
     {
-      "text": "💡You can thank people for their message and tell them when they can expect a response",
+      "text": "💡You can thank people for their message and tell them when they can expect a response.",
       "quick_replies": YES_NO_QUICK_REPLIES,
     }
   ],
