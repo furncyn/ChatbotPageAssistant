@@ -283,8 +283,7 @@ module.exports.RESPONSES = {
   ],
   SET_AUTO_REPLAY_A: [
     { "text": "OK, we've added a button so people can message your business." },
-    { "text": "Would you like to set up instant replies?" },
-    { "text": "This is an automatic reply people receive when they send a message." },
+    { "text": "Want to send automatic replies to people who message your Page?" },
     {
       "text": "💡You can thank people for their message and tell them when they can expect a response",
       "quick_replies": YES_NO_QUICK_REPLIES,
