@@ -14,7 +14,8 @@ function handleMenuUpload(sender_psid, stateLevel1, stateLevel2, db) {
         return;
     } else if (stateLevel2 === 'C') {
         const response = RESPONSES.ADD_MENU_DESCRIPTION;
-        db.setUserState(sender_psid, 3, 'D');
+        // db.setUserState(sender_psid, 3, 'D');
+        db.setUserState(sender_psid, 5, 'A');
         common.sendResponse(sender_psid, response);
         return;
     } else {

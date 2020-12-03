@@ -117,11 +117,13 @@ function handleMessage(sender_psid, received_message) {
     } else if (received_message.text && ["hi", 'get started'].includes(received_message.text.toLowerCase())) {
       // Initialize conversation
       response = RESPONSES.GET_STARTED;
-      db.setUserState(sender_psid, 1, 'A');
+      // db.setUserState(sender_psid, 1, 'A');
+      db.setUserState(sender_psid, 3, 'A');
     } else if (received_message.text && received_message.text.startsWith("init1")) {
       // 2nd param should be n_lines. Ignore rest.
       const psid = received_message.text.trim().split(' ')[1];
-      db.setUserState(psid, 1, 'A');
+      // db.setUserState(psid, 1, 'A');
+      db.setUserState(sender_psid, 3, 'A');
       response = RESPONSES.GET_STARTED;
     } else if (received_message.text && received_message.text.startsWith("init2")) {
       // 2nd param should be n_lines. Ignore rest.
@@ -188,7 +190,8 @@ function handleMessage(sender_psid, received_message) {
               }
             } else {
               response = CONFIRM_LOCATION(received_message.text);
-              db.setUserState(sender_psid, 6);
+              // db.setUserState(sender_psid, 6);
+              db.setUserState(sender_psid, 7);
             }
             break;
           case 6:
