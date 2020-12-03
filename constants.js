@@ -194,7 +194,7 @@ module.exports.RESPONSES = {
   ],
   SET_LOCATION_B: [
     { "text": "OK." },
-    { "text": "Simply send me your business address here." },
+    { "text": "Simply send me your business address." },
   ],
   SET_CONTACT_INFO: [
     { "text": "Your location has been added." },
@@ -284,7 +284,7 @@ module.exports.RESPONSES = {
     { "text": "Would you like to set up instant replies?" },
     { "text": "This is an automatic reply people receive when they send a message." },
     {
-      "text": "You can thank people for their message and tell them when they can expect a response",
+      "text": "💡You can thank people for their message and tell them when they can expect a response",
       "quick_replies": YES_NO_QUICK_REPLIES,
     }
   ],
